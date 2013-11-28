@@ -1,6 +1,10 @@
+# Compiled Files #
 *.class
 
 # Package Files #
 *.jar
 *.war
 *.ear
+
+# Backup Files #
+*.bak
