@@ -8,3 +8,7 @@
 
 # Backup Files #
 *.bak
+
+# Documentation Files #
+doc/
+doc/*

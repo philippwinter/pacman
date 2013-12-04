@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-public class PointContainer {
+public class PointContainer implements Container<Point>{
 
 	private ArrayList<Point> points;
 
@@ -21,6 +21,11 @@ public class PointContainer {
 		// TODO Implement method
 
 		return null;
+	}
+
+	@SuppressWarnings("unchecked")
+	public ArrayList<Point> getAll() {
+		return (ArrayList<Point>) this.points.clone();
 	}
 
 }

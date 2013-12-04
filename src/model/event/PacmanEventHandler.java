@@ -1,6 +1,12 @@
-package model;
+package model.event;
 
 import java.util.ArrayList;
+
+import model.Game;
+import model.MapObject;
+import model.MapObjectContainer;
+import model.Pacman;
+import model.PacmanContainer;
 
 public class PacmanEventHandler extends EventHandler {
 

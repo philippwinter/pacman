@@ -2,15 +2,15 @@ package controller;
 
 import view.MainGui;
 import model.Game;
-import model.EventHandlerContainer;
+import model.event.EventHandlerManager;
 
 public class MainController {
 
 	private MainGui gui;
 
-	private EventHandlerContainer eventHandler;
+	private EventHandlerManager eventHandler;
 
-	private EventHandlerContainer eventHandlerContainer;
+	private EventHandlerManager eventHandlerContainer;
 
 	private Game game;
 

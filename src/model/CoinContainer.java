@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-public class CoinContainer {
+public class CoinContainer implements Container<Coin> {
 
 	private ArrayList<Coin> coins;
 
@@ -23,6 +23,11 @@ public class CoinContainer {
 		// TODO: Implement method
 
 		return null;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<Coin> getAll(){
+		return (ArrayList<Coin>) this.coins.clone();
 	}
 
 }

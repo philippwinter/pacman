@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-public class MapObjectContainer {
+public class MapObjectContainer implements Container<MapObject> {
 
 	private ArrayList<MapObject> mapObjects;
 
@@ -12,10 +12,14 @@ public class MapObjectContainer {
 		return null;
 	}
 
-	public Object getAll() {
-		// TODO Implement method
+	@SuppressWarnings("unchecked")
+	public ArrayList<MapObject> getAll() {
+		return (ArrayList<MapObject>) this.mapObjects.clone();
+	}
+
+	public void add(MapObject el) {
+		// TODO Auto-generated method stub
 		
-		return null;
 	}
 
 }

@@ -2,7 +2,9 @@ package model;
 
 import java.util.ArrayList;
 
-public class PacmanContainer {
+import model.exception.ObjectAlreadyInListException;
+
+public class PacmanContainer implements Container<Pacman> {
 
 	private ArrayList<Pacman> pacmans;
 

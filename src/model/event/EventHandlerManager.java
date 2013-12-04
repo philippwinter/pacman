@@ -1,9 +1,8 @@
-package model;
+package model.event;
 
-import controller.MainController;
 import java.util.ArrayList;
 
-public class EventHandlerContainer extends MainController {
+public class EventHandlerManager {
 
 	private ArrayList<EventHandler> eventObjects;
 

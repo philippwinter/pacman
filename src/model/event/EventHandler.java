@@ -1,4 +1,4 @@
-package model;
+package model.event;
 
 public abstract class EventHandler {
 
