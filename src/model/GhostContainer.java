@@ -30,4 +30,8 @@ public class GhostContainer implements Container<Ghost> {
 		return (ArrayList<Ghost>) this.ghosts.clone();
 	}
 
+	public int getMax() {
+		return max;
+	}
+
 }

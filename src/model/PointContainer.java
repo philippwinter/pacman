@@ -2,24 +2,31 @@ package model;
 
 import java.util.ArrayList;
 
+import model.exception.ObjectAlreadyInListException;
+
 public class PointContainer implements Container<Point>{
 
 	private ArrayList<Point> points;
 
-	public void add(Point point) {
-		// TODO Implement method
-
+	public void add(Point point) throws ObjectAlreadyInListException {
+		if(!this.points.contains(point)){
+			this.points.add(point);
+		}else{
+			throw new ObjectAlreadyInListException(points.getClass().getCanonicalName());
+		}		
 	}
 
 	public Point get(int i) {
-		// TODO Implement method
-
-		return null;
+		return this.points.get(i);
 	}
 
 	public Point get(Position pos) {
-		// TODO Implement method
-
+		for(Point p : this.points){
+			if(p.getPosition().equals(pos)){
+				return p;
+			}
+		}
+		
 		return null;
 	}
 

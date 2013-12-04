@@ -5,13 +5,7 @@ public class Pacman extends DynamicTarget {
 	private String name;
 
 	private Highscore highscore;
-
-	public Highscore computeHighscore() {
-		// TODO Implement method
-
-		return null;
-	}
-
+	
 	@Override
 	public void collide(MapObject obj) {
 		// TODO Implement method
@@ -24,6 +18,13 @@ public class Pacman extends DynamicTarget {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public void computeHighscore(){
+		if(this.highscore == null){
+			this.highscore = new Highscore(this);
+		}
+		this.highscore.compute();
 	}
 
 	public Highscore getHighscore() {

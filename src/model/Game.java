@@ -15,22 +15,26 @@ public class Game {
 	private PacmanContainer pacmanContainer;
 
 	private Map map;
-
+	
 	public static Game getInstance() {
-		// TODO: Implement method
+		if(Game.instance == null){
+			Game.instance = new Game();
+		}
 
-		return null;
+		return Game.instance;
 	}
 
 	public static void initializeGame() {
 		// TODO: Implement method
 
+		
+		// Mark Game as initialized
+		
+		Game.initialized = true;
 	}
 
 	public static boolean isInitialized() {
-		// TODO: Implement method
-
-		return false;
+		return Game.initialized;
 	}
 
 	private Game() {

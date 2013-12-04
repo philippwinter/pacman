@@ -30,10 +30,6 @@ public class Ghost extends DynamicTarget {
 		this.name = name;
 	}
 
-	public GhostState getState() {
-		return state;
-	}
-
 	public void setState(GhostState state) {
 		this.state = state;
 	}

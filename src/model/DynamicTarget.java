@@ -17,6 +17,10 @@ public abstract class DynamicTarget extends Target {
 	public Direction getHeadingTo() {
 		return headingTo;
 	}
+	
+	public boolean isHeadingTo(Direction direction){
+		return this.headingTo == direction;
+	}
 
 	public void setHeadingTo(Direction headingTo) {
 		this.headingTo = headingTo;

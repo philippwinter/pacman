@@ -30,4 +30,8 @@ public class CoinContainer implements Container<Coin> {
 		return (ArrayList<Coin>) this.coins.clone();
 	}
 
+	public int getMax() {
+		return max;
+	}
+
 }

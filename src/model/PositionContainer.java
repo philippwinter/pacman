@@ -9,12 +9,13 @@ public class PositionContainer implements Container<Position>{
 	private ArrayList<Position> positions;
 
 	public Position get(int i) {
-		// TODO: Implement method
-		return null;
+		return this.positions.get(i);
 	}
 
 	public void add(Position el) throws ObjectAlreadyInListException {
-		// TODO Auto-generated method stub
+		if(this.positions.contains(el)){
+			throw new ObjectAlreadyInListException(el.getClass().getCanonicalName());
+		}
 		
 	}
 
