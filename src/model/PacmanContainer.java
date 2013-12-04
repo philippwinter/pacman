@@ -6,21 +6,33 @@ public class PacmanContainer {
 
 	private ArrayList<Pacman> pacmans;
 
-	public void add(Pacman pacman) {
-		// TODO Implement method
-
+	public void add(Pacman pacman) throws ObjectAlreadyInListException {
+		if(!this.pacmans.contains(pacman)){
+			this.pacmans.add(pacman);
+		}else{
+			throw new ObjectAlreadyInListException(pacman.getClass().getCanonicalName());
+		}
 	}
 
 	public Pacman get(int i) {
-		// TODO Implement method
-
-		return null;
+		return this.pacmans.get(i);
 	}
 
-	public Pacman get(Position pos) {
-		// TODO Implement method
+	public ArrayList<Pacman> get(Position pos) {
+		ArrayList<Pacman> pacmansOnPosition = new ArrayList<Pacman>(2);
+		
+		for(Pacman p : this.pacmans){
+			if(p.isOnPosition(pos)){
+				pacmansOnPosition.add(p);
+			}
+		}
 
-		return null;
+		return pacmansOnPosition;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<Pacman> getAll(){
+		return (ArrayList<Pacman>) this.pacmans.clone();
 	}
 
 }

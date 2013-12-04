@@ -12,4 +12,10 @@ public class MapObjectContainer {
 		return null;
 	}
 
+	public Object getAll() {
+		// TODO Implement method
+		
+		return null;
+	}
+
 }

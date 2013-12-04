@@ -8,14 +8,26 @@ public class EventHandlerContainer extends MainController {
 	private ArrayList<EventHandler> eventObjects;
 
 	public void execute() {
-		// TODO: Implement method
+		try{
+			for(EventHandler e : this.eventObjects){
+				e.perform();
+			}
+		}catch(RuntimeException ex){
+			ex.printStackTrace();
+		}	
 
 	}
 
-	public boolean register(EventHandler event) {
-		// TODO: Implement method
+	public boolean register(EventHandler eH) {
+		try{
+			this.eventObjects.add(eH);
 
-		return false;
+			return true;
+		}catch(Exception ex){
+			ex.printStackTrace();
+			
+			return false;
+		}
 	}
 
 }
