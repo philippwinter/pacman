@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import model.exception.ObjectAlreadyInListException;
 
@@ -35,4 +36,7 @@ public class PointContainer implements Container<Point>{
 		return (ArrayList<Point>) this.points.clone();
 	}
 
+	public Iterator<Point> iterator(){
+		return points.iterator();
+	}
 }

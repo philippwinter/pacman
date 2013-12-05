@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import model.exception.ObjectAlreadyInListException;
 
-public interface Container<E> {
+public interface Container<E> extends Iterable<E> {
 	
 	public E get(int i);
 	

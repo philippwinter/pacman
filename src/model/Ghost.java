@@ -30,8 +30,16 @@ public class Ghost extends DynamicTarget {
 		this.name = name;
 	}
 
-	public void setState(GhostState state) {
+	public void changeState(GhostState state) {
+		// Perform operations respective to new state
+		
 		this.state = state;
+	}
+
+	@Override
+	public void changeState(StaticTargetState state) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

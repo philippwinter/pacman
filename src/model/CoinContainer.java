@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class CoinContainer implements Container<Coin> {
 
@@ -32,6 +33,11 @@ public class CoinContainer implements Container<Coin> {
 
 	public int getMax() {
 		return max;
+	}
+
+	@Override
+	public Iterator<Coin> iterator() {
+		return coins.iterator();
 	}
 
 }

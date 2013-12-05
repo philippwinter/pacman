@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import model.exception.ObjectAlreadyInListException;
 
@@ -22,6 +23,10 @@ public class PositionContainer implements Container<Position>{
 	@SuppressWarnings("unchecked")
 	public ArrayList<Position> getAll() {
 		return (ArrayList<Position>) this.positions.clone();
+	}
+	
+	public Iterator<Position> iterator(){
+		return positions.iterator();
 	}
 
 }

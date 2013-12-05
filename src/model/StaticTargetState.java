@@ -1,6 +1,6 @@
 package model;
 
-public enum TargetState {
+public enum StaticTargetState {
 
 	EATEN, AVAILABLE;
 

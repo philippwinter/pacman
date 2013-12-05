@@ -19,4 +19,12 @@
   <name>Pacman</name>
   <url>https://github.com/philippwinter/pacman</url>
   <description>A very simple Pacman implementation written in Java.</description>
+  <dependencies>
+  	<dependency>
+  		<groupId>junit</groupId>
+  		<artifactId>junit</artifactId>
+  		<scope>test</scope>
+  		<version>4.11</version>
+    </dependency>
+  </dependencies>
 </project>

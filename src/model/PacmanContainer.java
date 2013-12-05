@@ -1,11 +1,15 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import model.exception.ObjectAlreadyInListException;
 
 public class PacmanContainer implements Container<Pacman> {
 
+	/**
+	 * All pacman instances, for example Pacman and Mrs. Pacman
+	 */
 	private ArrayList<Pacman> pacmans;
 
 	public void add(Pacman pacman) throws ObjectAlreadyInListException {
@@ -35,6 +39,10 @@ public class PacmanContainer implements Container<Pacman> {
 	@SuppressWarnings("unchecked")
 	public ArrayList<Pacman> getAll(){
 		return (ArrayList<Pacman>) this.pacmans.clone();
+	}
+	
+	public Iterator<Pacman> iterator(){
+		return pacmans.iterator();
 	}
 
 }

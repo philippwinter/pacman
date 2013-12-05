@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class GhostContainer implements Container<Ghost> {
 
@@ -32,6 +33,10 @@ public class GhostContainer implements Container<Ghost> {
 
 	public int getMax() {
 		return max;
+	}
+	
+	public Iterator<Ghost> iterator(){
+		return ghosts.iterator();
 	}
 
 }

@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class MapObjectContainer implements Container<MapObject> {
 
@@ -20,6 +21,10 @@ public class MapObjectContainer implements Container<MapObject> {
 	public void add(MapObject el) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public Iterator<MapObject> iterator(){
+		return mapObjects.iterator();
 	}
 
 }

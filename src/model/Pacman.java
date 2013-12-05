@@ -31,4 +31,10 @@ public class Pacman extends DynamicTarget {
 		return highscore;
 	}
 
+	@Override
+	public void changeState(StaticTargetState state) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -13,6 +13,8 @@ public class Game {
 	private PointContainer pointsContainer;
 
 	private PacmanContainer pacmanContainer;
+	
+	private double refreshRate = 0.25;
 
 	private Map map;
 	
@@ -60,6 +62,15 @@ public class Game {
 
 	public Map getMap() {
 		return map;
+	}
+	
+	public void changeRefreshRate(Level l){
+		// f(x) = 1 / sqrt(x+2)
+		this.refreshRate = (1/Math.sqrt(l.getLevel() + 2));
+	}
+
+	public double getRefreshRate() {
+		return this.refreshRate;
 	}
 
 }
