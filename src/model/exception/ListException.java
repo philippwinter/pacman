@@ -6,25 +6,19 @@
  * Copyright (c) 2013 Philipp Winter, Jonas Heidecke & Niklas Kaddatz         *
  ******************************************************************************/
 
-package model;
+package model.exception;
 
 /**
  * @author Philipp Winter
  * @author Jonas Heidecke
  * @author Niklas Kaddatz
  */
-public class Point extends StaticTarget {
+public abstract class ListException extends Exception {
 
-    @Override
-    public void collide(MapObject obj) {
-        // TODO Auto-generated method stub
+    private static final long serialVersionUID = 4212167949047671695L;
 
-    }
-
-    @Override
-    public void changeState(StaticTargetState state) {
-        // TODO Auto-generated method stub
-
+    public ListException(String s) {
+        super(s);
     }
 
 }

@@ -13,18 +13,8 @@ package model;
  * @author Jonas Heidecke
  * @author Niklas Kaddatz
  */
-public class Point extends StaticTarget {
+public interface Munchable {
 
-    @Override
-    public void collide(MapObject obj) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void changeState(StaticTargetState state) {
-        // TODO Auto-generated method stub
-
-    }
+    public int getScore();
 
 }

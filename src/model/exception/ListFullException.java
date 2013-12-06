@@ -6,25 +6,19 @@
  * Copyright (c) 2013 Philipp Winter, Jonas Heidecke & Niklas Kaddatz         *
  ******************************************************************************/
 
-package model;
+package model.exception;
 
 /**
  * @author Philipp Winter
  * @author Jonas Heidecke
  * @author Niklas Kaddatz
  */
-public class Point extends StaticTarget {
+public class ListFullException extends ListException {
 
-    @Override
-    public void collide(MapObject obj) {
-        // TODO Auto-generated method stub
+    private static final long serialVersionUID = 928833290405863244L;
 
-    }
-
-    @Override
-    public void changeState(StaticTargetState state) {
-        // TODO Auto-generated method stub
-
+    public ListFullException(String className) {
+        super("The list of " + className + "'s is full.");
     }
 
 }

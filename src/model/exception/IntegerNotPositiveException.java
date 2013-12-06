@@ -6,25 +6,19 @@
  * Copyright (c) 2013 Philipp Winter, Jonas Heidecke & Niklas Kaddatz         *
  ******************************************************************************/
 
-package model;
+package model.exception;
 
 /**
  * @author Philipp Winter
  * @author Jonas Heidecke
  * @author Niklas Kaddatz
  */
-public class Point extends StaticTarget {
+public class IntegerNotPositiveException extends RuntimeException {
 
-    @Override
-    public void collide(MapObject obj) {
-        // TODO Auto-generated method stub
+    private static final long serialVersionUID = 8432387723865896354L;
 
-    }
-
-    @Override
-    public void changeState(StaticTargetState state) {
-        // TODO Auto-generated method stub
-
+    public IntegerNotPositiveException(int i) {
+        super("The integer " + i + " is not positive!");
     }
 
 }

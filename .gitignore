@@ -12,3 +12,11 @@
 # Documentation Files #
 doc/
 doc/*
+
+# Project/IDE Settings #
+.idea/*
+.idea/
+.settings/*
+.settings/
+.project
+*.iml

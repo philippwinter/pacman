@@ -1,40 +1,53 @@
+/******************************************************************************
+ * This work is applicable to the conditions of the MIT License,              *
+ * which can be found in the LICENSE file, or at                              *
+ * https://github.com/philippwinter/pacman/blob/master/LICENSE                *
+ *                                                                            *
+ * Copyright (c) 2013 Philipp Winter, Jonas Heidecke & Niklas Kaddatz         *
+ ******************************************************************************/
+
 package model;
 
+/**
+ * @author Philipp Winter
+ * @author Jonas Heidecke
+ * @author Niklas Kaddatz
+ */
 public class Position {
 
-	private int x;
+    private int x;
 
-	private int y;
+    private int y;
 
-	private MapObjectContainer onPosition;
-	
-	public Position(int x, int y){
-		this.setX(x);
-		this.setY(y);
-	}
+    private MapObjectContainer onPosition;
 
-	public int getX() {
-		return x;
-	}
+    public Position(int x, int y) {
+        this.setX(x);
+        this.setY(y);
+    }
 
-	private void setX(int x) {
-		this.x = x;
-	}
+    public int getX() {
+        return x;
+    }
 
-	public int getY() {
-		return y;
-	}
+    private void setX(int x) {
+        this.x = x;
+    }
 
-	private void setY(int y) {
-		this.y = y;
-	}
+    public int getY() {
+        return y;
+    }
 
-	public MapObjectContainer getOnPosition() {
-		return onPosition;
-	}
+    private void setY(int y) {
+        this.y = y;
+    }
 
-	public void setOnPosition(MapObjectContainer onPosition) {
-		this.onPosition = onPosition;
-	}
+    public MapObjectContainer getOnPosition() {
+        return onPosition;
+    }
+
+    public void setOnPosition(MapObjectContainer onPosition) {
+        this.onPosition = onPosition;
+    }
 
 }

@@ -6,25 +6,12 @@
  * Copyright (c) 2013 Philipp Winter, Jonas Heidecke & Niklas Kaddatz         *
  ******************************************************************************/
 
-package model;
+package model.exception;
 
-/**
- * @author Philipp Winter
- * @author Jonas Heidecke
- * @author Niklas Kaddatz
- */
-public class Point extends StaticTarget {
+public class ObjectNotInitializedException extends RuntimeException {
 
-    @Override
-    public void collide(MapObject obj) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void changeState(StaticTargetState state) {
-        // TODO Auto-generated method stub
-
+    public ObjectNotInitializedException(String className) {
+        super("The object of class " + className + " is not initialized yet and therefore access to it is permitted.");
     }
 
 }
