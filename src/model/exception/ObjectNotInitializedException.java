@@ -10,6 +10,8 @@ package model.exception;
 
 public class ObjectNotInitializedException extends RuntimeException {
 
+    private static final long serialVersionUID = 6953213349896267794L;
+
     public ObjectNotInitializedException(String className) {
         super("The object of class " + className + " is not initialized yet and therefore access to it is permitted.");
     }
