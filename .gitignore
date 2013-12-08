@@ -1,8 +1,6 @@
 # Gradle Files #
 build/
-build/*
 .gradle/
-.gradle/*
 
 # Compiled Files #
 *.class
@@ -17,12 +15,8 @@ build/*
 
 # Documentation Files #
 doc/
-doc/*
 
 # Project/IDE Settings #
-.idea/*
 .idea/
-.settings/*
 .settings/
 .project
-*.iml
