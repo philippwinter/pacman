@@ -89,6 +89,16 @@ public class CoinContainer implements Container<Coin> {
     }
 
     /**
+     * Removes an element from the container.
+     *
+     * @param el The element to remove.
+     */
+    @Override
+    public void remove(Coin el) {
+        this.coins.remove(el);
+    }
+
+    /**
      * Returns the maximum elements that are allowed in this list.
      *
      * @return The maximum amount of elements.

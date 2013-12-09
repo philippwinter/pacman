@@ -12,13 +12,15 @@ import model.Game;
 import view.MainGui;
 
 /**
- * The main controller that launches the Game and shows the main view.
+ * The main controller that controls the Game and the main view.
  *
  * @author Philipp Winter
  * @author Jonas Heidecke
  * @author Niklas Kaddatz
  */
 public class MainController {
+
+    private static MainController instance = new MainController();
 
     /**
      * The game instance.
@@ -36,15 +38,23 @@ public class MainController {
      * @param args The command line arguments given to the program.
      */
     public static void main(String[] args) {
-        new MainController().start();
+        instance.prepare();
     }
 
     public MainGui getGui() {
         return gui;
     }
 
+    public static MainController getInstance() {
+        return instance;
+    }
+
+    public void prepare(){
+        // TODO Do something
+    }
+
     /**
-     * Start the application.
+     * Start the game.
      */
     public void start() {
         this.game.start();
@@ -56,7 +66,7 @@ public class MainController {
         // TODO Do something in the GUI as well
     }
 
-    public MainController() {
+    private MainController() {
         // Initialize and instantiate objects
         Game.initializeGame();
 

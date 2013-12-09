@@ -89,7 +89,7 @@ public class Game {
      * @exception java.lang.IllegalStateException When the method is called before {@link #initializeGame()}.
      */
     public static void resetGame() {
-        if(!Game.isInitialized()){
+        if(Game.isInitialized()){
             Game.instance = new Game();
             Game.initializeGameInternal();
             Game.initialized = true;
@@ -141,7 +141,10 @@ public class Game {
 
         this.ghostContainer = new GhostContainer();
         this.coinContainer = new CoinContainer();
-        this.pointContainer = new PointContainer(this.map.getAmountOfPoints());
+        this.pointContainer = new PointContainer(
+                // TODO Make dynamic
+                6
+        );
         this.pacmanContainer = new PacmanContainer();
         this.eventHandlerManager = new EventHandlerManager();
     }

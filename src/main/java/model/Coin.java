@@ -34,10 +34,13 @@ public class Coin extends StaticTarget implements Munchable {
 
                     g.changeState(DynamicTargetState.HUNTED);
 
-
                 }
 
                 // Add points to Pacmans score
+
+                // Change the own state to eaten
+
+                this.state = StaticTargetState.EATEN;
             }
         }
     }

@@ -56,6 +56,16 @@ public class PointContainer implements Container<Point> {
         return (ArrayList<Point>) this.points.clone();
     }
 
+    /**
+     * Removes an element from the container.
+     *
+     * @param el The element to remove.
+     */
+    @Override
+    public void remove(Point el) {
+        this.points.remove(el);
+    }
+
     public Iterator<Point> iterator() {
         return points.iterator();
     }

@@ -6,23 +6,44 @@
  * Copyright (c) 2013 Philipp Winter, Jonas Heidecke & Niklas Kaddatz         *
  ******************************************************************************/
 
-package model.exception;
+package controller;
 
-import model.Game;
 import org.junit.Test;
 
+import static org.junit.Assert.assertTrue;
+
 /**
- * ObjectNotInitializedExceptionTest
+ * MainControllerTest
  *
  * @author Philipp Winter
  * @author Jonas Heidecke
  * @author Niklas Kaddatz
  */
-@SuppressWarnings("unused")
-public class ObjectNotInitializedExceptionTest {
+public class MainControllerTest {
 
-    @Test(expected = ObjectNotInitializedException.class)
-    public void testConstruct() {
-        throw new ObjectNotInitializedException(this.getClass().getCanonicalName());
+    @Test
+    public void testMain(){
+        MainController.main(new String[0]);
+    }
+
+    @Test
+    public void testGetGui() {
+        assertTrue(MainController.getInstance().getGui() != null);
+    }
+
+    @Test
+    public void testGetInstance() {
+        assertTrue(MainController.getInstance() != null);
+    }
+
+    @Test
+    public void testPrepare() {
+        MainController.getInstance().prepare();
+    }
+
+    @Test
+    public void testStartAndPause() {
+        MainController.getInstance().start();
+        MainController.getInstance().pause();
     }
 }

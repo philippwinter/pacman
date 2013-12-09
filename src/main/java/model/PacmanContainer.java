@@ -65,6 +65,16 @@ public class PacmanContainer implements Container<Pacman> {
         return (ArrayList<Pacman>) this.pacmans.clone();
     }
 
+    /**
+     * Removes an element from the container.
+     *
+     * @param el The element to remove.
+     */
+    @Override
+    public void remove(Pacman el) {
+        this.pacmans.remove(el);
+    }
+
     public Iterator<Pacman> iterator() {
         return pacmans.iterator();
     }

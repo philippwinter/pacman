@@ -46,4 +46,11 @@ public interface Container<E> extends Iterable<E> {
      */
     public ArrayList<E> getAll();
 
+    /**
+     * Removes an element from the container.
+     *
+     * @param el The element to remove.
+     */
+    public void remove(E el);
+
 }

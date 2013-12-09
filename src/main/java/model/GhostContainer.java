@@ -98,6 +98,16 @@ public class GhostContainer implements Container<Ghost> {
     }
 
     /**
+     * Removes an element from the container.
+     *
+     * @param el The element to remove.
+     */
+    @Override
+    public void remove(Ghost el) {
+        this.ghosts.remove(el);
+    }
+
+    /**
      * Gets the maximal amount of ghosts, fitting in this container.
      *
      * @return The {@link #max}imum.

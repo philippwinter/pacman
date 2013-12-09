@@ -35,6 +35,16 @@ public class MapObjectContainer implements Container<MapObject> {
         return (ArrayList<MapObject>) this.mapObjects.clone();
     }
 
+    /**
+     * Removes an element from the container.
+     *
+     * @param el The element to remove.
+     */
+    @Override
+    public void remove(MapObject el) {
+        this.mapObjects.remove(el);
+    }
+
     public void add(MapObject el) {
         if (!this.mapObjects.contains(el)) {
             this.mapObjects.add(el);

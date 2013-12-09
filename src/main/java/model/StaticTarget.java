@@ -16,7 +16,7 @@ package model;
 @SuppressWarnings("unused")
 public abstract class StaticTarget extends Target {
 
-    private StaticTargetState state;
+    protected StaticTargetState state = StaticTargetState.AVAILABLE;
 
     public StaticTargetState getState() {
         return state;

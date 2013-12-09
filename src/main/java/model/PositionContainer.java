@@ -10,7 +10,9 @@ package model;
 
 import model.exception.ObjectAlreadyInListException;
 
+import javax.naming.OperationNotSupportedException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 /**
@@ -20,32 +22,96 @@ import java.util.Iterator;
  */
 public class PositionContainer implements Container<Position> {
 
-    private ArrayList<Position> positions;
+    private HashMap<String, Position> positions;
 
-    public PositionContainer() {
-        this.positions = new ArrayList<>();
+    private int width;
+
+    private int height;
+
+    public PositionContainer(int width, int height) {
+        this.positions = new HashMap<>();
+        this.width = width;
+        this.height = height;
     }
 
-    public Position get(int i) {
-        return this.positions.get(i);
+    /**
+     * Retrieves a value per index.
+     *
+     * Imagine the following map:
+     * <pre><blockquote>
+     * y
+     *   +-----+
+     * 2 |klmno|
+     * 1 |fghij|
+     * 0 |abcde|
+     *   +-----+
+     *    01234  x
+     * </blockquote></pre>
+     * If you want to retrieve the "a", you would have to specify the coordinates to do so (here x=0, y=0)
+     * but in some cases it might be useful to retrieve a value per index.
+     * Our values can be imagined as such a map, with their respective x and y value.
+     *
+     * Ex.: 0 => "a", [...], 6 => "f", [...], 12 => "k"
+     */
+    public Position get(int index) {
+        int key = -1;
+
+        // TODO Implement algorithm
+
+        return this.positions.get(key);
     }
 
-    public void add(Position el) {
-        if (!this.positions.contains(el)) {
-            this.positions.add(el);
-        } else {
-            throw new ObjectAlreadyInListException(el.getClass().getCanonicalName());
+    /**
+     * Retrieve a position by it's x and y coordinates.
+     *
+     * @param x The x coordinate.
+     * @param y The y coordinate.
+     * @return The position object.
+     */
+    public Position get(int x, int y){
+        Position val = positions.get(generateKey(x, y));
+        if(val == null){
+            throw new IllegalArgumentException("The point " + x + "|" + y + " doesn't exist.");
         }
-
+        return val;
     }
 
-    @SuppressWarnings("unchecked")
+    /**
+     * Adds a position to the container. DO NOT USE THIS OUTSIDE {@link Map}.
+     *
+     * @param el The element to add.
+     */
+    public void add(Position el) {
+        this.positions.put(generateKey(el.getX(), el.getY()), el);
+    }
+
+    /**
+     * Generate a key based on the supplied values.
+     *
+     * @param x The x coordinate.
+     * @param y The y coordinate.
+     * @return The position object.
+     */
+    private String generateKey(int x, int y) {
+        return x + "#" + y;
+    }
+
     public ArrayList<Position> getAll() {
-        return (ArrayList<Position>) this.positions.clone();
+        return new ArrayList<>(this.positions.values());
+    }
+
+    /**
+     * Removes an element from the container.
+     *
+     * @param el The element to remove.
+     */
+    @Override
+    public void remove(Position el) {
+        this.positions.remove(generateKey(el.getX(), el.getY()));
     }
 
     public Iterator<Position> iterator() {
-        return positions.iterator();
+        return positions.values().iterator();
     }
 
 }

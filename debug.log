@@ -1,0 +1,466 @@
+14:55:30.263 [INFO] [org.gradle.BuildLogger] Starting Build
+14:55:30.267 [DEBUG] [org.gradle.BuildLogger] Gradle user home: C:\Users\Philipp\.gradle
+14:55:30.268 [DEBUG] [org.gradle.BuildLogger] Current dir: C:\dev\pacman
+14:55:30.269 [DEBUG] [org.gradle.BuildLogger] Settings file: null
+14:55:30.269 [DEBUG] [org.gradle.BuildLogger] Build file: null
+14:55:30.304 [DEBUG] [org.gradle.initialization.buildsrc.BuildSourceBuilder] Starting to build the build sources.
+14:55:30.306 [DEBUG] [org.gradle.initialization.buildsrc.BuildSourceBuilder] Gradle source dir does not exist. We leave.
+14:55:30.307 [DEBUG] [org.gradle.initialization.DefaultGradlePropertiesLoader] Found env project properties: []
+14:55:30.308 [DEBUG] [org.gradle.initialization.DefaultGradlePropertiesLoader] Found system project properties: []
+14:55:30.526 [DEBUG] [org.gradle.api.internal.artifacts.mvnsettings.DefaultLocalMavenRepositoryLocator] No local repository in Settings file defined. Using default path: C:\Users\Philipp\.m2\repository
+14:55:30.861 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on buildscript class cache for settings file 'C:\dev\pacman\settings.gradle' (C:\Users\Philipp\.gradle\caches\1.9\scripts\settings_3mtvubtdeknp2bg5schir7cinv\SettingsScript\buildscript).
+14:55:30.862 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+14:55:30.871 [DEBUG] [org.gradle.cache.internal.locklistener.DefaultFileLockContentionHandler] Starting file lock listener thread.
+14:55:30.927 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on no_buildscript class cache for settings file 'C:\dev\pacman\settings.gradle' (C:\Users\Philipp\.gradle\caches\1.9\scripts\settings_3mtvubtdeknp2bg5schir7cinv\SettingsScript\no_buildscript).
+14:55:30.927 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+14:55:31.055 [DEBUG] [org.gradle.initialization.ScriptEvaluatingSettingsProcessor] Timing: Processing settings took: 0.745 secs
+14:55:31.056 [INFO] [org.gradle.BuildLogger] Settings evaluated using settings file 'C:\dev\pacman\settings.gradle'.
+14:55:31.332 [DEBUG] [org.gradle.initialization.ProjectPropertySettingBuildLoader] Looking for project properties from: C:\dev\pacman\gradle.properties
+14:55:31.333 [DEBUG] [org.gradle.initialization.ProjectPropertySettingBuildLoader] project property file does not exists. We continue!
+14:55:31.335 [INFO] [org.gradle.BuildLogger] Projects loaded. Root project using build file 'C:\dev\pacman\build.gradle'.
+14:55:31.336 [INFO] [org.gradle.BuildLogger] Included projects: [root project 'pacman']
+14:55:31.926 [INFO] [org.gradle.configuration.project.BuildScriptProcessor] Evaluating root project 'pacman' using build file 'C:\dev\pacman\build.gradle'.
+14:55:31.931 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on buildscript class cache for build file 'C:\dev\pacman\build.gradle' (C:\Users\Philipp\.gradle\caches\1.9\scripts\build_7gtidomb5ni15ukvi0ci9g0ts1\ProjectScript\buildscript).
+14:55:31.932 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+14:55:31.949 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on no_buildscript class cache for build file 'C:\dev\pacman\build.gradle' (C:\Users\Philipp\.gradle\caches\1.9\scripts\build_7gtidomb5ni15ukvi0ci9g0ts1\ProjectScript\no_buildscript).
+14:55:31.950 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+14:55:35.602 [DEBUG] [org.gradle.testing.jacoco.plugins.JacocoPluginExtension_Decorated] Applying Jacoco to test
+14:55:39.098 [DEBUG] [org.gradle.configuration.project.BuildScriptProcessor] Timing: Running the build script took 7.172 secs
+14:55:39.123 [INFO] [org.gradle.BuildLogger] All projects evaluated.
+14:55:39.171 [DEBUG] [org.gradle.execution.taskgraph.DefaultTaskGraphExecuter] Timing: Creating the DAG took 0.033 secs
+14:55:39.172 [INFO] [org.gradle.execution.TaskNameResolvingBuildConfigurationAction] Selected primary task 'test'
+14:55:39.174 [INFO] [org.gradle.BuildLogger] Tasks to be executed: [task ':compileJava', task ':processResources', task ':classes', task ':compileTestJava', task ':processTestResources', task ':testClasses', task ':test']
+14:55:39.177 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on task artifact state cache (C:\dev\pacman\.gradle\1.9\taskArtifacts).
+14:55:39.179 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+14:55:39.184 [INFO] [org.gradle.execution.taskgraph.AbstractTaskPlanExecutor] :compileJava (Thread[main,5,main]) started.
+14:55:39.185 [LIFECYCLE] [org.gradle.TaskExecutionLogger] :compileJava
+14:55:39.188 [DEBUG] [org.gradle.api.internal.tasks.execution.ExecuteAtMostOnceTaskExecuter] Starting to execute task ':compileJava'
+14:55:39.244 [DEBUG] [org.gradle.api.internal.tasks.execution.SkipUpToDateTaskExecuter] Determining if task ':compileJava' is up-to-date
+14:55:39.278 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Opening cache taskArtifacts.bin (C:\dev\pacman\.gradle\1.9\taskArtifacts\taskArtifacts.bin)
+14:55:39.316 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Opening cache outputFileStates.bin (C:\dev\pacman\.gradle\1.9\taskArtifacts\outputFileStates.bin)
+14:55:39.332 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Opening cache fileHashes.bin (C:\dev\pacman\.gradle\1.9\taskArtifacts\fileHashes.bin)
+14:55:39.397 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Opening cache fileSnapshots.bin (C:\dev\pacman\.gradle\1.9\taskArtifacts\fileSnapshots.bin)
+14:55:39.407 [INFO] [org.gradle.api.internal.tasks.execution.SkipUpToDateTaskExecuter] Skipping task ':compileJava' as it is up-to-date (took 0.161 secs).
+14:55:39.407 [DEBUG] [org.gradle.api.internal.tasks.execution.ExecuteAtMostOnceTaskExecuter] Finished executing task ':compileJava'
+14:55:39.408 [LIFECYCLE] [org.gradle.TaskExecutionLogger] :compileJava UP-TO-DATE
+14:55:39.409 [INFO] [org.gradle.execution.taskgraph.AbstractTaskPlanExecutor] :compileJava (Thread[main,5,main]) completed. Took 0.224 secs.
+14:55:39.410 [INFO] [org.gradle.execution.taskgraph.AbstractTaskPlanExecutor] :processResources (Thread[main,5,main]) started.
+14:55:39.411 [LIFECYCLE] [org.gradle.TaskExecutionLogger] :processResources
+14:55:39.411 [DEBUG] [org.gradle.api.internal.tasks.execution.ExecuteAtMostOnceTaskExecuter] Starting to execute task ':processResources'
+14:55:39.422 [DEBUG] [org.gradle.api.internal.tasks.execution.SkipUpToDateTaskExecuter] Determining if task ':processResources' is up-to-date
+14:55:39.476 [INFO] [org.gradle.api.internal.tasks.execution.SkipUpToDateTaskExecuter] Skipping task ':processResources' as it is up-to-date (took 0.052 secs).
+14:55:39.477 [DEBUG] [org.gradle.api.internal.tasks.execution.ExecuteAtMostOnceTaskExecuter] Finished executing task ':processResources'
+14:55:39.478 [LIFECYCLE] [org.gradle.TaskExecutionLogger] :processResources UP-TO-DATE
+14:55:39.478 [INFO] [org.gradle.execution.taskgraph.AbstractTaskPlanExecutor] :processResources (Thread[main,5,main]) completed. Took 0.067 secs.
+14:55:39.479 [INFO] [org.gradle.execution.taskgraph.AbstractTaskPlanExecutor] :classes (Thread[main,5,main]) started.
+14:55:39.480 [LIFECYCLE] [org.gradle.TaskExecutionLogger] :classes
+14:55:39.482 [DEBUG] [org.gradle.api.internal.tasks.execution.ExecuteAtMostOnceTaskExecuter] Starting to execute task ':classes'
+14:55:39.483 [INFO] [org.gradle.api.internal.tasks.execution.SkipTaskWithNoActionsExecuter] Skipping task ':classes' as it has no actions.
+14:55:39.485 [DEBUG] [org.gradle.api.internal.tasks.execution.ExecuteAtMostOnceTaskExecuter] Finished executing task ':classes'
+14:55:39.486 [LIFECYCLE] [org.gradle.TaskExecutionLogger] :classes UP-TO-DATE
+14:55:39.487 [INFO] [org.gradle.execution.taskgraph.AbstractTaskPlanExecutor] :classes (Thread[main,5,main]) completed. Took 0.007 secs.
+14:55:39.487 [INFO] [org.gradle.execution.taskgraph.AbstractTaskPlanExecutor] :compileTestJava (Thread[main,5,main]) started.
+14:55:39.488 [LIFECYCLE] [org.gradle.TaskExecutionLogger] :compileTestJava
+14:55:39.488 [DEBUG] [org.gradle.api.internal.tasks.execution.ExecuteAtMostOnceTaskExecuter] Starting to execute task ':compileTestJava'
+14:55:39.520 [DEBUG] [org.gradle.api.internal.tasks.execution.SkipUpToDateTaskExecuter] Determining if task ':compileTestJava' is up-to-date
+14:55:39.536 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on artifact cache (C:\Users\Philipp\.gradle\caches\modules-2).
+14:55:39.537 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+14:55:39.538 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DefaultDependencyResolver] Resolving configuration ':testCompile'
+14:55:39.571 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'ivy.default.settings.dir' to 'jar:file:/C:/Program%20Files/gradle/lib/ivy-2.2.0.jar!/org/apache/ivy/core/settings'
+14:55:39.574 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'ivy.basedir' to 'C:\dev\pacman\.'
+14:55:39.574 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'ivy.default.conf.dir' to 'jar:file:/C:/Program%20Files/gradle/lib/ivy-2.2.0.jar!/org/apache/ivy/core/settings'
+14:55:39.676 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.runtime.name' to 'Java(TM) SE Runtime Environment'
+14:55:39.677 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'sun.boot.library.path' to 'C:\Program Files\Java\jre7\bin'
+14:55:39.677 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.vm.version' to '24.0-b56'
+14:55:39.678 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'user.country.format' to 'DE'
+14:55:39.678 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.vm.vendor' to 'Oracle Corporation'
+14:55:39.678 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.vendor.url' to 'http://java.oracle.com/'
+14:55:39.679 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'path.separator' to ';'
+14:55:39.680 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.vm.name' to 'Java HotSpot(TM) 64-Bit Server VM'
+14:55:39.680 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'file.encoding.pkg' to 'sun.io'
+14:55:39.681 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'user.country' to 'US'
+14:55:39.681 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'user.script' to ''
+14:55:39.681 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'sun.java.launcher' to 'SUN_STANDARD'
+14:55:39.682 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'sun.os.patch.level' to 'Service Pack 1'
+14:55:39.682 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.vm.specification.name' to 'Java Virtual Machine Specification'
+14:55:39.683 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'user.dir' to 'C:\dev\pacman'
+14:55:39.683 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.runtime.version' to '1.7.0_40-b43'
+14:55:39.684 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.awt.graphicsenv' to 'sun.awt.Win32GraphicsEnvironment'
+14:55:39.684 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.endorsed.dirs' to 'C:\Program Files\Java\jre7\lib\endorsed'
+14:55:39.685 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'os.arch' to 'amd64'
+14:55:39.685 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.io.tmpdir' to 'C:\Users\Philipp\AppData\Local\Temp\'
+14:55:39.685 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'line.separator' to '
+'
+14:55:39.686 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'org.gradle.appname' to 'gradle'
+14:55:39.686 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.vm.specification.vendor' to 'Oracle Corporation'
+14:55:39.687 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'user.variant' to ''
+14:55:39.687 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'os.name' to 'Windows 7'
+14:55:39.688 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'jna.boot.library.path' to 'C:\Users\Philipp\.gradle\native\jna\win32-amd64'
+14:55:39.688 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'sun.jnu.encoding' to 'Cp1252'
+14:55:39.689 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.library.path' to 'C:\Windows\system32;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\XAMPP\php\;C:\Program Files (x86)\Graphviz2.34\bin;C:\HashiCorp\Vagrant\bin;C:\MinGW\msys\1.0\bin;C:\Program Files\gradle\bin;.'
+14:55:39.689 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.class.version' to '51.0'
+14:55:39.690 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.specification.name' to 'Java Platform API Specification'
+14:55:39.691 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'sun.management.compiler' to 'HotSpot 64-Bit Tiered Compilers'
+14:55:39.691 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'os.version' to '6.1'
+14:55:39.691 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'user.home' to 'C:\Users\Philipp'
+14:55:39.692 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'user.timezone' to 'Europe/Berlin'
+14:55:39.692 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.awt.printerjob' to 'sun.awt.windows.WPrinterJob'
+14:55:39.693 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.specification.version' to '1.7'
+14:55:39.693 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'file.encoding' to 'Cp1252'
+14:55:39.694 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'user.name' to 'Philipp'
+14:55:39.694 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.class.path' to 'C:\Program Files\gradle\bin\..\lib\gradle-launcher-1.9.jar'
+14:55:39.695 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.vm.specification.version' to '1.7'
+14:55:39.699 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'sun.arch.data.model' to '64'
+14:55:39.699 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'sun.java.command' to 'org.gradle.launcher.GradleMain test --stacktrace --debug'
+14:55:39.700 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.home' to 'C:\Program Files\Java\jre7'
+14:55:39.700 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.specification.vendor' to 'Oracle Corporation'
+14:55:39.701 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'user.language' to 'en'
+14:55:39.701 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'user.language.format' to 'de'
+14:55:39.702 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'awt.toolkit' to 'sun.awt.windows.WToolkit'
+14:55:39.702 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.vm.info' to 'mixed mode'
+14:55:39.703 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.version' to '1.7.0_40'
+14:55:39.703 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.ext.dirs' to 'C:\Program Files\Java\jre7\lib\ext;C:\Windows\Sun\Java\lib\ext'
+14:55:39.704 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'sun.boot.class.path' to 'C:\Program Files\Java\jre7\lib\resources.jar;C:\Program Files\Java\jre7\lib\rt.jar;C:\Program Files\Java\jre7\lib\sunrsasign.jar;C:\Program Files\Java\jre7\lib\jsse.jar;C:\Program Files\Java\jre7\lib\jce.jar;C:\Program Files\Java\jre7\lib\charsets.jar;C:\Program Files\Java\jre7\lib\jfr.jar;C:\Program Files\Java\jre7\classes'
+14:55:39.704 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.vendor' to 'Oracle Corporation'
+14:55:39.705 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'file.separator' to '\'
+14:55:39.705 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.vendor.url.bug' to 'http://bugreport.sun.com/bugreport/'
+14:55:39.705 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'sun.io.unicode.encoding' to 'UnicodeLittle'
+14:55:39.706 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'sun.cpu.endian' to 'little'
+14:55:39.721 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'sun.desktop' to 'windows'
+14:55:39.722 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'sun.cpu.isalist' to 'amd64'
+14:55:39.832 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.memcache.InMemoryDependencyMetadataCache] Creating new in-memory cache for repo 'MavenRepo' [e9d03b7c6586155fbee8fb2de8b5b149].
+14:55:39.982 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Visiting configuration :pacman:0.1(testCompile).
+14:55:39.992 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Visiting dependency :pacman:0.1(testCompile) -> junit:junit:4.+(dependency: junit#junit;4.+ {testCompile=[default]})
+14:55:40.004 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.UserResolverChain] Attempting to resolve module 'junit:junit:4.+' using repositories [MavenRepo]
+14:55:40.016 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Opening cache dynamic-revisions.bin (C:\Users\Philipp\.gradle\caches\modules-2\metadata-2.1\dynamic-revisions.bin)
+14:55:40.021 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.CachingModuleVersionRepository] Found resolved revision in dynamic revision cache of 'MavenRepo': Using 'junit:junit:4.11' for 'junit:junit:4.+'
+14:55:40.031 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Opening cache module-metadata.bin (C:\Users\Philipp\.gradle\caches\modules-2\metadata-2.1\module-metadata.bin)
+14:55:40.085 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.parser.IvyXmlModuleDescriptorParser] post 1.3 ivy file: using exact as default matcher
+14:55:40.094 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.CachingModuleVersionRepository] Using cached module metadata for module 'junit#junit;4.11' in 'MavenRepo'
+14:55:40.097 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.UserResolverChain] Using module 'junit:junit:4.11' from repository 'MavenRepo'
+14:55:40.099 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Selecting new module version junit:junit:4.11
+14:55:40.099 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Visiting configuration junit:junit:4.11(default).
+14:55:40.100 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Visiting dependency junit:junit:4.11(default) -> org.hamcrest:hamcrest-core:1.3(dependency: org.hamcrest#hamcrest-core;1.3 {compile=[compile(*), master(*)], runtime=[runtime(*)]})
+14:55:40.102 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Selecting new module version org.hamcrest:hamcrest-core:1.3
+14:55:40.102 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.UserResolverChain] Attempting to resolve module 'org.hamcrest:hamcrest-core:1.3' using repositories [MavenRepo]
+14:55:40.106 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.parser.IvyXmlModuleDescriptorParser] post 1.3 ivy file: using exact as default matcher
+14:55:40.108 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.CachingModuleVersionRepository] Using cached module metadata for module 'org.hamcrest#hamcrest-core;1.3' in 'MavenRepo'
+14:55:40.109 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.UserResolverChain] Using module 'org.hamcrest:hamcrest-core:1.3' from repository 'MavenRepo'
+14:55:40.109 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Visiting configuration org.hamcrest:hamcrest-core:1.3(compile).
+14:55:40.110 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Visiting configuration org.hamcrest:hamcrest-core:1.3(master).
+14:55:40.110 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Visiting configuration org.hamcrest:hamcrest-core:1.3(runtime).
+14:55:40.116 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Attaching :pacman:0.1(testCompile) to its parents.
+14:55:40.118 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Attaching junit:junit:4.11(default) to its parents.
+14:55:40.122 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Attaching org.hamcrest:hamcrest-core:1.3(compile) to its parents.
+14:55:40.123 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Attaching org.hamcrest:hamcrest-core:1.3(master) to its parents.
+14:55:40.123 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Attaching org.hamcrest:hamcrest-core:1.3(runtime) to its parents.
+14:55:40.124 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.oldresult.TransientConfigurationResultsBuilder] Flushing resolved configuration data in Binary store in C:\Users\Philipp\AppData\Local\Temp\gradle3322095448734731635.bin. Wrote root :pacman:0.1:testCompile.
+14:55:40.137 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Opening cache artifact-at-repository.bin (C:\Users\Philipp\.gradle\caches\modules-2\metadata-2.1\artifact-at-repository.bin)
+14:55:40.141 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.CachingModuleVersionRepository] Found artifact 'junit:junit:4.11:junit.jar' in resolver cache: C:\Users\Philipp\.gradle\caches\modules-2\files-2.1\junit\junit\4.11\4e031bb61df09069aeb2bffb4019e7a5034a4ee0\junit-4.11.jar
+14:55:40.143 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.CachingModuleVersionRepository] Found artifact 'org.hamcrest:hamcrest-core:1.3:hamcrest-core.jar' in resolver cache: C:\Users\Philipp\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-core\1.3\42a25dc3219429f0e5d060061f71acb49bf010a0\hamcrest-core-1.3.jar
+14:55:40.181 [INFO] [org.gradle.api.internal.tasks.execution.SkipUpToDateTaskExecuter] Skipping task ':compileTestJava' as it is up-to-date (took 0.66 secs).
+14:55:40.182 [DEBUG] [org.gradle.api.internal.tasks.execution.ExecuteAtMostOnceTaskExecuter] Finished executing task ':compileTestJava'
+14:55:40.182 [LIFECYCLE] [org.gradle.TaskExecutionLogger] :compileTestJava UP-TO-DATE
+14:55:40.182 [INFO] [org.gradle.execution.taskgraph.AbstractTaskPlanExecutor] :compileTestJava (Thread[main,5,main]) completed. Took 0.694 secs.
+14:55:40.183 [INFO] [org.gradle.execution.taskgraph.AbstractTaskPlanExecutor] :processTestResources (Thread[main,5,main]) started.
+14:55:40.183 [LIFECYCLE] [org.gradle.TaskExecutionLogger] :processTestResources
+14:55:40.184 [DEBUG] [org.gradle.api.internal.tasks.execution.ExecuteAtMostOnceTaskExecuter] Starting to execute task ':processTestResources'
+14:55:40.187 [INFO] [org.gradle.api.internal.tasks.execution.SkipEmptySourceFilesTaskExecuter] Skipping task ':processTestResources' as it has no source files.
+14:55:40.188 [DEBUG] [org.gradle.api.internal.tasks.execution.ExecuteAtMostOnceTaskExecuter] Finished executing task ':processTestResources'
+14:55:40.188 [LIFECYCLE] [org.gradle.TaskExecutionLogger] :processTestResources UP-TO-DATE
+14:55:40.189 [INFO] [org.gradle.execution.taskgraph.AbstractTaskPlanExecutor] :processTestResources (Thread[main,5,main]) completed. Took 0.006 secs.
+14:55:40.189 [INFO] [org.gradle.execution.taskgraph.AbstractTaskPlanExecutor] :testClasses (Thread[main,5,main]) started.
+14:55:40.190 [LIFECYCLE] [org.gradle.TaskExecutionLogger] :testClasses
+14:55:40.190 [DEBUG] [org.gradle.api.internal.tasks.execution.ExecuteAtMostOnceTaskExecuter] Starting to execute task ':testClasses'
+14:55:40.191 [INFO] [org.gradle.api.internal.tasks.execution.SkipTaskWithNoActionsExecuter] Skipping task ':testClasses' as it has no actions.
+14:55:40.192 [DEBUG] [org.gradle.api.internal.tasks.execution.ExecuteAtMostOnceTaskExecuter] Finished executing task ':testClasses'
+14:55:40.193 [LIFECYCLE] [org.gradle.TaskExecutionLogger] :testClasses UP-TO-DATE
+14:55:40.198 [INFO] [org.gradle.execution.taskgraph.AbstractTaskPlanExecutor] :testClasses (Thread[main,5,main]) completed. Took 0.009 secs.
+14:55:40.198 [INFO] [org.gradle.execution.taskgraph.AbstractTaskPlanExecutor] :test (Thread[main,5,main]) started.
+14:55:40.199 [LIFECYCLE] [org.gradle.TaskExecutionLogger] :test
+14:55:40.200 [DEBUG] [org.gradle.api.internal.tasks.execution.ExecuteAtMostOnceTaskExecuter] Starting to execute task ':test'
+14:55:40.266 [DEBUG] [org.gradle.api.internal.tasks.execution.SkipUpToDateTaskExecuter] Determining if task ':test' is up-to-date
+14:55:40.321 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DefaultDependencyResolver] Resolving configuration ':testRuntime'
+14:55:40.323 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.memcache.InMemoryDependencyMetadataCache] Reusing in-memory cache for repo 'MavenRepo' [e9d03b7c6586155fbee8fb2de8b5b149].
+14:55:40.325 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Visiting configuration :pacman:0.1(testRuntime).
+14:55:40.326 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Visiting dependency :pacman:0.1(testRuntime) -> junit:junit:4.+(dependency: junit#junit;4.+ {testCompile=[default]})
+14:55:40.326 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.UserResolverChain] Attempting to resolve module 'junit:junit:4.+' using repositories [MavenRepo]
+14:55:40.327 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.UserResolverChain] Using module 'junit:junit:4.11' from repository 'MavenRepo'
+14:55:40.327 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Selecting new module version junit:junit:4.11
+14:55:40.328 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Visiting configuration junit:junit:4.11(default).
+14:55:40.328 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Visiting dependency junit:junit:4.11(default) -> org.hamcrest:hamcrest-core:1.3(dependency: org.hamcrest#hamcrest-core;1.3 {compile=[compile(*), master(*)], runtime=[runtime(*)]})
+14:55:40.330 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Selecting new module version org.hamcrest:hamcrest-core:1.3
+14:55:40.330 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.UserResolverChain] Attempting to resolve module 'org.hamcrest:hamcrest-core:1.3' using repositories [MavenRepo]
+14:55:40.331 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.UserResolverChain] Using module 'org.hamcrest:hamcrest-core:1.3' from repository 'MavenRepo'
+14:55:40.332 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Visiting configuration org.hamcrest:hamcrest-core:1.3(compile).
+14:55:40.332 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Visiting configuration org.hamcrest:hamcrest-core:1.3(master).
+14:55:40.332 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Visiting configuration org.hamcrest:hamcrest-core:1.3(runtime).
+14:55:40.333 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Attaching :pacman:0.1(testRuntime) to its parents.
+14:55:40.334 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Attaching junit:junit:4.11(default) to its parents.
+14:55:40.334 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Attaching org.hamcrest:hamcrest-core:1.3(compile) to its parents.
+14:55:40.335 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Attaching org.hamcrest:hamcrest-core:1.3(master) to its parents.
+14:55:40.336 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Attaching org.hamcrest:hamcrest-core:1.3(runtime) to its parents.
+14:55:40.336 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.oldresult.TransientConfigurationResultsBuilder] Flushing resolved configuration data in Binary store in C:\Users\Philipp\AppData\Local\Temp\gradle3322095448734731635.bin. Wrote root :pacman:0.1:testRuntime.
+14:55:40.376 [INFO] [org.gradle.api.internal.tasks.execution.SkipUpToDateTaskExecuter] Executing task ':test' (up-to-date check took 0.109 secs) due to:
+  Value of input property 'candidateClassFiles' has changed for task ':test'
+14:55:40.376 [DEBUG] [org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter] Executing actions for task ':test'.
+14:55:40.399 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DefaultDependencyResolver] Resolving configuration ':jacocoAgent'
+14:55:40.400 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.memcache.InMemoryDependencyMetadataCache] Reusing in-memory cache for repo 'MavenRepo' [e9d03b7c6586155fbee8fb2de8b5b149].
+14:55:40.402 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Visiting configuration :pacman:0.1(jacocoAgent).
+14:55:40.403 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Visiting dependency :pacman:0.1(jacocoAgent) -> org.jacoco:org.jacoco.agent:0.6.2.201302030002(dependency: org.jacoco#org.jacoco.agent;0.6.2.201302030002 {jacocoAgent=[default]})
+14:55:40.404 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Selecting new module version org.jacoco:org.jacoco.agent:0.6.2.201302030002
+14:55:40.404 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.UserResolverChain] Attempting to resolve module 'org.jacoco:org.jacoco.agent:0.6.2.201302030002' using repositories [MavenRepo]
+14:55:40.580 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.parser.IvyXmlModuleDescriptorParser] post 1.3 ivy file: using exact as default matcher
+14:55:40.583 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.CachingModuleVersionRepository] Using cached module metadata for module 'org.jacoco#org.jacoco.agent;0.6.2.201302030002' in 'MavenRepo'
+14:55:40.583 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.UserResolverChain] Using module 'org.jacoco:org.jacoco.agent:0.6.2.201302030002' from repository 'MavenRepo'
+14:55:40.584 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Visiting configuration org.jacoco:org.jacoco.agent:0.6.2.201302030002(default).
+14:55:40.584 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Attaching :pacman:0.1(jacocoAgent) to its parents.
+14:55:40.585 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Attaching org.jacoco:org.jacoco.agent:0.6.2.201302030002(default) to its parents.
+14:55:40.586 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.oldresult.TransientConfigurationResultsBuilder] Flushing resolved configuration data in Binary store in C:\Users\Philipp\AppData\Local\Temp\gradle3322095448734731635.bin. Wrote root :pacman:0.1:jacocoAgent.
+14:55:40.588 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.CachingModuleVersionRepository] Found artifact 'org.jacoco:org.jacoco.agent:0.6.2.201302030002:org.jacoco.agent.jar' in resolver cache: C:\Users\Philipp\.gradle\caches\modules-2\files-2.1\org.jacoco\org.jacoco.agent\0.6.2.201302030002\4261aa79d35d5a8c06386fa745cf4447b1deb259\org.jacoco.agent-0.6.2.201302030002.jar
+14:55:40.753 [DEBUG] [org.gradle.api.internal.file.copy.DeleteActionImpl] Deleting C:\dev\pacman\build\test-results\binary\test
+14:55:40.793 [DEBUG] [TestEventLogger] 
+14:55:40.796 [DEBUG] [TestEventLogger] Test Run STARTED
+14:55:41.131 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface lo
+14:55:41.149 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? true
+14:55:41.150 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding loopback address /127.0.0.1
+14:55:41.151 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding loopback address /0:0:0:0:0:0:0:1
+14:55:41.151 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface net0
+14:55:41.155 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.155 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface net1
+14:55:41.159 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.159 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface net2
+14:55:41.170 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.171 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface ppp0
+14:55:41.174 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.174 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface eth0
+14:55:41.178 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.178 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface eth1
+14:55:41.181 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.182 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface eth2
+14:55:41.185 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.186 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface ppp1
+14:55:41.189 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.190 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface eth3
+14:55:41.193 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.193 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding non-loopback address /fe80:0:0:0:c528:9987:7af8:48c%10
+14:55:41.194 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface net3
+14:55:41.197 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.198 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding non-loopback address /192.168.0.101
+14:55:41.198 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding non-loopback address /fe80:0:0:0:2043:ba91:8f2b:1514%11
+14:55:41.198 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface net4
+14:55:41.202 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.202 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface eth4
+14:55:41.206 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.206 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding non-loopback address /fe80:0:0:0:ec00:d656:bcc3:57a5%13
+14:55:41.206 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface net5
+14:55:41.209 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.210 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface net6
+14:55:41.213 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.213 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface eth5
+14:55:41.217 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.218 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface net7
+14:55:41.222 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.222 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding non-loopback address /fe80:0:0:0:e0:0:0:0%17
+14:55:41.223 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface net8
+14:55:41.226 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.226 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface eth6
+14:55:41.230 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.230 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface eth7
+14:55:41.234 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.234 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface eth8
+14:55:41.238 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.238 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding non-loopback address /192.168.56.1
+14:55:41.242 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding non-loopback address /fe80:0:0:0:c9b2:84e:c4b3:c454%21
+14:55:41.242 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface net9
+14:55:41.245 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.246 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface eth9
+14:55:41.249 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.250 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface net10
+14:55:41.253 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.260 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding non-loopback address /fe80:0:0:0:0:5efe:c0a8:65%24
+14:55:41.260 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface net11
+14:55:41.264 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.265 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding non-loopback address /fe80:0:0:0:0:5efe:a9fe:86d1%25
+14:55:41.265 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface net12
+14:55:41.268 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.268 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface eth10
+14:55:41.271 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.272 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface eth11
+14:55:41.275 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.276 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface eth12
+14:55:41.278 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.279 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface eth13
+14:55:41.281 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.282 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface eth14
+14:55:41.285 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.285 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface eth15
+14:55:41.288 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.288 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface eth16
+14:55:41.291 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.292 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface net13
+14:55:41.295 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.295 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface eth17
+14:55:41.298 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.298 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface eth18
+14:55:41.301 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.301 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface eth19
+14:55:41.304 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.305 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding non-loopback address /169.254.134.209
+14:55:41.305 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding non-loopback address /fe80:0:0:0:79a7:e4ef:1791:86d1%37
+14:55:41.305 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface eth20
+14:55:41.308 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.309 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface eth21
+14:55:41.312 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.313 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface eth22
+14:55:41.316 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.316 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface net14
+14:55:41.319 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+14:55:41.320 [DEBUG] [org.gradle.messaging.remote.internal.inet.TcpIncomingConnector] Listening on [5a9b5e5e-99d6-40f4-9246-e96b06459c3f port:61533, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]].
+14:55:41.323 [DEBUG] [org.gradle.process.internal.DefaultWorkerProcessFactory] Creating Gradle Worker 1
+14:55:41.324 [DEBUG] [org.gradle.process.internal.DefaultWorkerProcessFactory] Using application classpath [C:\dev\pacman\build\classes\test, C:\dev\pacman\build\resources\test, C:\dev\pacman\build\classes\main, C:\dev\pacman\build\resources\main, C:\Users\Philipp\.gradle\caches\modules-2\files-2.1\junit\junit\4.11\4e031bb61df09069aeb2bffb4019e7a5034a4ee0\junit-4.11.jar, C:\Users\Philipp\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-core\1.3\42a25dc3219429f0e5d060061f71acb49bf010a0\hamcrest-core-1.3.jar]
+14:55:41.325 [DEBUG] [org.gradle.process.internal.DefaultWorkerProcessFactory] Using implementation classpath [file:/C:/Program%20Files/gradle/lib/plugins/gradle-plugins-1.9.jar, file:/C:/Program%20Files/gradle/lib/groovy-all-1.8.6.jar, file:/C:/Program%20Files/gradle/lib/ant-1.9.2.jar, file:/C:/Program%20Files/gradle/lib/asm-all-4.0.jar, file:/C:/Program%20Files/gradle/lib/commons-io-1.4.jar, file:/C:/Program%20Files/gradle/lib/commons-lang-2.6.jar, file:/C:/Program%20Files/gradle/lib/plugins/junit-4.11.jar, file:/C:/Program%20Files/gradle/lib/slf4j-api-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/plugins/testng-6.3.1.jar, file:/C:/Program%20Files/gradle/lib/plugins/commons-cli-1.2.jar, file:/C:/Program%20Files/gradle/lib/ant-launcher-1.9.2.jar, file:/C:/Program%20Files/gradle/lib/plugins/bsh-2.0b4.jar, file:/C:/Program%20Files/gradle/lib/plugins/jcommander-1.12.jar, file:/C:/Program%20Files/gradle/lib/plugins/snakeyaml-1.6.jar, file:/C:/Program%20Files/gradle/lib/plugins/hamcrest-core-1.3.jar, file:/C:/Program%20Files/gradle/lib/plugins/gradle-code-quality-1.9.jar, file:/C:/Program%20Files/gradle/lib/groovy-all-1.8.6.jar, file:/C:/Program%20Files/gradle/lib/slf4j-api-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/plugins/gradle-jetty-1.9.jar, file:/C:/Program%20Files/gradle/lib/groovy-all-1.8.6.jar, file:/C:/Program%20Files/gradle/lib/slf4j-api-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/plugins/jetty-6.1.25.jar, file:/C:/Program%20Files/gradle/lib/plugins/jetty-util-6.1.25.jar, file:/C:/Program%20Files/gradle/lib/plugins/servlet-api-2.5-20081211.jar, file:/C:/Program%20Files/gradle/lib/plugins/jetty-plus-6.1.25.jar, file:/C:/Program%20Files/gradle/lib/plugins/jsp-2.1-6.1.14.jar, file:/C:/Program%20Files/gradle/lib/plugins/jetty-annotations-6.1.25.jar, file:/C:/Program%20Files/gradle/lib/plugins/geronimo-annotation_1.0_spec-1.0.jar, file:/C:/Program%20Files/gradle/lib/plugins/jetty-naming-6.1.25.jar, file:/C:/Program%20Files/gradle/lib/plugins/core-3.1.1.jar, file:/C:/Program%20Files/gradle/lib/plugins/jsp-api-2.1-6.1.14.jar, file:/C:/Program%20Files/gradle/lib/plugins/gradle-antlr-1.9.jar, file:/C:/Program%20Files/gradle/lib/groovy-all-1.8.6.jar, file:/C:/Program%20Files/gradle/lib/slf4j-api-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/ant-1.9.2.jar, file:/C:/Program%20Files/gradle/lib/plugins/ant-antlr-1.9.2.jar, file:/C:/Program%20Files/gradle/lib/plugins/antlr-2.7.7.jar, file:/C:/Program%20Files/gradle/lib/ant-launcher-1.9.2.jar, file:/C:/Program%20Files/gradle/lib/gradle-wrapper-1.9.jar, file:/C:/Program%20Files/gradle/lib/plugins/gradle-osgi-1.9.jar, file:/C:/Program%20Files/gradle/lib/groovy-all-1.8.6.jar, file:/C:/Program%20Files/gradle/lib/slf4j-api-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/plugins/bndlib-2.1.0.jar, file:/C:/Program%20Files/gradle/lib/plugins/gradle-maven-1.9.jar, file:/C:/Program%20Files/gradle/lib/groovy-all-1.8.6.jar, file:/C:/Program%20Files/gradle/lib/slf4j-api-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/plugins/maven-ant-tasks-2.1.3.jar, file:/C:/Program%20Files/gradle/lib/plugins/pmaven-common-0.8-20100325.jar, file:/C:/Program%20Files/gradle/lib/plugins/pmaven-groovy-0.8-20100325.jar, file:/C:/Program%20Files/gradle/lib/plugins/plexus-component-annotations-1.5.2.jar, file:/C:/Program%20Files/gradle/lib/plugins/gradle-ide-1.9.jar, file:/C:/Program%20Files/gradle/lib/groovy-all-1.8.6.jar, file:/C:/Program%20Files/gradle/lib/slf4j-api-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/javax.inject-1.jar, file:/C:/Program%20Files/gradle/lib/plugins/gradle-announce-1.9.jar, file:/C:/Program%20Files/gradle/lib/groovy-all-1.8.6.jar, file:/C:/Program%20Files/gradle/lib/slf4j-api-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/plugins/gradle-scala-1.9.jar, file:/C:/Program%20Files/gradle/lib/groovy-all-1.8.6.jar, file:/C:/Program%20Files/gradle/lib/plugins/gradle-sonar-1.9.jar, file:/C:/Program%20Files/gradle/lib/groovy-all-1.8.6.jar, file:/C:/Program%20Files/gradle/lib/plugins/sonar-runner-2.0.jar, file:/C:/Program%20Files/gradle/lib/guava-jdk5-14.0.1.jar, file:/C:/Program%20Files/gradle/lib/slf4j-api-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/javax.inject-1.jar, file:/C:/Program%20Files/gradle/lib/plugins/sonar-batch-bootstrapper-2.9.jar, file:/C:/Program%20Files/gradle/lib/plugins/gradle-signing-1.9.jar, file:/C:/Program%20Files/gradle/lib/groovy-all-1.8.6.jar, file:/C:/Program%20Files/gradle/lib/plugins/bcpg-jdk15-1.46.jar, file:/C:/Program%20Files/gradle/lib/plugins/bcprov-jdk15-1.46.jar, file:/C:/Program%20Files/gradle/lib/plugins/gradle-cpp-1.9.jar, file:/C:/Program%20Files/gradle/lib/groovy-all-1.8.6.jar, file:/C:/Program%20Files/gradle/lib/commons-io-1.4.jar, file:/C:/Program%20Files/gradle/lib/plugins/gradle-ear-1.9.jar, file:/C:/Program%20Files/gradle/lib/javax.inject-1.jar, file:/C:/Program%20Files/gradle/lib/plugins/gradle-javascript-1.9.jar, file:/C:/Program%20Files/gradle/lib/groovy-all-1.8.6.jar, file:/C:/Program%20Files/gradle/lib/plugins/rhino-1.7R3.jar, file:/C:/Program%20Files/gradle/lib/plugins/gson-2.2.1.jar, file:/C:/Program%20Files/gradle/lib/plugins/simple-4.1.21.jar, file:/C:/Program%20Files/gradle/lib/javax.inject-1.jar, file:/C:/Program%20Files/gradle/lib/plugins/gradle-build-comparison-1.9.jar, file:/C:/Program%20Files/gradle/lib/groovy-all-1.8.6.jar, file:/C:/Program%20Files/gradle/lib/guava-jdk5-14.0.1.jar, file:/C:/Program%20Files/gradle/lib/slf4j-api-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/plugins/gradle-diagnostics-1.9.jar, file:/C:/Program%20Files/gradle/lib/groovy-all-1.8.6.jar, file:/C:/Program%20Files/gradle/lib/plugins/gradle-reporting-1.9.jar, file:/C:/Program%20Files/gradle/lib/groovy-all-1.8.6.jar, file:/C:/Program%20Files/gradle/lib/plugins/jatl-0.2.2.jar, file:/C:/Program%20Files/gradle/lib/commons-lang-2.6.jar, file:/C:/Program%20Files/gradle/lib/plugins/gradle-publish-1.9.jar, file:/C:/Program%20Files/gradle/lib/plugins/gradle-ivy-1.9.jar, file:/C:/Program%20Files/gradle/lib/plugins/gradle-jacoco-1.9.jar, file:/C:/Program%20Files/gradle/lib/groovy-all-1.8.6.jar, file:/C:/Program%20Files/gradle/lib/plugins/gradle-build-init-1.9.jar, file:/C:/Program%20Files/gradle/lib/groovy-all-1.8.6.jar, file:/C:/Program%20Files/gradle/lib/plugins/gradle-language-jvm-1.9.jar, file:/C:/Program%20Files/gradle/lib/groovy-all-1.8.6.jar, file:/C:/Program%20Files/gradle/lib/plugins/gradle-language-base-1.9.jar, file:/C:/Program%20Files/gradle/lib/groovy-all-1.8.6.jar, file:/C:/Program%20Files/gradle/lib/gradle-launcher-1.9.jar, file:/C:/Program%20Files/gradle/lib/slf4j-api-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/gradle-base-services-1.9.jar, file:/C:/Program%20Files/gradle/lib/guava-jdk5-14.0.1.jar, file:/C:/Program%20Files/gradle/lib/slf4j-api-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/gradle-core-1.9.jar, file:/C:/Program%20Files/gradle/lib/groovy-all-1.8.6.jar, file:/C:/Program%20Files/gradle/lib/asm-all-4.0.jar, file:/C:/Program%20Files/gradle/lib/ant-1.9.2.jar, file:/C:/Program%20Files/gradle/lib/commons-collections-3.2.1.jar, file:/C:/Program%20Files/gradle/lib/commons-io-1.4.jar, file:/C:/Program%20Files/gradle/lib/commons-lang-2.6.jar, file:/C:/Program%20Files/gradle/lib/ivy-2.2.0.jar, file:/C:/Program%20Files/gradle/lib/logback-core-1.0.9.jar, file:/C:/Program%20Files/gradle/lib/logback-classic-1.0.9.jar, file:/C:/Program%20Files/gradle/lib/guava-jdk5-14.0.1.jar, file:/C:/Program%20Files/gradle/lib/jcip-annotations-1.0.jar, file:/C:/Program%20Files/gradle/lib/jul-to-slf4j-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/jarjar-1.3.jar, file:/C:/Program%20Files/gradle/lib/javax.inject-1.jar, file:/C:/Program%20Files/gradle/lib/slf4j-api-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/log4j-over-slf4j-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/jcl-over-slf4j-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/ant-launcher-1.9.2.jar, file:/C:/Program%20Files/gradle/lib/jsch-0.1.46.jar, file:/C:/Program%20Files/gradle/lib/gradle-docs-1.9.jar, file:/C:/Program%20Files/gradle/lib/gradle-base-services-groovy-1.9.jar, file:/C:/Program%20Files/gradle/lib/groovy-all-1.8.6.jar, file:/C:/Program%20Files/gradle/lib/gradle-resources-1.9.jar, file:/C:/Program%20Files/gradle/lib/slf4j-api-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/gradle-cli-1.9.jar, file:/C:/Program%20Files/gradle/lib/gradle-native-1.9.jar, file:/C:/Program%20Files/gradle/lib/commons-io-1.4.jar, file:/C:/Program%20Files/gradle/lib/slf4j-api-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/jna-3.2.7.jar, file:/C:/Program%20Files/gradle/lib/native-platform-0.3-rc-2.jar, file:/C:/Program%20Files/gradle/lib/jna-posix-1.0.3.jar, file:/C:/Program%20Files/gradle/lib/jansi-1.2.1.jar, file:/C:/Program%20Files/gradle/lib/guava-jdk5-14.0.1.jar, file:/C:/Program%20Files/gradle/lib/jcip-annotations-1.0.jar, file:/C:/Program%20Files/gradle/lib/native-platform-osx-universal-0.3-rc-2.jar, file:/C:/Program%20Files/gradle/lib/native-platform-linux-amd64-0.3-rc-2.jar, file:/C:/Program%20Files/gradle/lib/native-platform-linux-i386-0.3-rc-2.jar, file:/C:/Program%20Files/gradle/lib/native-platform-windows-amd64-0.3-rc-2.jar, file:/C:/Program%20Files/gradle/lib/native-platform-windows-i386-0.3-rc-2.jar, file:/C:/Program%20Files/gradle/lib/gradle-messaging-1.9.jar, file:/C:/Program%20Files/gradle/lib/slf4j-api-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/guava-jdk5-14.0.1.jar, file:/C:/Program%20Files/gradle/lib/kryo-2.20.jar, file:/C:/Program%20Files/gradle/lib/asm-4.0.jar, file:/C:/Program%20Files/gradle/lib/reflectasm-1.07-shaded.jar, file:/C:/Program%20Files/gradle/lib/minlog-1.2.jar, file:/C:/Program%20Files/gradle/lib/objenesis-1.2.jar, file:/C:/Program%20Files/gradle/lib/gradle-ui-1.9.jar, file:/C:/Program%20Files/gradle/lib/groovy-all-1.8.6.jar, file:/C:/Program%20Files/gradle/lib/dom4j-1.6.1.jar, file:/C:/Program%20Files/gradle/lib/commons-io-1.4.jar, file:/C:/Program%20Files/gradle/lib/slf4j-api-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/jaxen-1.1.jar, file:/C:/Program%20Files/gradle/lib/gradle-open-api-1.9.jar, file:/C:/Program%20Files/gradle/lib/gradle-tooling-api-1.9.jar, file:/C:/Program%20Files/gradle/lib/slf4j-api-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/gradle-wrapper-1.9.jar, file:/C:/Program%20Files/gradle/lib/ant-1.9.2.jar, file:/C:/Program%20Files/gradle/lib/ant-launcher-1.9.2.jar, file:/C:/Program%20Files/gradle/lib/plugins/gradle-core-impl-1.9.jar, file:/C:/Program%20Files/gradle/lib/plugins/jarjar-maven-settings-3.0.4.jar, file:/C:/Program%20Files/gradle/lib/plugins/jarjar-maven-repository-metadata-3.0.4.jar, file:/C:/Program%20Files/gradle/lib/plugins/jarjar-plexus-container-default-1.5.5.jar, file:/C:/Program%20Files/gradle/lib/plugins/jarjar-maven-aether-provider-3.0.4.jar, file:/C:/Program%20Files/gradle/lib/plugins/jarjar-wagon-provider-api-2.4.jar, file:/C:/Program%20Files/gradle/lib/plugins/jarjar-plexus-cipher-1.7.jar, file:/C:/Program%20Files/gradle/lib/plugins/jarjar-plexus-interpolation-1.14.jar, file:/C:/Program%20Files/gradle/lib/plugins/jarjar-plexus-utils-2.0.6.jar, file:/C:/Program%20Files/gradle/lib/plugins/jarjar-plexus-classworlds-2.4.jar, file:/C:/Program%20Files/gradle/lib/plugins/jarjar-maven-plugin-api-3.0.4.jar, file:/C:/Program%20Files/gradle/lib/plugins/jarjar-maven-model-builder-3.0.4.jar, file:/C:/Program%20Files/gradle/lib/plugins/jarjar-plexus-sec-dispatcher-1.3.jar, file:/C:/Program%20Files/gradle/lib/plugins/jarjar-plexus-component-annotations-1.5.5.jar, file:/C:/Program%20Files/gradle/lib/plugins/jarjar-aether-connector-wagon-1.13.1.jar, file:/C:/Program%20Files/gradle/lib/plugins/jarjar-maven-compat-3.0.4.jar, file:/C:/Program%20Files/gradle/lib/plugins/jarjar-wagon-http-2.4.jar, file:/C:/Program%20Files/gradle/lib/plugins/jarjar-aether-api-1.13.1.jar, file:/C:/Program%20Files/gradle/lib/plugins/jarjar-maven-settings-builder-3.0.4.jar, file:/C:/Program%20Files/gradle/lib/plugins/jarjar-aether-spi-1.13.1.jar, file:/C:/Program%20Files/gradle/lib/plugins/jarjar-maven-core-3.0.4.jar, file:/C:/Program%20Files/gradle/lib/plugins/jarjar-wagon-http-shared4-2.4.jar, file:/C:/Program%20Files/gradle/lib/plugins/jarjar-aether-util-1.13.1.jar, file:/C:/Program%20Files/gradle/lib/plugins/jarjar-maven-artifact-3.0.4.jar, file:/C:/Program%20Files/gradle/lib/plugins/jarjar-maven-model-3.0.4.jar, file:/C:/Program%20Files/gradle/lib/plugins/jarjar-aether-impl-1.13.1.jar, file:/C:/Program%20Files/gradle/lib/plugins/httpclient-4.2.2.jar, file:/C:/Program%20Files/gradle/lib/commons-lang-2.6.jar, file:/C:/Program%20Files/gradle/lib/commons-io-1.4.jar, file:/C:/Program%20Files/gradle/lib/ivy-2.2.0.jar, file:/C:/Program%20Files/gradle/lib/slf4j-api-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/plugins/maven-ant-tasks-2.1.3.jar, file:/C:/Program%20Files/gradle/lib/plugins/nekohtml-1.9.14.jar, file:/C:/Program%20Files/gradle/lib/plugins/xbean-reflect-3.4.jar, file:/C:/Program%20Files/gradle/lib/jcl-over-slf4j-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/plugins/commons-codec-1.6.jar, file:/C:/Program%20Files/gradle/lib/plugins/httpcore-4.2.2.jar, file:/C:/Program%20Files/gradle/lib/plugins/jcifs-1.3.17.jar, file:/C:/Program%20Files/gradle/lib/jsch-0.1.46.jar, file:/C:/Program%20Files/gradle/lib/plugins/xml-apis-1.3.04.jar, file:/C:/Program%20Files/gradle/lib/plugins/xercesImpl-2.9.1.jar, file:/C:/Program%20Files/gradle/lib/gradle-launcher-1.9.jar, file:/C:/Program%20Files/gradle/lib/slf4j-api-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/gradle-base-services-1.9.jar, file:/C:/Program%20Files/gradle/lib/guava-jdk5-14.0.1.jar, file:/C:/Program%20Files/gradle/lib/slf4j-api-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/gradle-core-1.9.jar, file:/C:/Program%20Files/gradle/lib/groovy-all-1.8.6.jar, file:/C:/Program%20Files/gradle/lib/asm-all-4.0.jar, file:/C:/Program%20Files/gradle/lib/ant-1.9.2.jar, file:/C:/Program%20Files/gradle/lib/commons-collections-3.2.1.jar, file:/C:/Program%20Files/gradle/lib/commons-io-1.4.jar, file:/C:/Program%20Files/gradle/lib/commons-lang-2.6.jar, file:/C:/Program%20Files/gradle/lib/ivy-2.2.0.jar, file:/C:/Program%20Files/gradle/lib/logback-core-1.0.9.jar, file:/C:/Program%20Files/gradle/lib/logback-classic-1.0.9.jar, file:/C:/Program%20Files/gradle/lib/guava-jdk5-14.0.1.jar, file:/C:/Program%20Files/gradle/lib/jcip-annotations-1.0.jar, file:/C:/Program%20Files/gradle/lib/jul-to-slf4j-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/jarjar-1.3.jar, file:/C:/Program%20Files/gradle/lib/javax.inject-1.jar, file:/C:/Program%20Files/gradle/lib/slf4j-api-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/log4j-over-slf4j-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/jcl-over-slf4j-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/ant-launcher-1.9.2.jar, file:/C:/Program%20Files/gradle/lib/jsch-0.1.46.jar, file:/C:/Program%20Files/gradle/lib/gradle-docs-1.9.jar, file:/C:/Program%20Files/gradle/lib/gradle-base-services-groovy-1.9.jar, file:/C:/Program%20Files/gradle/lib/groovy-all-1.8.6.jar, file:/C:/Program%20Files/gradle/lib/gradle-resources-1.9.jar, file:/C:/Program%20Files/gradle/lib/slf4j-api-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/gradle-cli-1.9.jar, file:/C:/Program%20Files/gradle/lib/gradle-native-1.9.jar, file:/C:/Program%20Files/gradle/lib/commons-io-1.4.jar, file:/C:/Program%20Files/gradle/lib/slf4j-api-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/jna-3.2.7.jar, file:/C:/Program%20Files/gradle/lib/native-platform-0.3-rc-2.jar, file:/C:/Program%20Files/gradle/lib/jna-posix-1.0.3.jar, file:/C:/Program%20Files/gradle/lib/jansi-1.2.1.jar, file:/C:/Program%20Files/gradle/lib/guava-jdk5-14.0.1.jar, file:/C:/Program%20Files/gradle/lib/jcip-annotations-1.0.jar, file:/C:/Program%20Files/gradle/lib/native-platform-osx-universal-0.3-rc-2.jar, file:/C:/Program%20Files/gradle/lib/native-platform-linux-amd64-0.3-rc-2.jar, file:/C:/Program%20Files/gradle/lib/native-platform-linux-i386-0.3-rc-2.jar, file:/C:/Program%20Files/gradle/lib/native-platform-windows-amd64-0.3-rc-2.jar, file:/C:/Program%20Files/gradle/lib/native-platform-windows-i386-0.3-rc-2.jar, file:/C:/Program%20Files/gradle/lib/gradle-messaging-1.9.jar, file:/C:/Program%20Files/gradle/lib/slf4j-api-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/guava-jdk5-14.0.1.jar, file:/C:/Program%20Files/gradle/lib/kryo-2.20.jar, file:/C:/Program%20Files/gradle/lib/asm-4.0.jar, file:/C:/Program%20Files/gradle/lib/reflectasm-1.07-shaded.jar, file:/C:/Program%20Files/gradle/lib/minlog-1.2.jar, file:/C:/Program%20Files/gradle/lib/objenesis-1.2.jar, file:/C:/Program%20Files/gradle/lib/gradle-ui-1.9.jar, file:/C:/Program%20Files/gradle/lib/groovy-all-1.8.6.jar, file:/C:/Program%20Files/gradle/lib/dom4j-1.6.1.jar, file:/C:/Program%20Files/gradle/lib/commons-io-1.4.jar, file:/C:/Program%20Files/gradle/lib/slf4j-api-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/jaxen-1.1.jar, file:/C:/Program%20Files/gradle/lib/gradle-open-api-1.9.jar, file:/C:/Program%20Files/gradle/lib/gradle-tooling-api-1.9.jar, file:/C:/Program%20Files/gradle/lib/slf4j-api-1.7.2.jar, file:/C:/Program%20Files/gradle/lib/gradle-wrapper-1.9.jar, file:/C:/Program%20Files/gradle/lib/ant-1.9.2.jar, file:/C:/Program%20Files/gradle/lib/ant-launcher-1.9.2.jar]
+14:55:41.372 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on cache directory workerMain (C:\Users\Philipp\.gradle\caches\1.9\workerMain).
+14:55:41.373 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+14:55:41.374 [DEBUG] [org.gradle.process.internal.child.WorkerProcessClassPathProvider] Using worker process classpath: [C:\Users\Philipp\.gradle\caches\1.9\workerMain\gradle-worker.jar]
+14:55:41.375 [DEBUG] [org.gradle.process.internal.child.ApplicationClassesInSystemClassLoaderWorkerFactory] Writing an application classpath to child process' standard input.
+14:55:41.398 [INFO] [org.gradle.process.internal.DefaultExecHandle] Starting process 'Gradle Worker 1'. Working directory: C:\dev\pacman Command: C:\Program Files\Java\jdk1.7.0_40\bin\java.exe -Djava.security.manager=jarjar.org.gradle.process.internal.child.BootstrapSecurityManager -javaagent:build/tmp/expandedArchives/org.jacoco.agent-0.6.2.201302030002.jar_1apkphfmreq0qau1ms7vg9rqmh/jacocoagent.jar=destfile=build/jacoco/test.exec,append=true,dumponexit=true,output=file,jmx=false -Dfile.encoding=windows-1252 -ea -cp C:\Users\Philipp\.gradle\caches\1.9\workerMain\gradle-worker.jar jarjar.org.gradle.process.internal.launcher.GradleWorkerMain
+14:55:41.399 [DEBUG] [org.gradle.process.internal.DefaultExecHandle] Environment for process 'Gradle Worker 1': {ProgramData=C:\ProgramData, USERPROFILE=C:\Users\Philipp, CMD_LINE_ARGS=test --stacktrace --debug, PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC, JAVA_EXE=java.exe, DIRNAME=C:\Program Files\gradle\bin\, ProgramFiles(x86)=C:\Program Files (x86), APP_HOME=C:\Program Files\gradle\bin\.., =ExitCode=00000000, TEMP=C:\Users\Philipp\AppData\Local\Temp, SystemDrive=C:, ProgramFiles=C:\Program Files, Path=C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\XAMPP\php\;C:\Program Files (x86)\Graphviz2.34\bin;C:\HashiCorp\Vagrant\bin;C:\MinGW\msys\1.0\bin;C:\Program Files\gradle\bin, HOMEDRIVE=C:, _SKIP=2, PROCESSOR_REVISION=170a, =C:=C:\dev\pacman, USERDOMAIN=Win-PC, ALLUSERSPROFILE=C:\ProgramData, VBOX_INSTALL_PATH=C:\Program Files\Oracle\VirtualBox\, ProgramW6432=C:\Program Files, PHP_PEAR_PHP_BIN=C:\XAMPP\php\, PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 23 Stepping 10, GenuineIntel, SESSIONNAME=Console, TMP=C:\Users\Philipp\AppData\Local\Temp, PROCESSOR_ARCHITECTURE=AMD64, CLASSPATH=C:\Program Files\gradle\bin\..\lib\gradle-launcher-1.9.jar, LOGONSERVER=\\WIN-PC, =::=::\, CommonProgramFiles=C:\Program Files\Common Files, FP_NO_HOST_CHECK=NO, OS=Windows_NT, HOMEPATH=\Users\Philipp, PROMPT=$P$G, PROCESSOR_LEVEL=6, CommonProgramW6432=C:\Program Files\Common Files, LOCALAPPDATA=C:\Users\Philipp\AppData\Local, COMPUTERNAME=WIN-PC, windir=C:\Windows, asl.log=Destination=file, SystemRoot=C:\Windows, NUMBER_OF_PROCESSORS=2, PUBLIC=C:\Users\Public, PSModulePath=C:\Windows\system32\WindowsPowerShell\v1.0\Modules\, USERNAME=Philipp, CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files, APP_BASE_NAME=gradle, ComSpec=C:\Windows\system32\cmd.exe, APPDATA=C:\Users\Philipp\AppData\Roaming}
+14:55:41.399 [DEBUG] [org.gradle.process.internal.DefaultExecHandle] Changing state to: STARTING
+14:55:41.402 [DEBUG] [org.gradle.process.internal.DefaultExecHandle] Waiting until process started: Gradle Worker 1.
+14:55:41.415 [DEBUG] [org.gradle.internal.nativeplatform.jna.WindowsHandlesManipulator] Invalid parameter attempting to uninherit stream - child process may remain attached.
+14:55:41.416 [DEBUG] [org.gradle.internal.nativeplatform.jna.WindowsHandlesManipulator] Invalid parameter attempting to uninherit stream - child process may remain attached.
+14:55:41.416 [INFO] [org.gradle.process.internal.ProcessParentingInitializer] An attempt to initialize for well behaving parent process finished.
+14:55:41.423 [DEBUG] [org.gradle.process.internal.DefaultExecHandle] Changing state to: STARTED
+14:55:41.424 [DEBUG] [org.gradle.process.internal.ExecHandleRunner] waiting until streams are handled...
+14:55:41.424 [INFO] [org.gradle.process.internal.DefaultExecHandle] Successfully started process 'Gradle Worker 1'
+14:55:43.067 [DEBUG] [org.gradle.messaging.remote.internal.inet.TcpIncomingConnector] Accepted connection from /127.0.0.1:61534 to /127.0.0.1:61533.
+14:55:43.083 [DEBUG] [org.gradle.process.internal.DefaultWorkerProcess] Received connection org.gradle.messaging.remote.internal.hub.MessageHubBackedObjectConnection@1bcdccc3 from Gradle Worker 1
+14:55:43.112 [QUIET] [system.out] 14:55:43.030 [DEBUG] [org.gradle.messaging.remote.internal.inet.TcpOutgoingConnector] Attempting to connect to [5a9b5e5e-99d6-40f4-9246-e96b06459c3f port:61533, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]].
+14:55:43.113 [QUIET] [system.out] 14:55:43.033 [DEBUG] [org.gradle.messaging.remote.internal.inet.TcpOutgoingConnector] Trying to connect to address /127.0.0.1.
+14:55:43.113 [QUIET] [system.out] 14:55:43.084 [DEBUG] [org.gradle.messaging.remote.internal.inet.TcpOutgoingConnector] Connected to address /127.0.0.1.
+14:55:43.345 [QUIET] [system.out] 14:55:43.345 [DEBUG] [org.gradle.process.internal.child.ActionExecutionWorker] Starting Gradle Worker 1.
+14:55:43.398 [QUIET] [system.out] 14:55:43.349 [INFO] [org.gradle.api.internal.tasks.testing.worker.TestWorker] Gradle Worker 1 executing tests.
+14:55:43.520 [QUIET] [system.out] 14:55:43.512 [DEBUG] [org.gradle.api.internal.tasks.testing.junit.JUnitTestClassProcessor] Executing test class controller.MainControllerTest
+14:55:43.542 [DEBUG] [TestEventLogger] 
+14:55:43.542 [DEBUG] [TestEventLogger] Gradle Worker 1 STARTED
+14:55:43.543 [DEBUG] [TestEventLogger] 
+14:55:43.543 [DEBUG] [TestEventLogger] controller.MainControllerTest STARTED
+14:55:43.832 [DEBUG] [TestEventLogger] 
+14:55:43.832 [DEBUG] [TestEventLogger] controller.MainControllerTest > classMethod STARTED
+14:55:43.985 [DEBUG] [TestEventLogger] 
+14:55:43.985 [DEBUG] [TestEventLogger] controller.MainControllerTest > classMethod FAILED
+14:55:43.987 [DEBUG] [TestEventLogger]     java.lang.ExceptionInInitializerError
+14:55:43.987 [DEBUG] [TestEventLogger]         at controller.MainControllerTest.beforeClass(MainControllerTest.java:30)
+14:55:43.989 [DEBUG] [TestEventLogger]         at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+14:55:43.990 [DEBUG] [TestEventLogger]         at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+14:55:43.991 [DEBUG] [TestEventLogger]         at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+14:55:43.991 [DEBUG] [TestEventLogger]         at java.lang.reflect.Method.invoke(Method.java:606)
+14:55:43.991 [DEBUG] [TestEventLogger]         at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+14:55:43.992 [DEBUG] [TestEventLogger]         at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+14:55:43.992 [DEBUG] [TestEventLogger]         at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+14:55:43.992 [DEBUG] [TestEventLogger]         at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:24)
+14:55:43.992 [DEBUG] [TestEventLogger]         at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+14:55:43.993 [DEBUG] [TestEventLogger]         at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+14:55:43.994 [DEBUG] [TestEventLogger]         at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.runTestClass(JUnitTestClassExecuter.java:80)
+14:55:43.994 [DEBUG] [TestEventLogger]         at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.execute(JUnitTestClassExecuter.java:47)
+14:55:43.994 [DEBUG] [TestEventLogger]         at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassProcessor.processTestClass(JUnitTestClassProcessor.java:69)
+14:55:43.995 [DEBUG] [TestEventLogger]         at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:49)
+14:55:43.995 [DEBUG] [TestEventLogger]         at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+14:55:43.996 [DEBUG] [TestEventLogger]         at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+14:55:43.996 [DEBUG] [TestEventLogger]         at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+14:55:43.996 [DEBUG] [TestEventLogger]         at java.lang.reflect.Method.invoke(Method.java:606)
+14:55:43.997 [DEBUG] [TestEventLogger]         at org.gradle.messaging.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
+14:55:43.997 [DEBUG] [TestEventLogger]         at org.gradle.messaging.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+14:55:43.997 [DEBUG] [TestEventLogger]         at org.gradle.messaging.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:32)
+14:55:43.998 [DEBUG] [TestEventLogger]         at org.gradle.messaging.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
+14:55:43.998 [DEBUG] [TestEventLogger]         at com.sun.proxy.$Proxy2.processTestClass(Unknown Source)
+14:55:43.998 [DEBUG] [TestEventLogger]         at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:103)
+14:55:43.998 [DEBUG] [TestEventLogger]         at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+14:55:43.999 [DEBUG] [TestEventLogger]         at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+14:55:43.999 [DEBUG] [TestEventLogger]         at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+14:55:44.000 [DEBUG] [TestEventLogger]         at java.lang.reflect.Method.invoke(Method.java:606)
+14:55:44.000 [DEBUG] [TestEventLogger]         at org.gradle.messaging.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
+14:55:44.000 [DEBUG] [TestEventLogger]         at org.gradle.messaging.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+14:55:44.001 [DEBUG] [TestEventLogger]         at org.gradle.messaging.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:355)
+14:55:44.001 [DEBUG] [TestEventLogger]         at org.gradle.internal.concurrent.DefaultExecutorFactory$StoppableExecutorImpl$1.run(DefaultExecutorFactory.java:66)
+14:55:44.001 [DEBUG] [TestEventLogger]         at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+14:55:44.002 [DEBUG] [TestEventLogger]         at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+14:55:44.002 [DEBUG] [TestEventLogger]         at java.lang.Thread.run(Thread.java:724)
+14:55:44.002 [DEBUG] [TestEventLogger] 
+14:55:44.002 [DEBUG] [TestEventLogger]         Caused by:
+14:55:44.003 [DEBUG] [TestEventLogger]         java.lang.NullPointerException
+14:55:44.003 [DEBUG] [TestEventLogger]             at model.Game.<init>(Game.java:144)
+14:55:44.003 [DEBUG] [TestEventLogger]             at model.Game.initializeGame(Game.java:119)
+14:55:44.004 [DEBUG] [TestEventLogger]             at controller.MainController.<init>(MainController.java:71)
+14:55:44.004 [DEBUG] [TestEventLogger]             at controller.MainController.<clinit>(MainController.java:23)
+14:55:44.007 [DEBUG] [TestEventLogger]             ... 36 more
+14:55:44.020 [QUIET] [system.out] 14:55:43.970 [DEBUG] [org.gradle.api.internal.tasks.testing.junit.JUnitTestClassProcessor] Executing test class model.exception.ListFullExceptionTest
+14:55:44.044 [DEBUG] [TestEventLogger] 
+14:55:44.045 [DEBUG] [TestEventLogger] controller.MainControllerTest FAILED
+14:55:44.045 [DEBUG] [TestEventLogger] 
+14:55:44.045 [DEBUG] [TestEventLogger] model.exception.ListFullExceptionTest STARTED
+14:55:44.083 [DEBUG] [TestEventLogger] 
+14:55:44.083 [DEBUG] [TestEventLogger] model.exception.ListFullExceptionTest > testConstruct STARTED
+14:55:44.083 [DEBUG] [TestEventLogger] 
+14:55:44.084 [DEBUG] [TestEventLogger] model.exception.ListFullExceptionTest > testConstruct PASSED
+14:55:44.084 [DEBUG] [TestEventLogger] 
+14:55:44.084 [DEBUG] [TestEventLogger] model.exception.ListFullExceptionTest PASSED
+14:55:44.085 [DEBUG] [TestEventLogger] 
+14:55:44.085 [DEBUG] [TestEventLogger] model.exception.ObjectAlreadyInListExceptionTest STARTED
+14:55:44.086 [QUIET] [system.out] 14:55:44.077 [DEBUG] [org.gradle.api.internal.tasks.testing.junit.JUnitTestClassProcessor] Executing test class model.exception.ObjectAlreadyInListExceptionTest
+14:55:44.086 [DEBUG] [TestEventLogger] 
+14:55:44.086 [DEBUG] [TestEventLogger] model.exception.ObjectAlreadyInListExceptionTest > testConstruct STARTED
+14:55:44.087 [DEBUG] [TestEventLogger] 
+14:55:44.087 [DEBUG] [TestEventLogger] model.exception.ObjectAlreadyInListExceptionTest > testConstruct PASSED
+14:55:44.088 [DEBUG] [TestEventLogger] 
+14:55:44.091 [DEBUG] [TestEventLogger] model.exception.ObjectAlreadyInListExceptionTest PASSED
+14:55:44.086 [QUIET] [system.out] 14:55:44.082 [DEBUG] [org.gradle.api.internal.tasks.testing.junit.JUnitTestClassProcessor] Executing test class model.exception.ObjectNotInitializedExceptionTest
+14:55:44.119 [DEBUG] [TestEventLogger] 
+14:55:44.119 [DEBUG] [TestEventLogger] model.exception.ObjectNotInitializedExceptionTest STARTED
+14:55:44.120 [DEBUG] [TestEventLogger] 
+14:55:44.120 [DEBUG] [TestEventLogger] model.exception.ObjectNotInitializedExceptionTest > testConstruct STARTED
+14:55:44.124 [DEBUG] [TestEventLogger] 
+14:55:44.125 [DEBUG] [TestEventLogger] model.exception.ObjectNotInitializedExceptionTest > testConstruct PASSED
+14:55:44.126 [DEBUG] [TestEventLogger] 
+14:55:44.127 [DEBUG] [TestEventLogger] model.exception.ObjectNotInitializedExceptionTest PASSED
+14:55:44.128 [DEBUG] [TestEventLogger] 
+14:55:44.128 [DEBUG] [TestEventLogger] Gradle Worker 1 FAILED
+14:55:44.131 [QUIET] [system.out] 14:55:44.130 [INFO] [org.gradle.api.internal.tasks.testing.worker.TestWorker] Gradle Worker 1 finished executing tests.
+14:55:44.140 [QUIET] [system.out] 14:55:44.140 [DEBUG] [org.gradle.process.internal.child.ActionExecutionWorker] Completed Gradle Worker 1.
+14:55:44.153 [QUIET] [system.out] 14:55:44.151 [DEBUG] [org.gradle.process.internal.child.ActionExecutionWorker] Stopping client connection.
+14:55:44.253 [DEBUG] [org.gradle.process.internal.DefaultExecHandle] Changing state to: SUCCEEDED
+14:55:44.257 [DEBUG] [org.gradle.process.internal.DefaultExecHandle] Process 'Gradle Worker 1' finished with exit value 0 (state: SUCCEEDED)
+14:55:44.267 [DEBUG] [TestEventLogger] 
+14:55:44.268 [DEBUG] [TestEventLogger] Test Run FAILED
+14:55:44.395 [INFO] [org.gradle.api.internal.tasks.testing.junit.result.Binary2JUnitXmlReportGenerator] Finished generating test XML results (0.089 secs)
+14:55:44.398 [INFO] [org.gradle.api.internal.tasks.testing.junit.report.DefaultTestReport] Generating HTML test report...
+14:55:44.458 [INFO] [org.gradle.api.internal.tasks.testing.junit.report.DefaultTestReport] Finished generating test html results (0.06 secs)
+14:55:44.460 [DEBUG] [org.gradle.api.internal.tasks.execution.ExecuteAtMostOnceTaskExecuter] Finished executing task ':test'
+14:55:44.460 [LIFECYCLE] [org.gradle.TaskExecutionLogger] :test FAILED
+14:55:44.461 [INFO] [org.gradle.execution.taskgraph.AbstractTaskPlanExecutor] :test (Thread[main,5,main]) completed. Took 4.262 secs.
+14:55:44.461 [DEBUG] [org.gradle.execution.taskgraph.AbstractTaskPlanExecutor] Task worker [Thread[main,5,main]] finished, busy: 5.269 secs, idle: 0.011 secs
+14:55:44.662 [LIFECYCLE] [org.gradle.BuildResultLogger] 
+14:55:44.663 [LIFECYCLE] [org.gradle.BuildResultLogger] BUILD FAILED
+14:55:44.663 [LIFECYCLE] [org.gradle.BuildResultLogger] 
+14:55:44.663 [LIFECYCLE] [org.gradle.BuildResultLogger] Total time: 16.253 secs
+14:55:44.672 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on cache directory workerMain (C:\Users\Philipp\.gradle\caches\1.9\workerMain).
+14:55:44.675 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache taskArtifacts.bin (C:\dev\pacman\.gradle\1.9\taskArtifacts\taskArtifacts.bin)
+14:55:44.676 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache outputFileStates.bin (C:\dev\pacman\.gradle\1.9\taskArtifacts\outputFileStates.bin)
+14:55:44.677 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache fileHashes.bin (C:\dev\pacman\.gradle\1.9\taskArtifacts\fileHashes.bin)
+14:55:44.678 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache fileSnapshots.bin (C:\dev\pacman\.gradle\1.9\taskArtifacts\fileSnapshots.bin)
+14:55:44.678 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on task artifact state cache (C:\dev\pacman\.gradle\1.9\taskArtifacts).
+14:55:44.679 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for build file 'C:\dev\pacman\build.gradle' (C:\Users\Philipp\.gradle\caches\1.9\scripts\build_7gtidomb5ni15ukvi0ci9g0ts1\ProjectScript\no_buildscript).
+14:55:44.680 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for build file 'C:\dev\pacman\build.gradle' (C:\Users\Philipp\.gradle\caches\1.9\scripts\build_7gtidomb5ni15ukvi0ci9g0ts1\ProjectScript\buildscript).
+14:55:44.680 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for settings file 'C:\dev\pacman\settings.gradle' (C:\Users\Philipp\.gradle\caches\1.9\scripts\settings_3mtvubtdeknp2bg5schir7cinv\SettingsScript\no_buildscript).
+14:55:44.681 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for settings file 'C:\dev\pacman\settings.gradle' (C:\Users\Philipp\.gradle\caches\1.9\scripts\settings_3mtvubtdeknp2bg5schir7cinv\SettingsScript\buildscript).
+14:55:44.681 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache artifact-at-repository.bin (C:\Users\Philipp\.gradle\caches\modules-2\metadata-2.1\artifact-at-repository.bin)
+14:55:44.681 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache module-metadata.bin (C:\Users\Philipp\.gradle\caches\modules-2\metadata-2.1\module-metadata.bin)
+14:55:44.682 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache dynamic-revisions.bin (C:\Users\Philipp\.gradle\caches\modules-2\metadata-2.1\dynamic-revisions.bin)
+14:55:44.682 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on artifact cache (C:\Users\Philipp\.gradle\caches\modules-2).
+14:55:44.689 [DEBUG] [org.gradle.api.internal.tasks.compile.daemon.CompilerDaemonManager] Stopping 0 Gradle compiler daemon(s).
+14:55:44.689 [INFO] [org.gradle.api.internal.tasks.compile.daemon.CompilerDaemonManager] Stopped 0 Gradle compiler daemon(s).
+14:55:44.693 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.CachedStoreFactory] Resolved configuration cache closed. Cache reads: 0, disk reads: 0 (avg: 0.0 secs, total: 0.0 secs)
+14:55:44.694 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.CachedStoreFactory] Resolution result cache closed. Cache reads: 0, disk reads: 0 (avg: 0.0 secs, total: 0.0 secs)
+14:55:44.694 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.ResolutionResultsStoreFactory] Deleted 2 resolution results binary files in 0.002 secs
+14:55:44.695 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.memcache.InMemoryDependencyMetadataCache] In-memory dependency metadata cache closed. Repos cached: 3, cache instances: 1, modules served from cache: 2, artifacts: 2

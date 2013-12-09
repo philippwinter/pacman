@@ -9,6 +9,8 @@
 package model;
 
 /**
+ * The position class represents a point on the map. IT SHOULD NOT BE CONSTRUCTED OUTSIDE THE {@link Map} CLASS.
+ *
  * @author Philipp Winter
  * @author Jonas Heidecke
  * @author Niklas Kaddatz
@@ -24,6 +26,7 @@ public class Position {
     public Position(int x, int y) {
         this.setX(x);
         this.setY(y);
+        this.onPosition = new MapObjectContainer();
     }
 
     public int getX() {
@@ -46,8 +49,14 @@ public class Position {
         return onPosition;
     }
 
-    public void setOnPosition(MapObjectContainer onPosition) {
-        this.onPosition = onPosition;
+    @SuppressWarnings("unused")
+    public void add(MapObject mapObject) {
+        this.onPosition.add(mapObject);
+    }
+
+    @SuppressWarnings("unused")
+    public void remove(MapObject mapObject){
+        this.onPosition.remove(mapObject);
     }
 
     public double calcDistance(Position pos) {

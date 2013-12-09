@@ -20,6 +20,8 @@ package model;
 @SuppressWarnings("unused")
 public abstract class DynamicTarget extends Target {
 
+    protected DynamicTargetState state = DynamicTargetState.WAITING;
+
     /**
      * The direction the object is heading to, e.g. moving to.
      */

@@ -31,7 +31,11 @@ public abstract class MapObject {
     }
 
     protected void setPosition(Position pos){
+        if(this.position != null){
+            this.position.remove(this);
+        }
         this.position = pos;
+        this.position.add(this);
     }
 
 }

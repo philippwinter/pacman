@@ -28,28 +28,41 @@ public class Map {
             Map.instance = new Map();
         }
 
-        return null;
+        return Map.instance;
     }
 
     private Map() {
-        this(300, 300);
+        this(25, 20);
     }
 
     private Map(int width, int height) {
         this.width = width;
         this.height = height;
 
-        // TODO Implement method
+        this.positionContainer = new PositionContainer(width, height);
+
+        // Create all position instances for this map
+        for(int actX = 0; actX < width; actX++){
+            for(int actY = 0; actY < height; actY++){
+                this.positionContainer.add(new Position(actX, actY));
+            }
+        }
 
     }
 
     public int getAmountOfNotBlockedPlaces() {
         // TODO Implement method
 
-        return 0;
+        return 25;
     }
 
     public int getAmountOfPoints() {
-        return getAmountOfNotBlockedPlaces() - Game.getInstance().getCoinContainer().getMax();
+        // TODO Implement method
+
+        return 4;
+    }
+
+    public PositionContainer getPositionContainer() {
+        return this.positionContainer;
     }
 }
