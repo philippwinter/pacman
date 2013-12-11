@@ -15,4 +15,5 @@ package model;
  */
 public abstract class Target extends MapObject {
 
+
 }

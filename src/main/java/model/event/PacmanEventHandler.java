@@ -21,20 +21,31 @@ public class PacmanEventHandler extends EventHandler {
 
     private PacmanContainer pacmanContainer;
 
-    public void perform() {
+    private void handlePacman(Pacman pac) {
+        MapObjectContainer mapObjectsOnPos = pac.getPosition().getOnPosition();
+
+        for (MapObject mO : mapObjectsOnPos.getAll()) {
+            pac.collide(mO);
+        }
+    }
+
+    /**
+     * When an object implementing interface <code>Runnable</code> is used
+     * to create a thread, starting the thread causes the object's
+     * <code>run</code> method to be called in that separately executing
+     * thread.
+     * <p/>
+     * The general contract of the method <code>run</code> is that it may
+     * take any action whatsoever.
+     *
+     * @see Thread#run()
+     */
+    @Override
+    public void run() {
         ArrayList<Pacman> pacmans = Game.getInstance().getPacmanContainer().getAll();
 
         for (Pacman p : pacmans) {
             this.handlePacman(p);
         }
     }
-
-    private void handlePacman(Pacman pac) {
-        MapObjectContainer mapObjectsOnPos = pac.getPosition().getOnPosition();
-
-        for (MapObject mO : mapObjectsOnPos.getAll()) {
-            // Implement method
-        }
-    }
-
 }

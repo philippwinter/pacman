@@ -26,6 +26,7 @@ public class Coin extends StaticTarget implements Munchable {
     public void collide(MapObject obj) {
 
         if (obj instanceof Pacman) {
+
             if (this.getState() == StaticTargetState.AVAILABLE) {
                 // Change all states of Ghosts to "Hunted"
 
@@ -38,9 +39,11 @@ public class Coin extends StaticTarget implements Munchable {
 
                 // Add points to Pacmans score
 
+                ((Pacman) obj).getHighscore().addPoints(this.getScore());
+
                 // Change the own state to eaten
 
-                this.state = StaticTargetState.EATEN;
+                this.changeState(StaticTargetState.EATEN);
             }
         }
     }
@@ -52,7 +55,8 @@ public class Coin extends StaticTarget implements Munchable {
      */
     @Override
     public void changeState(StaticTargetState state) {
-        // TODO Auto-generated method stub
+
+        this.state = state;
 
     }
 

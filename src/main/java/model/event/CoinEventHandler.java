@@ -8,9 +8,7 @@
 
 package model.event;
 
-import model.Coin;
-import model.Game;
-import model.Level;
+import model.*;
 
 /**
  * @author Philipp Winter
@@ -21,12 +19,10 @@ public class CoinEventHandler extends EventHandler {
 
     private double activePointSeconds = 0;
 
-    @Override
-    public void perform() {
-        // TODO Auto-generated method stub
+    private CoinContainer coinContainer;
 
-        this.activePointSeconds -= Game.getInstance().getRefreshRate();
-
+    public CoinEventHandler() {
+        this.coinContainer = Game.getInstance().getCoinContainer();
     }
 
     public double getActivePointSeconds() {
@@ -37,4 +33,32 @@ public class CoinEventHandler extends EventHandler {
         this.activePointSeconds += Level.getInstance().getSecondsPerCoin();
     }
 
+    /**
+     * When an object implementing interface <code>Runnable</code> is used
+     * to create a thread, starting the thread causes the object's
+     * <code>run</code> method to be called in that separately executing
+     * thread.
+     * <p/>
+     * The general contract of the method <code>run</code> is that it may
+     * take any action whatsoever.
+     *
+     * @see Thread#run()
+     */
+    @Override
+    public void run() {
+        if(this.activePointSeconds > 0){
+            this.activePointSeconds -= Game.getInstance().getRefreshRate();
+        }
+
+        if(this.activePointSeconds <= 0) {
+            for(Ghost g : Game.getInstance().getGhostContainer()){
+                g.changeState(DynamicTargetState.HUNTER);
+            }
+
+            for(Pacman p : Game.getInstance().getPacmanContainer()){
+                p.changeState(DynamicTargetState.HUNTED);
+            }
+        }
+
+    }
 }

@@ -8,6 +8,8 @@
 
 package model;
 
+import model.event.EventHandlerManager;
+
 /**
  * Ghosts are the little beasts {@link Pacman} can hunt after eating a {@link Coin}.
  *
@@ -27,6 +29,12 @@ public class Ghost extends DynamicTarget {
      */
     private String name;
 
+    private int waitingSeconds = -1;
+
+    private double speed = 1;
+
+    private boolean movedInLastTurn = false;
+
     /**
      * The state of the ghost.
      */
@@ -39,7 +47,14 @@ public class Ghost extends DynamicTarget {
      */
     @Override
     public void collide(MapObject obj) {
-        // TODO Implement method
+        if(obj instanceof Point || obj instanceof Coin){
+            // Just do nothing
+            return;
+        }else if(obj instanceof Pacman){
+            if( ((Pacman) obj).getState() == DynamicTargetState.HUNTED){
+                this.eat((Pacman) obj);
+            }
+        }
 
     }
 
@@ -80,13 +95,43 @@ public class Ghost extends DynamicTarget {
     }
 
     /**
+     * Let the object eat a subclass of Target.
+     *
+     * @param target The object to be eaten.
+     */
+    protected void eat(Target target) {
+        if(target instanceof Pacman){
+            ((Pacman) target).changeState(DynamicTargetState.MUNCHED);
+        }
+    }
+
+    /**
      * Changes the state of the ghost and performs needed operations.
      *
      * @param state The new state.
      */
     public void changeState(DynamicTargetState state) {
-        // TODO Perform operations respective to new state
-
+        if(state == DynamicTargetState.HUNTED){
+            this.speed *= 0.5;
+        }else if (state == DynamicTargetState.HUNTER){
+            this.speed *= 2;
+        }
         this.state = state;
+    }
+
+    public void setWaitingSeconds(int waitingSeconds) {
+        this.waitingSeconds = waitingSeconds;
+    }
+
+    public int getWaitingSeconds() {
+        return waitingSeconds;
+    }
+
+    public boolean getMovedInLastTurn() {
+        return movedInLastTurn;
+    }
+
+    public void setMovedInLastTurn(boolean b){
+        this.movedInLastTurn = b;
     }
 }

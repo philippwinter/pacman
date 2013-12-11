@@ -8,7 +8,11 @@
 
 package model.event;
 
+import model.Game;
+
 import java.util.ArrayList;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Philipp Winter
@@ -19,15 +23,13 @@ public class EventHandlerManager {
 
     private ArrayList<EventHandler> eventObjects;
 
-    public void execute() {
-        try {
-            for (EventHandler e : this.eventObjects) {
-                e.perform();
-            }
-        } catch (RuntimeException ex) {
-            ex.printStackTrace();
-        }
+    private ScheduledThreadPoolExecutor executor;
 
+    private int startPoolSize = 3;
+
+    public EventHandlerManager() {
+        this.eventObjects = new ArrayList<>(startPoolSize);
+        this.executor = new ScheduledThreadPoolExecutor(startPoolSize);
     }
 
     public boolean register(EventHandler eH) {
@@ -43,10 +45,18 @@ public class EventHandlerManager {
     }
 
     public void startExecution() {
-        // TODO Implement method
+        if(this.executor == null){
+            this.executor = new ScheduledThreadPoolExecutor(startPoolSize);
+        }
+        for(EventHandler e : this.eventObjects){
+            // Given the refreshRate 5, our handler has to be run 5 times in one second, so 5 times in 1000 milliseconds.
+            // 1000 / 5 = 200
+            this.executor.scheduleAtFixedRate(e, 0, (long) (1000 / Game.getInstance().getRefreshRate()), TimeUnit.MILLISECONDS);
+        }
     }
 
     public void pauseExecution() {
-        // TODO Implement Method
+        this.executor.shutdown();
+        this.executor = null;
     }
 }

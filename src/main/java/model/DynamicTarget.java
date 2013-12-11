@@ -40,7 +40,6 @@ public abstract class DynamicTarget extends Target {
                 throw new IllegalArgumentException("Cannot move an object further than 1 unit at once.");
             }else{
                 this.setPosition(pos);
-                // TODO Probably do other work here, like removing this from the old positionContainer and adding to the new
             }
         }
 
@@ -51,10 +50,7 @@ public abstract class DynamicTarget extends Target {
      *
      * @param target The object to be eaten.
      */
-    public void eat(Target target) {
-        // TODO: Implement method
-
-    }
+    protected abstract void eat(Target target);
 
     /**
      * Return the direction this object is heading to.
@@ -91,4 +87,8 @@ public abstract class DynamicTarget extends Target {
      * @param state The new state.
      */
     public abstract void changeState(DynamicTargetState state);
+
+    public DynamicTargetState getState() {
+        return this.state;
+    }
 }

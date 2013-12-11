@@ -8,7 +8,7 @@
 
 package model.event;
 
-import model.GhostContainer;
+import model.*;
 
 /**
  * @author Philipp Winter
@@ -19,9 +19,57 @@ public class GhostEventHandler extends EventHandler {
 
     private GhostContainer ghostContainer;
 
-    public void perform() {
-        // TODO Implement method
-
+    public GhostEventHandler() {
+        this.ghostContainer = Game.getInstance().getGhostContainer();
     }
 
+    /**
+     * Run the event handler.
+     *
+     * @see Thread#run()
+     */
+    @Override
+    public void run() {
+        for(Ghost g : this.ghostContainer){
+            Position newPosition = Map.getPositionByDirectionIfMoveableTo(g.getPosition(), g.getHeadingTo());
+
+            if(newPosition == null){
+                Direction wantedDirection = g.getHeadingTo();
+                Direction realizedDirection = null;
+
+                for(Direction d : Direction.values()){
+                    if(d == g.getHeadingTo()){
+                        continue;
+                    }
+                    Position temp =  Map.getPositionByDirectionIfMoveableTo(g.getPosition(), g.getHeadingTo());
+                    if(temp != null){
+                        newPosition = temp;
+                        realizedDirection = d;
+                    }
+                }
+
+                if(wantedDirection.equals(realizedDirection)){
+                    throw new RuntimeException("Cannot move to any point, something went wrong.");
+                }
+            }
+
+            if(g.getState() == DynamicTargetState.HUNTER){
+                g.move(newPosition);
+            }else if(g.getState() == DynamicTargetState.MUNCHED){
+                // Move to base
+            }else if(g.getState() == DynamicTargetState.WAITING) {
+                if(g.getWaitingSeconds() == 0){
+                    // If time is up, releash the kraken
+                    g.changeState(DynamicTargetState.HUNTER);
+                }
+            }else if(g.getState() == DynamicTargetState.HUNTED){
+                if(g.getMovedInLastTurn()){
+                    g.setMovedInLastTurn(false);
+                }else{
+                    g.move(newPosition);
+                    g.setMovedInLastTurn(true);
+                }
+            }
+        }
+    }
 }

@@ -16,7 +16,7 @@ package model;
  * @author Niklas Kaddatz
  */
 @SuppressWarnings("unused")
-public class Wall {
+public class Wall extends MapObject {
 
     private WallType type;
 
@@ -29,6 +29,11 @@ public class Wall {
 
     public WallType getType(){
         return type;
+    }
+
+    @Override
+    public void collide(MapObject obj) {
+        throw new IllegalArgumentException("You cannot collide with a wall.");
     }
 
     public Position getPosition(){

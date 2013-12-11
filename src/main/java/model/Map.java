@@ -65,4 +65,29 @@ public class Map {
     public PositionContainer getPositionContainer() {
         return this.positionContainer;
     }
+
+    public static Position getPositionByDirectionIfMoveableTo(Position prevPos, Direction movingTo){
+        Position p = null;
+        try{
+            if(movingTo == Direction.NORTH){
+                p = Map.getInstance().getPositionContainer().get(prevPos.getX(), prevPos.getY() + 1);
+            }else if(movingTo == Direction.EAST){
+                p = Map.getInstance().getPositionContainer().get(prevPos.getX() + 1, prevPos.getY());
+            }else if(movingTo == Direction.WEST){
+                p = Map.getInstance().getPositionContainer().get(prevPos.getX() - 1, prevPos.getY());
+            }else if(movingTo == Direction.SOUTH){
+                p =  Map.getInstance().getPositionContainer().get(prevPos.getX(), prevPos.getY() - 1);
+            }
+            if(p != null && p.isMoveableTo()){
+                return p;
+            }else{
+                return null;
+            }
+        }catch(IllegalArgumentException ex){
+           // Just return null to signalize, that the point doesn't exist
+           return null;
+        }
+
+
+    }
 }

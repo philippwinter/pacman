@@ -93,7 +93,6 @@ public class Game {
             Game.instance = new Game();
             Game.initializeGameInternal();
             Game.initialized = true;
-            initializeGameInternal();
         }else{
             throw new IllegalStateException("The game has to be initialized in order to reset it.");
         }
@@ -212,6 +211,10 @@ public class Game {
      */
     public double getRefreshRate() {
         return this.refreshRate;
+    }
+
+    public EventHandlerManager getEventHandlerManager() {
+        return eventHandlerManager;
     }
 
     /**

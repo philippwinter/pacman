@@ -59,6 +59,15 @@ public class Position {
         this.onPosition.remove(mapObject);
     }
 
+    public boolean isMoveableTo(){
+        for(MapObject mO : this.onPosition){
+            if(mO instanceof Wall){
+                return false;
+            }
+        }
+        return true;
+    }
+
     public double calcDistance(Position pos) {
         // A little bit of math, using Pythagoras' Theorem
         return Math.sqrt(
@@ -66,4 +75,5 @@ public class Position {
                 Math.pow(this.getY() - pos.getY(), 2)
         );
     }
+
 }

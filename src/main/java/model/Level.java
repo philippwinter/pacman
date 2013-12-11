@@ -8,6 +8,8 @@
 
 package model;
 
+import controller.MainController;
+
 /**
  * @author Philipp Winter
  * @author Jonas Heidecke
@@ -37,6 +39,8 @@ public class Level {
 
         // Change the refresh rate = How fast is the pacman moving
         Game.getInstance().changeRefreshRate(this);
+
+        //MainController.getInstance().getGui().rebuild();
     }
 
     public int getLevel() {
@@ -44,7 +48,7 @@ public class Level {
     }
 
     private Level() {
-        // TODO Implement method
+
     }
 
     public double getSecondsPerCoin() {

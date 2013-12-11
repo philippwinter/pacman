@@ -13,8 +13,8 @@ package model.event;
  * @author Jonas Heidecke
  * @author Niklas Kaddatz
  */
-public abstract class EventHandler {
+public abstract class EventHandler implements Runnable {
 
-    public abstract void perform();
+    // TODO Some code here
 
 }

@@ -93,7 +93,6 @@ public class CoinContainer implements Container<Coin> {
      *
      * @param el The element to remove.
      */
-    @Override
     public void remove(Coin el) {
         this.coins.remove(el);
     }

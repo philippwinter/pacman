@@ -19,9 +19,25 @@ public class Pacman extends DynamicTarget {
 
     private Highscore highscore;
 
+    public Pacman() {
+        this.highscore = new Highscore(this);
+    }
+
+    /**
+     * Let the pacman collide with another object on the map.
+     *
+     * @param obj The object to be eaten.
+     */
     @Override
     public void collide(MapObject obj) {
-        // TODO Implement method
+        if(obj instanceof Coin || obj instanceof Point) {
+            this.eat((Target) obj);
+        }else if(obj instanceof  Ghost){
+            Ghost g = (Ghost) obj;
+            if(g.getState() == DynamicTargetState.HUNTED){
+                this.eat(g);
+            }
+        }
 
     }
 
@@ -33,14 +49,21 @@ public class Pacman extends DynamicTarget {
         this.name = name;
     }
 
-    public void computeHighscore() {
-        if (this.highscore == null) {
-            this.highscore = new Highscore(this);
-        }
-    }
-
     public Highscore getHighscore() {
         return highscore;
+    }
+
+    /**
+     * Let the object eat a subclass of Target.
+     *
+     * @param target The object to be eaten.
+     */
+    @Override
+    public void eat(Target target) {
+        if(target instanceof Ghost){
+            Ghost g = (Ghost) target;
+            g.setWaitingSeconds(4);
+        }
     }
 
     @Override
