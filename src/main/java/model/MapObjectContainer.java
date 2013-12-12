@@ -8,8 +8,6 @@
 
 package model;
 
-import model.exception.ObjectAlreadyInListException;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -46,10 +44,13 @@ public class MapObjectContainer implements Container<MapObject> {
     }
 
     public void add(MapObject el) {
+
+        for (MapObject mapObject : this) {
+            System.out.println(mapObject);
+        }
+
         if (!this.mapObjects.contains(el)) {
             this.mapObjects.add(el);
-        } else {
-            throw new ObjectAlreadyInListException(el.getClass().getCanonicalName());
         }
     }
 

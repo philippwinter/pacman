@@ -8,7 +8,6 @@
 
 package model.exception;
 
-import model.Game;
 import org.junit.Test;
 
 /**

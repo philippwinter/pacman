@@ -14,7 +14,6 @@ package model.exception;
  * @author Philipp Winter
  * @author Jonas Heidecke
  * @author Niklas Kaddatz
- *
  * @see model.Container
  */
 public class ObjectAlreadyInListException extends ListException {

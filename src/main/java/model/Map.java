@@ -31,6 +31,10 @@ public class Map {
         return Map.instance;
     }
 
+    public static void reset() {
+        Map.instance = new Map();
+    }
+
     private Map() {
         this(25, 20);
     }
@@ -42,8 +46,8 @@ public class Map {
         this.positionContainer = new PositionContainer(width, height);
 
         // Create all position instances for this map
-        for(int actX = 0; actX < width; actX++){
-            for(int actY = 0; actY < height; actY++){
+        for (int actX = 0; actX < width; actX++) {
+            for (int actY = 0; actY < height; actY++) {
                 this.positionContainer.add(new Position(actX, actY));
             }
         }
@@ -66,26 +70,26 @@ public class Map {
         return this.positionContainer;
     }
 
-    public static Position getPositionByDirectionIfMoveableTo(Position prevPos, Direction movingTo){
+    public static Position getPositionByDirectionIfMoveableTo(Position prevPos, Direction movingTo) {
         Position p = null;
-        try{
-            if(movingTo == Direction.NORTH){
+        try {
+            if (movingTo == Direction.NORTH) {
                 p = Map.getInstance().getPositionContainer().get(prevPos.getX(), prevPos.getY() + 1);
-            }else if(movingTo == Direction.EAST){
+            } else if (movingTo == Direction.EAST) {
                 p = Map.getInstance().getPositionContainer().get(prevPos.getX() + 1, prevPos.getY());
-            }else if(movingTo == Direction.WEST){
+            } else if (movingTo == Direction.WEST) {
                 p = Map.getInstance().getPositionContainer().get(prevPos.getX() - 1, prevPos.getY());
-            }else if(movingTo == Direction.SOUTH){
-                p =  Map.getInstance().getPositionContainer().get(prevPos.getX(), prevPos.getY() - 1);
+            } else if (movingTo == Direction.SOUTH) {
+                p = Map.getInstance().getPositionContainer().get(prevPos.getX(), prevPos.getY() - 1);
             }
-            if(p != null && p.isMoveableTo()){
+            if (p != null && p.isMoveableTo()) {
                 return p;
-            }else{
+            } else {
                 return null;
             }
-        }catch(IllegalArgumentException ex){
-           // Just return null to signalize, that the point doesn't exist
-           return null;
+        } catch (IllegalArgumentException ex) {
+            // Just return null to signalize, that the point doesn't exist
+            return null;
         }
 
 

@@ -20,7 +20,7 @@ import view.MainGui;
  */
 public class MainController {
 
-    private static MainController instance = new MainController();
+    private static MainController instance;
 
     /**
      * The game instance.
@@ -38,7 +38,18 @@ public class MainController {
      * @param args The command line arguments given to the program.
      */
     public static void main(String[] args) {
-        instance.prepare();
+        instance = new MainController();
+    }
+
+    public static void initialize() {
+        if (MainController.instance != null) {
+            throw new IllegalStateException("The class is already initialized.");
+        }
+        MainController.instance = new MainController();
+    }
+
+    public static void reset() {
+        MainController.instance = new MainController();
     }
 
     public MainGui getGui() {
@@ -49,7 +60,7 @@ public class MainController {
         return instance;
     }
 
-    public void prepare(){
+    private void prepare() {
         // TODO Do something
     }
 
@@ -67,11 +78,13 @@ public class MainController {
     }
 
     private MainController() {
-        // Initialize and instantiate objects
-        Game.initializeGame();
+        Game.reset();
 
+        // Initialize and instantiate objects
         this.game = Game.getInstance();
+
         this.gui = new MainGui();
+        this.prepare();
     }
 
 }

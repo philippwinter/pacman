@@ -8,6 +8,8 @@
 
 package model;
 
+import model.exception.ObjectAlreadyInListException;
+
 /**
  * The position class represents a point on the map. IT SHOULD NOT BE CONSTRUCTED OUTSIDE THE {@link Map} CLASS.
  *
@@ -51,17 +53,21 @@ public class Position {
 
     @SuppressWarnings("unused")
     public void add(MapObject mapObject) {
-        this.onPosition.add(mapObject);
+        try {
+            this.onPosition.add(mapObject);
+        } catch (ObjectAlreadyInListException ex) {
+            return;
+        }
     }
 
     @SuppressWarnings("unused")
-    public void remove(MapObject mapObject){
+    public void remove(MapObject mapObject) {
         this.onPosition.remove(mapObject);
     }
 
-    public boolean isMoveableTo(){
-        for(MapObject mO : this.onPosition){
-            if(mO instanceof Wall){
+    public boolean isMoveableTo() {
+        for (MapObject mO : this.onPosition) {
+            if (mO instanceof Wall) {
                 return false;
             }
         }
@@ -72,8 +78,17 @@ public class Position {
         // A little bit of math, using Pythagoras' Theorem
         return Math.sqrt(
                 Math.pow(this.getX() - pos.getX(), 2) +
-                Math.pow(this.getY() - pos.getY(), 2)
+                        Math.pow(this.getY() - pos.getY(), 2)
         );
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Position) {
+            return ((Position) obj).getX() == this.getX() && ((Position) obj).getY() == this.getY();
+        }
+
+        return false;
     }
 
 }

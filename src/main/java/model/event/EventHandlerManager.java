@@ -35,6 +35,7 @@ public class EventHandlerManager {
     public boolean register(EventHandler eH) {
         try {
             this.eventObjects.add(eH);
+            eH.onLoad();
 
             return true;
         } catch (Exception ex) {
@@ -45,10 +46,10 @@ public class EventHandlerManager {
     }
 
     public void startExecution() {
-        if(this.executor == null){
+        if (this.executor == null) {
             this.executor = new ScheduledThreadPoolExecutor(startPoolSize);
         }
-        for(EventHandler e : this.eventObjects){
+        for (EventHandler e : this.eventObjects) {
             // Given the refreshRate 5, our handler has to be run 5 times in one second, so 5 times in 1000 milliseconds.
             // 1000 / 5 = 200
             this.executor.scheduleAtFixedRate(e, 0, (long) (1000 / Game.getInstance().getRefreshRate()), TimeUnit.MILLISECONDS);

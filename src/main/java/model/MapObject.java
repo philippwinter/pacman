@@ -18,20 +18,20 @@ public abstract class MapObject {
 
     private Position position;
 
-    public abstract void collide(MapObject obj);
+    public MapObject(Position pos) {
+        this.setPosition(pos);
+    }
 
     public boolean isOnPosition(Position pos) {
-        // TODO Implement method
-
-        return false;
+        return this.getPosition().equals(pos);
     }
 
     public Position getPosition() {
         return position;
     }
 
-    protected void setPosition(Position pos){
-        if(this.position != null){
+    protected void setPosition(Position pos) {
+        if (this.position != null) {
             this.position.remove(this);
         }
         this.position = pos;

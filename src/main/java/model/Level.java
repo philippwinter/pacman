@@ -8,8 +8,6 @@
 
 package model;
 
-import controller.MainController;
-
 /**
  * @author Philipp Winter
  * @author Jonas Heidecke

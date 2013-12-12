@@ -8,9 +8,6 @@
 
 package model;
 
-import model.exception.ObjectAlreadyInListException;
-
-import javax.naming.OperationNotSupportedException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -36,7 +33,7 @@ public class PositionContainer implements Container<Position> {
 
     /**
      * Retrieves a value per index.
-     *
+     * <p/>
      * Imagine the following map:
      * <pre><blockquote>
      * y
@@ -50,7 +47,7 @@ public class PositionContainer implements Container<Position> {
      * If you want to retrieve the "a", you would have to specify the coordinates to do so (here x=0, y=0)
      * but in some cases it might be useful to retrieve a value per index.
      * Our values can be imagined as such a map, with their respective x and y value.
-     *
+     * <p/>
      * Ex.: 0 => "a", [...], 6 => "f", [...], 12 => "k"
      */
     public Position get(int index) {
@@ -68,9 +65,9 @@ public class PositionContainer implements Container<Position> {
      * @param y The y coordinate.
      * @return The position object.
      */
-    public Position get(int x, int y){
+    public Position get(int x, int y) {
         Position val = positions.get(generateKey(x, y));
-        if(val == null){
+        if (val == null) {
             throw new IllegalArgumentException("The point " + x + "|" + y + " doesn't exist.");
         }
         return val;

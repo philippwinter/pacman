@@ -19,26 +19,16 @@ public class Pacman extends DynamicTarget {
 
     private Highscore highscore;
 
-    public Pacman() {
+    public Pacman(Position pos) {
+        super(pos);
         this.highscore = new Highscore(this);
+        this.state = DynamicTargetState.HUNTED;
     }
 
-    /**
-     * Let the pacman collide with another object on the map.
-     *
-     * @param obj The object to be eaten.
-     */
     @Override
-    public void collide(MapObject obj) {
-        if(obj instanceof Coin || obj instanceof Point) {
-            this.eat((Target) obj);
-        }else if(obj instanceof  Ghost){
-            Ghost g = (Ghost) obj;
-            if(g.getState() == DynamicTargetState.HUNTED){
-                this.eat(g);
-            }
-        }
-
+    public void gotEaten() {
+        // TODO Implement method
+        this.changeState(DynamicTargetState.MUNCHED);
     }
 
     public String getName() {
@@ -60,16 +50,21 @@ public class Pacman extends DynamicTarget {
      */
     @Override
     public void eat(Target target) {
-        if(target instanceof Ghost){
+        if (target instanceof Ghost) {
             Ghost g = (Ghost) target;
             g.setWaitingSeconds(4);
+            this.highscore.addPoints(g.getScore());
+        } else if (target instanceof Coin) {
+
         }
+
+        target.gotEaten();
     }
 
     @Override
     public void changeState(DynamicTargetState state) {
-        // TODO Auto-generated method stub
-
+        // TODO Maybe insert some logic
+        this.state = state;
     }
 
 }

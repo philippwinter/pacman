@@ -44,7 +44,7 @@ public class CoinContainer implements Container<Coin> {
      * @throws ListFullException            When the list is already filled with {@link CoinContainer#max} elements.
      * @throws ObjectAlreadyInListException When the object is already in the list.
      */
-    public void add(Coin coin){
+    public void add(Coin coin) {
         if (!this.coins.contains(coin)) {
             if (this.coins.size() < max) {
                 this.coins.add(coin);

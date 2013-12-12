@@ -13,7 +13,7 @@ package model;
  * @author Jonas Heidecke
  * @author Niklas Kaddatz
  */
-public interface Munchable {
+public interface Scoreable {
 
     public int getScore();
 

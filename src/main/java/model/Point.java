@@ -13,18 +13,34 @@ package model;
  * @author Jonas Heidecke
  * @author Niklas Kaddatz
  */
-public class Point extends StaticTarget {
+public class Point extends StaticTarget implements Scoreable {
 
-    @Override
-    public void collide(MapObject obj) {
-        // TODO Auto-generated method stub
+    private static int activePointSeconds = 0;
 
+    public static void resetActivePointSeconds() {
+        Point.activePointSeconds = 0;
+    }
+
+    public Point(Position pos) {
+        super(pos);
     }
 
     @Override
-    public void changeState(StaticTargetState state) {
-        // TODO Auto-generated method stub
+    public void changeState(StaticTargetState s) {
+        if (s == StaticTargetState.EATEN) {
+            this.gotEaten();
+        }
 
+        this.state = s;
     }
 
+    @Override
+    public int getScore() {
+        return 10;
+    }
+
+    @Override
+    public void gotEaten() {
+        Point.activePointSeconds += 4;
+    }
 }

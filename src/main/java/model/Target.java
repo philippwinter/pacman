@@ -15,5 +15,10 @@ package model;
  */
 public abstract class Target extends MapObject {
 
+    public Target(Position pos) {
+        super(pos);
+    }
+
+    public abstract void gotEaten();
 
 }

@@ -8,8 +8,6 @@
 
 package model;
 
-import model.event.EventHandlerManager;
-
 /**
  * Ghosts are the little beasts {@link Pacman} can hunt after eating a {@link Coin}.
  *
@@ -17,7 +15,7 @@ import model.event.EventHandlerManager;
  * @author Jonas Heidecke
  * @author Niklas Kaddatz
  */
-public class Ghost extends DynamicTarget {
+public class Ghost extends DynamicTarget implements Scoreable {
 
     /**
      * The current colour of this ghost.
@@ -29,33 +27,16 @@ public class Ghost extends DynamicTarget {
      */
     private String name;
 
-    private int waitingSeconds = -1;
+    private double waitingSeconds = -1;
 
     private double speed = 1;
 
     private boolean movedInLastTurn = false;
 
-    /**
-     * The state of the ghost.
-     */
-    private DynamicTargetState state;
-
-    /**
-     * React on a collision of another map object and this ghost.
-     *
-     * @param obj The object the ghost is colliding with.
-     */
-    @Override
-    public void collide(MapObject obj) {
-        if(obj instanceof Point || obj instanceof Coin){
-            // Just do nothing
-            return;
-        }else if(obj instanceof Pacman){
-            if( ((Pacman) obj).getState() == DynamicTargetState.HUNTED){
-                this.eat((Pacman) obj);
-            }
-        }
-
+    public Ghost(Position pos, Colour colour) {
+        super(pos);
+        this.state = DynamicTargetState.HUNTER;
+        this.colour = colour;
     }
 
     /**
@@ -99,8 +80,8 @@ public class Ghost extends DynamicTarget {
      *
      * @param target The object to be eaten.
      */
-    protected void eat(Target target) {
-        if(target instanceof Pacman){
+    public void eat(Target target) {
+        if (target instanceof Pacman) {
             ((Pacman) target).changeState(DynamicTargetState.MUNCHED);
         }
     }
@@ -111,19 +92,20 @@ public class Ghost extends DynamicTarget {
      * @param state The new state.
      */
     public void changeState(DynamicTargetState state) {
-        if(state == DynamicTargetState.HUNTED){
+        if (state == DynamicTargetState.HUNTED) {
             this.speed *= 0.5;
-        }else if (state == DynamicTargetState.HUNTER){
+        } else if (state == DynamicTargetState.HUNTER) {
             this.speed *= 2;
+            this.waitingSeconds = -1;
         }
         this.state = state;
     }
 
-    public void setWaitingSeconds(int waitingSeconds) {
+    public void setWaitingSeconds(double waitingSeconds) {
         this.waitingSeconds = waitingSeconds;
     }
 
-    public int getWaitingSeconds() {
+    public double getWaitingSeconds() {
         return waitingSeconds;
     }
 
@@ -131,7 +113,26 @@ public class Ghost extends DynamicTarget {
         return movedInLastTurn;
     }
 
-    public void setMovedInLastTurn(boolean b){
+    public void setMovedInLastTurn(boolean b) {
         this.movedInLastTurn = b;
+    }
+
+    @Override
+    public int getScore() {
+        return 200; // TODO Insert correct number
+    }
+
+    @Override
+    public void gotEaten() {
+        // TODO Implement method
+        this.changeState(DynamicTargetState.MUNCHED);
+    }
+
+    public void reduceWaitingSeconds(double amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("The amount has to be positive");
+        } else {
+            this.waitingSeconds -= amount;
+        }
     }
 }

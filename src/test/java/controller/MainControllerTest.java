@@ -8,6 +8,7 @@
 
 package controller;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
@@ -21,8 +22,13 @@ import static org.junit.Assert.assertTrue;
  */
 public class MainControllerTest {
 
+    @Before
+    public void beforeTest() {
+        MainController.reset();
+    }
+
     @Test
-    public void testMain(){
+    public void testMain() {
         MainController.main(new String[0]);
     }
 
@@ -34,11 +40,6 @@ public class MainControllerTest {
     @Test
     public void testGetInstance() {
         assertTrue(MainController.getInstance() != null);
-    }
-
-    @Test
-    public void testPrepare() {
-        MainController.getInstance().prepare();
     }
 
     @Test

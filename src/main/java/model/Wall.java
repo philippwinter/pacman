@@ -22,21 +22,17 @@ public class Wall extends MapObject {
 
     private Position position;
 
-    public Wall(Position position, WallType type){
+    public Wall(Position position, WallType type) {
+        super(position);
         this.type = type;
         this.position = position;
     }
 
-    public WallType getType(){
+    public WallType getType() {
         return type;
     }
 
-    @Override
-    public void collide(MapObject obj) {
-        throw new IllegalArgumentException("You cannot collide with a wall.");
-    }
-
-    public Position getPosition(){
+    public Position getPosition() {
         return position;
     }
 

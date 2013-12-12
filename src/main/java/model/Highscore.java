@@ -50,7 +50,7 @@ public class Highscore {
      * Adds an amount of points to the highscore.
      *
      * @param i A positive integer.
-     * @exception java.lang.IllegalArgumentException When <i>i</i> is not positive.
+     * @throws java.lang.IllegalArgumentException When <i>i</i> is not positive.
      */
     public void addPoints(int i) {
         if (i > 0) {

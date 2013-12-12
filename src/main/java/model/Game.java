@@ -8,11 +8,8 @@
 
 package model;
 
-import model.event.CoinEventHandler;
+import model.event.EventHandler;
 import model.event.EventHandlerManager;
-import model.event.GhostEventHandler;
-import model.event.PacmanEventHandler;
-import model.exception.ObjectNotInitializedException;
 
 /**
  * The Game class is kind of a <i>master</i>-class, organizing all other business logic objects.
@@ -76,66 +73,27 @@ public class Game {
      */
     public static Game getInstance() {
         if (!Game.isInitialized()) {
-            throw new ObjectNotInitializedException(Game.class.getCanonicalName());
-        } else {
-            return Game.instance;
+            Game.initialize();
         }
+        return Game.instance;
     }
 
     /**
      * Reset the game, for instance necessary when the user wants to start a new try.
-     * Must be called after {@link #initializeGame()}, otherwise an IllegalStateException is thrown.
-     *
-     * @exception java.lang.IllegalStateException When the method is called before {@link #initializeGame()}.
+     * Must be called after {@link #initialize()}, otherwise an IllegalStateException is thrown.
      */
-    public static void resetGame() {
-        if(Game.isInitialized()){
-            Game.instance = new Game();
-            Game.initializeGameInternal();
-            Game.initialized = true;
-        }else{
-            throw new IllegalStateException("The game has to be initialized in order to reset it.");
-        }
+    public static void reset() {
+        Game.initialized = true;
+        Game.instance = new Game();
     }
 
     /**
-     * The internal initialization class, performing tasks used in {@link #initializeGame()} and {@link #resetGame()}.
+     * The internal initialization class, performing tasks used in {@link #initialize()} and {@link #reset()}.
      */
-    private static void initializeGameInternal() {
-        Game.instance.eventHandlerManager.register(new PacmanEventHandler());
-        Game.instance.eventHandlerManager.register(new GhostEventHandler());
-        Game.instance.eventHandlerManager.register(new CoinEventHandler());
-    }
+    private void initializeInternal() {
+        Map.reset();
+        Point.resetActivePointSeconds();
 
-    /**
-     * Initializes the game.
-     * Must be called before retrieving the instance with {@link #getInstance()}.
-     *
-     * @exception java.lang.IllegalStateException When the game has already been initialized.
-     */
-    public static void initializeGame() {
-        if(!Game.isInitialized()){
-            Game.instance = new Game();
-            Game.initialized = true;
-            initializeGameInternal();
-        }else{
-            throw new IllegalStateException("The game is already initialized.");
-        }
-    }
-
-    /**
-     * Is the Game already initialized?
-     *
-     * @return Returns {@code true} if, and only if, the {@link #initializeGame()} method has been called, otherwise {@code false}.
-     */
-    public static boolean isInitialized() {
-        return Game.initialized;
-    }
-
-    /**
-     * Constructs a new Game object.
-     */
-    private Game() {
         this.map = Map.getInstance();
 
         this.ghostContainer = new GhostContainer();
@@ -145,7 +103,40 @@ public class Game {
                 6
         );
         this.pacmanContainer = new PacmanContainer();
+
         this.eventHandlerManager = new EventHandlerManager();
+        this.eventHandlerManager.register(new EventHandler());
+    }
+
+    /**
+     * Initializes the game.
+     * Must be called before retrieving the instance with {@link #getInstance()}.
+     *
+     * @throws java.lang.IllegalStateException When the game has already been initialized.
+     */
+    public static void initialize() {
+        if (!Game.isInitialized()) {
+            Game.initialized = true;
+            Game.instance = new Game();
+        } else {
+            throw new IllegalStateException("The game is already initialized.");
+        }
+    }
+
+    /**
+     * Is the Game already initialized?
+     *
+     * @return Returns {@code true} if, and only if, the {@link #initialize()} method has been called, otherwise {@code false}.
+     */
+    public static boolean isInitialized() {
+        return Game.initialized;
+    }
+
+    /**
+     * Constructs a new Game object.
+     */
+    private Game() {
+        this.initializeInternal();
     }
 
     /**

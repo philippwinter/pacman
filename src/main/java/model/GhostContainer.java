@@ -44,8 +44,8 @@ public class GhostContainer implements Container<Ghost> {
      * Adds a ghost to the List.
      *
      * @param ghost The ghost to add.
-     * @exception model.exception.ListFullException When the list is already filled with {@link #max} ghosts.
-     * @exception model.exception.ObjectAlreadyInListException When the submitted ghost is already in the list.
+     * @throws model.exception.ListFullException            When the list is already filled with {@link #max} ghosts.
+     * @throws model.exception.ObjectAlreadyInListException When the submitted ghost is already in the list.
      */
     public void add(Ghost ghost) {
         if (!this.ghosts.contains(ghost)) {

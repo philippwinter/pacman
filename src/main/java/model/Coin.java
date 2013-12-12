@@ -15,37 +15,10 @@ package model;
  * @author Jonas Heidecke
  * @author Niklas Kaddatz
  */
-public class Coin extends StaticTarget implements Munchable {
+public class Coin extends StaticTarget implements Scoreable {
 
-    /**
-     * The collide method gets called when two MapObjects are on the same position on the map.
-     *
-     * @param obj The map object this object is colliding with.
-     */
-    @Override
-    public void collide(MapObject obj) {
-
-        if (obj instanceof Pacman) {
-
-            if (this.getState() == StaticTargetState.AVAILABLE) {
-                // Change all states of Ghosts to "Hunted"
-
-                for (Ghost g : Game.getInstance().getGhostContainer()) {
-                    // Perform changes
-
-                    g.changeState(DynamicTargetState.HUNTED);
-
-                }
-
-                // Add points to Pacmans score
-
-                ((Pacman) obj).getHighscore().addPoints(this.getScore());
-
-                // Change the own state to eaten
-
-                this.changeState(StaticTargetState.EATEN);
-            }
-        }
+    public Coin(Position pos) {
+        super(pos);
     }
 
     /**
@@ -68,6 +41,24 @@ public class Coin extends StaticTarget implements Munchable {
     @Override
     public int getScore() {
         return 50;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o != null) {
+            if (o instanceof Coin) {
+                // Check if the state and position of both Coins are equal
+
+                return this.getPosition().equals(((Coin) o).getPosition())
+                        && this.getState().equals(((Coin) o).getState());
+            }
+        }
+
+        return false;
+    }
+
+    public void gotEaten() {
+        // TODO Implement method
     }
 
 }

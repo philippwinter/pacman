@@ -8,12 +8,10 @@
 
 package model;
 
+import controller.MainController;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  * CoinTest
@@ -27,37 +25,19 @@ public class CoinTest {
     private Coin instance;
     private Position pos;
 
-    @BeforeClass
-    public static void beforeClass() {
-        if(!Game.isInitialized()){
-            Game.initializeGame();
-        }else{
-            Game.resetGame();
-        }
-    }
-
     @Before
-    public void beforeTest() {
-        instance = new Coin();
+    public void setUp() {
+        MainController.reset();
+
         pos = Map.getInstance().getPositionContainer().get(1, 5);
-        instance.setPosition(pos);
+
+        instance = new Coin(pos);
     }
 
     @After
     public void afterTest() {
         instance = null;
-        Game.resetGame();
-    }
-
-    @Test
-    public void testCollide() {
-        assertTrue(instance.getState() == StaticTargetState.AVAILABLE);
-
-        Pacman p = new Pacman();
-        p.setPosition(pos);
-        instance.collide(p);
-
-        assertTrue(instance.getState() == StaticTargetState.EATEN);
+        MainController.reset();
     }
 
     @Test

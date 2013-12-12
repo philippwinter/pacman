@@ -10,6 +10,7 @@ package model.exception;
 
 import model.Pacman;
 import model.PacmanContainer;
+import model.Position;
 import org.junit.Test;
 
 /**
@@ -27,8 +28,8 @@ public class ListFullExceptionTest {
         PacmanContainer container = new PacmanContainer();
 
         // Add a new Object to the container until it overflows.
-        for(int i = 0; i < container.max + 1; i++){
-            container.add(new Pacman());
+        for (int i = 0; i < container.max + 1; i++) {
+            container.add(new Pacman(new Position(0, 0)));
         }
 
         container = null;
