@@ -51,7 +51,7 @@ public class PositionContainer implements Container<Position> {
      * Ex.: 0 => "a", [...], 6 => "f", [...], 12 => "k"
      */
     public Position get(int index) {
-        int key = -1;
+        String key = "";
 
         // TODO Implement algorithm
 
@@ -79,7 +79,7 @@ public class PositionContainer implements Container<Position> {
      * @param el The element to add.
      */
     public void add(Position el) {
-        this.positions.put(generateKey(el.getX(), el.getY()), el);
+        this.positions.put(generateKey(el), el);
     }
 
     /**
@@ -91,6 +91,10 @@ public class PositionContainer implements Container<Position> {
      */
     private String generateKey(int x, int y) {
         return x + "#" + y;
+    }
+
+    public String generateKey(Position pos) {
+        return generateKey(pos.getX(), pos.getY());
     }
 
     public ArrayList<Position> getAll() {
@@ -109,6 +113,10 @@ public class PositionContainer implements Container<Position> {
 
     public Iterator<Position> iterator() {
         return positions.values().iterator();
+    }
+
+    public boolean contains(Position p){
+        return this.positions.containsKey(this.generateKey(p));
     }
 
 }

@@ -225,4 +225,14 @@ public class Game {
     public void pause() {
         this.eventHandlerManager.pauseExecution();
     }
+
+    public boolean equals(Object o) {
+        if (o != null) {
+            if (o instanceof Game) {
+                // As it is a singleton, checking for reference equality is enough
+                return this == o;
+            }
+        }
+        return false;
+    }
 }

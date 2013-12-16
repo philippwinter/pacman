@@ -9,9 +9,11 @@
 package model;
 
 import controller.MainController;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
 
 /**
  * CoinTest
@@ -34,19 +36,32 @@ public class CoinTest {
         instance = new Coin(pos);
     }
 
-    @After
-    public void afterTest() {
-        instance = null;
-        MainController.reset();
+    @Test
+    public void testGetState() {
+        assertNotNull(instance.getState());
     }
 
     @Test
     public void testChangeState() {
-        // TODO Implement test
+        instance.changeState(StaticTargetState.EATEN);
+        assertEquals(StaticTargetState.EATEN, instance.getState());
     }
 
     @Test
     public void testGetScore() {
-        // TODO Implement test
+        assertEquals(50, instance.getScore());
+    }
+
+    @Test
+    public void testEquals() {
+        Coin c = new Coin(Map.getInstance().getPositionContainer().get(0, 0));
+        Coin c1 = instance;
+        assertThat(c, is(not(c1)));
+        assertThat(instance, is(c1));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructOnSamePosition() {
+        new Coin(pos);
     }
 }

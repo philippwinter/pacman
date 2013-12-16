@@ -31,7 +31,7 @@ public class GhostTest {
     public void setUp() {
         MainController.reset();
         this.pos = Map.getInstance().getPositionContainer().get(0, 0);
-        this.instance = new Ghost(pos, Colour.WHITE);
+        this.instance = new Ghost(pos, "Whity", Colour.WHITE);
     }
 
     @After
@@ -58,7 +58,7 @@ public class GhostTest {
 
     @Test
     public void testEat() {
-        Pacman p = new Pacman(pos);
+        Pacman p = new Pacman(pos, "Mr. Pacman");
 
         assertSame(DynamicTargetState.HUNTER, instance.getState());
         assertSame(DynamicTargetState.HUNTED, p.getState());

@@ -15,7 +15,7 @@ package model;
  * @author Jonas Heidecke
  * @author Niklas Kaddatz
  */
-public class Ghost extends DynamicTarget implements Scoreable {
+public class Ghost extends DynamicTarget implements Scorable {
 
     /**
      * The current colour of this ghost.
@@ -33,10 +33,11 @@ public class Ghost extends DynamicTarget implements Scoreable {
 
     private boolean movedInLastTurn = false;
 
-    public Ghost(Position pos, Colour colour) {
-        super(pos);
-        this.state = DynamicTargetState.HUNTER;
+    public Ghost(Position pos, String name, Colour colour) {
         this.colour = colour;
+        this.setName(name);
+        this.state = DynamicTargetState.HUNTER;
+        this.setPosition(pos);
     }
 
     /**
@@ -134,5 +135,21 @@ public class Ghost extends DynamicTarget implements Scoreable {
         } else {
             this.waitingSeconds -= amount;
         }
+    }
+
+    public boolean equals(Object o) {
+        if (o != null) {
+            if (o instanceof Ghost) {
+                Ghost g = (Ghost) o;
+                return this.getWaitingSeconds() == g.getWaitingSeconds()
+                        && this.getPosition().equals(g.getPosition())
+                        && this.getState().equals(g.getState())
+                        && this.getMovedInLastTurn() == (g.getMovedInLastTurn())
+                        && this.getColour().equals(g.getColour())
+                        && this.getName().equals(g.getName())
+                        && this.getHeadingTo().equals(g.getHeadingTo());
+            }
+        }
+        return false;
     }
 }

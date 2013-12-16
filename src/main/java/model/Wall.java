@@ -23,9 +23,8 @@ public class Wall extends MapObject {
     private Position position;
 
     public Wall(Position position, WallType type) {
-        super(position);
         this.type = type;
-        this.position = position;
+        this.setPosition(position);
     }
 
     public WallType getType() {

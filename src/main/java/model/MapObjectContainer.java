@@ -44,11 +44,6 @@ public class MapObjectContainer implements Container<MapObject> {
     }
 
     public void add(MapObject el) {
-
-        for (MapObject mapObject : this) {
-            System.out.println(mapObject);
-        }
-
         if (!this.mapObjects.contains(el)) {
             this.mapObjects.add(el);
         }
@@ -56,6 +51,19 @@ public class MapObjectContainer implements Container<MapObject> {
 
     public Iterator<MapObject> iterator() {
         return mapObjects.iterator();
+    }
+
+    public boolean equals(Object o) {
+        if (o != null) {
+            if (o instanceof MapObjectContainer) {
+                return this.getAll().equals(((MapObjectContainer) o).getAll());
+            }
+        }
+        return false;
+    }
+
+    public boolean contains(MapObject mO){
+        return this.mapObjects.contains(mO);
     }
 
 }

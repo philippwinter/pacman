@@ -19,15 +19,15 @@ import model.exception.ObjectAlreadyInListException;
  */
 public class Position {
 
-    private int x;
+    private final int x;
 
-    private int y;
+    private final int y;
 
     private MapObjectContainer onPosition;
 
     public Position(int x, int y) {
-        this.setX(x);
-        this.setY(y);
+        this.x = x;
+        this.y = y;
         this.onPosition = new MapObjectContainer();
     }
 
@@ -35,16 +35,8 @@ public class Position {
         return x;
     }
 
-    private void setX(int x) {
-        this.x = x;
-    }
-
     public int getY() {
         return y;
-    }
-
-    private void setY(int y) {
-        this.y = y;
     }
 
     public MapObjectContainer getOnPosition() {
@@ -53,11 +45,7 @@ public class Position {
 
     @SuppressWarnings("unused")
     public void add(MapObject mapObject) {
-        try {
-            this.onPosition.add(mapObject);
-        } catch (ObjectAlreadyInListException ex) {
-            return;
-        }
+        this.onPosition.add(mapObject);
     }
 
     @SuppressWarnings("unused")
@@ -84,8 +72,12 @@ public class Position {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Position) {
-            return ((Position) obj).getX() == this.getX() && ((Position) obj).getY() == this.getY();
+        if (obj != null) {
+            if (obj instanceof Position) {
+                Position p = (Position) obj;
+                return p.getX() == this.getX()
+                        && p.getY() == this.getY();
+            }
         }
 
         return false;

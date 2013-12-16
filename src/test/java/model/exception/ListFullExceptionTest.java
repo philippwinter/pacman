@@ -8,10 +8,13 @@
 
 package model.exception;
 
+import controller.MainController;
+import model.Game;
 import model.Pacman;
 import model.PacmanContainer;
-import model.Position;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * ListFullExceptionTest
@@ -25,13 +28,15 @@ public class ListFullExceptionTest {
 
     @Test(expected = model.exception.ListFullException.class)
     public void testConstruct() {
+        MainController.reset();
+
         PacmanContainer container = new PacmanContainer();
 
-        // Add a new Object to the container until it overflows.
-        for (int i = 0; i < container.max + 1; i++) {
-            container.add(new Pacman(new Position(0, 0)));
-        }
+        assertEquals(2, container.max);
+        container.add(new Pacman(Game.getInstance().getMap().getPositionContainer().get(0, 0), "Mr. Pacman"));
+        container.add(new Pacman(Game.getInstance().getMap().getPositionContainer().get(0, 1), "Mrs. Pacman"));
+        container.add(new Pacman(Game.getInstance().getMap().getPositionContainer().get(0, 2), "Mr. Pacman Jr."));
 
-        container = null;
+        MainController.reset();
     }
 }

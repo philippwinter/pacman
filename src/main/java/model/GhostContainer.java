@@ -126,4 +126,18 @@ public class GhostContainer implements Container<Ghost> {
         return ghosts.iterator();
     }
 
+    public boolean equals(Object o) {
+        if (o != null) {
+            if (o instanceof GhostContainer) {
+                return this.getAll().equals(((GhostContainer) o).getAll())
+                        && this.getMax() == ((GhostContainer) o).getMax();
+            }
+        }
+        return false;
+    }
+
+    public boolean contains(Ghost g){
+        return this.ghosts.contains(g);
+    }
+
 }

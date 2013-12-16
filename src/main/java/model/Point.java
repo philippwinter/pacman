@@ -13,7 +13,7 @@ package model;
  * @author Jonas Heidecke
  * @author Niklas Kaddatz
  */
-public class Point extends StaticTarget implements Scoreable {
+public class Point extends StaticTarget implements Scorable {
 
     private static int activePointSeconds = 0;
 
@@ -22,7 +22,7 @@ public class Point extends StaticTarget implements Scoreable {
     }
 
     public Point(Position pos) {
-        super(pos);
+        this.setPosition(pos);
     }
 
     @Override

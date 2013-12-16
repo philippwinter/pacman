@@ -52,12 +52,16 @@ public class Highscore {
      * @param i A positive integer.
      * @throws java.lang.IllegalArgumentException When <i>i</i> is not positive.
      */
-    public void addPoints(int i) {
+    public void addToScore(int i) {
         if (i > 0) {
             this.score += i;
         } else {
             throw new IllegalArgumentException("The amount of points must be positive.");
         }
+    }
+
+    public void addToScore(Scorable s){
+        this.addToScore(s.getScore());
     }
 
     /**
@@ -67,6 +71,17 @@ public class Highscore {
      */
     public Pacman getApplicableObject() {
         return applicableObject;
+    }
+
+    public boolean equals(Object o) {
+        if (o != null) {
+            if (o instanceof Highscore) {
+                return this.getScore() == ((Highscore) o).getScore()
+                        // Just compare the two pacmans per reference to prevent infinite recursion
+                        && this.getApplicableObject() == ((Highscore) o).getApplicableObject();
+            }
+        }
+        return false;
     }
 
 }

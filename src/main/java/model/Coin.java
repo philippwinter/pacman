@@ -15,12 +15,12 @@ package model;
  * @author Jonas Heidecke
  * @author Niklas Kaddatz
  */
-public class Coin extends StaticTarget implements Scoreable {
+public class Coin extends StaticTarget implements Scorable {
 
     public Coin(Position pos) {
-        super(pos);
+        this.state = StaticTargetState.AVAILABLE;
+        this.setPosition(pos);
     }
-
     /**
      * Change the state and perform necessary actions in order to do this, f.e. increasing the highscore.
      *
@@ -28,9 +28,10 @@ public class Coin extends StaticTarget implements Scoreable {
      */
     @Override
     public void changeState(StaticTargetState state) {
-
+        if(state == null){
+            throw new IllegalArgumentException("A null state is not allowed.");
+        }
         this.state = state;
-
     }
 
     /**
@@ -48,9 +49,15 @@ public class Coin extends StaticTarget implements Scoreable {
         if (o != null) {
             if (o instanceof Coin) {
                 // Check if the state and position of both Coins are equal
+                Coin c = ((Coin) o);
 
-                return this.getPosition().equals(((Coin) o).getPosition())
-                        && this.getState().equals(((Coin) o).getState());
+                assert this.getPosition() != null;
+                assert c.getPosition() != null;
+                assert this.getState() != null;
+                assert c.getState() != null;
+
+                return this.getPosition().equals(c.getPosition())
+                        && this.getState().equals(c.getState());
             }
         }
 

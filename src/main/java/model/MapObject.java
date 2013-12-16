@@ -16,11 +16,7 @@ package model;
 @SuppressWarnings("unused")
 public abstract class MapObject {
 
-    private Position position;
-
-    public MapObject(Position pos) {
-        this.setPosition(pos);
-    }
+    protected Position position;
 
     public boolean isOnPosition(Position pos) {
         return this.getPosition().equals(pos);
@@ -37,5 +33,15 @@ public abstract class MapObject {
         this.position = pos;
         this.position.add(this);
     }
+
+    public boolean equals(Object o) {
+        if (o != null) {
+            if (o instanceof MapObject) {
+                return this.getPosition().equals(((MapObject) o).getPosition());
+            }
+        }
+        return false;
+    }
+
 
 }

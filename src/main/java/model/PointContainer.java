@@ -69,4 +69,8 @@ public class PointContainer implements Container<Point> {
     public Iterator<Point> iterator() {
         return points.iterator();
     }
+
+    public boolean contains(Point p){
+        return this.points.contains(p);
+    }
 }

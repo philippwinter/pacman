@@ -91,7 +91,16 @@ public class Map {
             // Just return null to signalize, that the point doesn't exist
             return null;
         }
+    }
 
-
+    public boolean equals(Object o) {
+        if (o != null) {
+            if (o instanceof Map) {
+                return this.getPositionContainer().equals(((Map) o).getPositionContainer())
+                        && this.getAmountOfNotBlockedPlaces() == ((Map) o).getAmountOfNotBlockedPlaces()
+                        && this.getAmountOfPoints() == ((Map) o).getAmountOfPoints();
+            }
+        }
+        return false;
     }
 }

@@ -37,11 +37,7 @@ public class CoinContainerTest {
 
         this.instance = new CoinContainer();
         this.pos = Game.getInstance().getMap().getPositionContainer().get(1, 2);
-        assertEquals(1, this.pos.getX());
-        assertEquals(2, this.pos.getY());
         this.pos2 = Game.getInstance().getMap().getPositionContainer().get(2, 2);
-        assertEquals(2, this.pos2.getX());
-        assertEquals(2, this.pos2.getY());
     }
 
     @After
@@ -114,6 +110,11 @@ public class CoinContainerTest {
 
     @Test
     public void testIterator() {
-        Iterator<Coin> it = instance.iterator();
+        assertNotNull(instance.iterator());
+    }
+
+    @Test
+    public void testEquals() {
+        assertEquals(new CoinContainer(), new CoinContainer());
     }
 }

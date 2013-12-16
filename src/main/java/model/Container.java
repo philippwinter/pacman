@@ -53,4 +53,10 @@ public interface Container<E> extends Iterable<E> {
      */
     public void remove(E el);
 
+    /**
+     * Returns whether an object is in the container (compares by the .equals() method, so be sure to implement it!).
+     * @param o The object to check again.
+     * @return Whether <i>o</i> is contained in this container.
+     */
+    public boolean contains(E o);
 }

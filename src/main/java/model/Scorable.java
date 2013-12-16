@@ -13,7 +13,7 @@ package model;
  * @author Jonas Heidecke
  * @author Niklas Kaddatz
  */
-public interface Scoreable {
+public interface Scorable {
 
     public int getScore();
 

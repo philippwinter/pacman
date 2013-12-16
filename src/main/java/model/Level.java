@@ -53,4 +53,15 @@ public class Level {
         return secondsPerCoin;
     }
 
+    public boolean equals(Object o) {
+        if (o != null) {
+            if (o instanceof Level) {
+                return this.getLevel() == ((Level) o).getLevel()
+                        && this.getSecondsPerCoin() == ((Level) o).getSecondsPerCoin();
+            }
+        }
+        return false;
+    }
+
+
 }

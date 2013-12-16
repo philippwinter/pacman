@@ -117,4 +117,18 @@ public class CoinContainer implements Container<Coin> {
         return coins.iterator();
     }
 
+    public boolean contains(Coin mO){
+        return this.coins.contains(mO);
+    }
+
+    public boolean equals(Object o) {
+        if (o != null) {
+            if (o instanceof CoinContainer) {
+                CoinContainer gC = (CoinContainer) o;
+                return this.coins.equals(gC.getAll());
+            }
+        }
+        return false;
+    }
+
 }

@@ -79,4 +79,8 @@ public class PacmanContainer implements Container<Pacman> {
         return pacmans.iterator();
     }
 
+    public boolean contains(Pacman p){
+        return this.pacmans.contains(p);
+    }
+
 }

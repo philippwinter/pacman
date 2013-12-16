@@ -25,11 +25,7 @@ public abstract class DynamicTarget extends Target {
     /**
      * The direction the object is heading to, e.g. moving to.
      */
-    private Direction headingTo;
-
-    public DynamicTarget(Position pos) {
-        super(pos);
-    }
+    private Direction headingTo = Direction.WEST;
 
     /**
      * Move the object to the new position.
@@ -94,5 +90,16 @@ public abstract class DynamicTarget extends Target {
 
     public DynamicTargetState getState() {
         return this.state;
+    }
+
+    public boolean equals(Object o) {
+        if (o != null) {
+            if (o instanceof DynamicTarget) {
+                return this.getHeadingTo().equals(((DynamicTarget) o).getHeadingTo())
+                        && this.getState().equals(((DynamicTarget) o).getState())
+                        && this.getPosition().equals(((DynamicTarget) o).getPosition());
+            }
+        }
+        return false;
     }
 }
