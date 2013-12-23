@@ -72,6 +72,9 @@ public class Map {
 
     public static Position getPositionByDirectionIfMoveableTo(Position prevPos, Direction movingTo) {
         Position p = null;
+        if(prevPos == null){
+            throw new IllegalArgumentException("prevPos cannot be null.");
+        }
         try {
             if (movingTo == Direction.NORTH) {
                 p = Map.getInstance().getPositionContainer().get(prevPos.getX(), prevPos.getY() + 1);

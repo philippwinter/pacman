@@ -11,7 +11,7 @@ package controller;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * MainControllerTest
@@ -34,17 +34,17 @@ public class MainControllerTest {
 
     @Test
     public void testGetGui() {
-        assertTrue(MainController.getInstance().getGui() != null);
+        assertNotNull(MainController.getInstance().getGui());
     }
 
     @Test
     public void testGetInstance() {
-        assertTrue(MainController.getInstance() != null);
+        assertNotNull(MainController.getInstance());
     }
 
     @Test
     public void testStartAndPause() {
-        MainController.getInstance().start();
-        MainController.getInstance().pause();
+        MainController.getInstance().startGame();
+        MainController.getInstance().pauseGame();
     }
 }

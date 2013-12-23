@@ -38,6 +38,8 @@ public class Level {
         // Change the refresh rate = How fast is the pacman moving
         Game.getInstance().changeRefreshRate(this);
 
+        this.level++;
+
         //MainController.getInstance().getGui().rebuild();
     }
 
@@ -64,4 +66,7 @@ public class Level {
     }
 
 
+    public static void reset() {
+        Level.instance = new Level();
+    }
 }

@@ -8,8 +8,12 @@
 
 package model;
 
+import controller.MainController;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.*;
 
 /**
  * LevelTest
@@ -19,33 +23,40 @@ import org.junit.Test;
  * @author Niklas Kaddatz
  */
 public class LevelTest {
+
+    private Level instance;
+
     @Before
     public void setUp() {
+        MainController.reset();
 
+        this.instance = Level.getInstance();
     }
 
     @Test
     public void testGetInstance() {
-
+        assertNotNull(Level.getInstance());
     }
 
     @Test
     public void testNextLevel() {
-
+        assertEquals(1, instance.getLevel());
+        instance.nextLevel();
+        assertEquals(2, instance.getLevel());
     }
 
     @Test
     public void testGetLevel() {
-
+        assertEquals(1, instance.getLevel());
     }
 
     @Test
     public void testGetSecondsPerCoin() {
-
+        assertThat(instance.getSecondsPerCoin(), is(15.0));
     }
 
     @Test
     public void testEquals() {
-
+        assertThat(instance, is(instance));
     }
 }

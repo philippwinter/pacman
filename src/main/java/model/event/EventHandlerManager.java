@@ -35,7 +35,6 @@ public class EventHandlerManager {
     public boolean register(EventHandler eH) {
         try {
             this.eventObjects.add(eH);
-            eH.onLoad();
 
             return true;
         } catch (Exception ex) {
@@ -52,6 +51,7 @@ public class EventHandlerManager {
         for (EventHandler e : this.eventObjects) {
             // Given the refreshRate 5, our handler has to be run 5 times in one second, so 5 times in 1000 milliseconds.
             // 1000 / 5 = 200
+            e.onLoad();
             this.executor.scheduleAtFixedRate(e, 0, (long) (1000 / Game.getInstance().getRefreshRate()), TimeUnit.MILLISECONDS);
         }
     }

@@ -1,13 +1,13 @@
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
-apply plugin: "jacoco"
+apply plugin: 'jacoco'
 
 sourceCompatibility = 1.7
 version = '0.1'
 
 jar {
     manifest {
-        attributes 'Implementation-Title': 'Pacman', 'Implementation-Version': 0.1
+        attributes 'Implementation-Title': 'Pacman', 'Implementation-Version': version, 'Main-Class': 'controller.MainController'
     }
 }
 

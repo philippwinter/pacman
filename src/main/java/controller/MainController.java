@@ -11,6 +11,8 @@ package controller;
 import model.Game;
 import view.MainGui;
 
+import javax.swing.*;
+
 /**
  * The main controller that controls the Game and the main view.
  *
@@ -32,13 +34,20 @@ public class MainController {
      */
     private MainGui gui;
 
+    private boolean gameActive = false;
+
     /**
      * The main method, the entry point of our user to the game.
      *
      * @param args The command line arguments given to the program.
      */
     public static void main(String[] args) {
-        instance = new MainController();
+        SwingUtilities.invokeLater(new Thread() {
+            @Override
+            public void run() {
+                MainController.reset();
+            }
+        });
     }
 
     public static void initialize() {
@@ -60,31 +69,33 @@ public class MainController {
         return instance;
     }
 
+    private MainController() {
+        Game.reset();
+        this.prepare();
+    }
+
     private void prepare() {
-        // TODO Do something
+        game = Game.getInstance();
+        gui = new MainGui();
+        new Thread(gui).start();
     }
 
     /**
      * Start the game.
      */
-    public void start() {
+    public void startGame() {
+        this.gameActive = true;
+        this.gui.startGame();
         this.game.start();
-        // TODO Do something in the GUI as well
     }
 
-    public void pause() {
+    public void pauseGame() {
+        this.gameActive = false;
+        this.gui.pauseGame();
         this.game.pause();
-        // TODO Do something in the GUI as well
     }
 
-    private MainController() {
-        Game.reset();
-
-        // Initialize and instantiate objects
-        this.game = Game.getInstance();
-
-        this.gui = new MainGui();
-        this.prepare();
+    public boolean isGameActive() {
+        return gameActive;
     }
-
 }

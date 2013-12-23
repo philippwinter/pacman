@@ -63,6 +63,9 @@ public class Position {
     }
 
     public double calcDistance(Position pos) {
+        if(pos == null){
+            throw new IllegalArgumentException("Position cannot be null");
+        }
         // A little bit of math, using Pythagoras' Theorem
         return Math.sqrt(
                 Math.pow(this.getX() - pos.getX(), 2) +

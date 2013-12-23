@@ -51,11 +51,6 @@ public class Coin extends StaticTarget implements Scorable {
                 // Check if the state and position of both Coins are equal
                 Coin c = ((Coin) o);
 
-                assert this.getPosition() != null;
-                assert c.getPosition() != null;
-                assert this.getState() != null;
-                assert c.getState() != null;
-
                 return this.getPosition().equals(c.getPosition())
                         && this.getState().equals(c.getState());
             }

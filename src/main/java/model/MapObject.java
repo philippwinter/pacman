@@ -27,6 +27,9 @@ public abstract class MapObject {
     }
 
     protected void setPosition(Position pos) {
+        if(pos == null){
+            throw new IllegalArgumentException("Position cannot be null.");
+        }
         if (this.position != null) {
             this.position.remove(this);
         }

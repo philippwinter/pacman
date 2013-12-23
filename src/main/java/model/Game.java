@@ -67,6 +67,11 @@ public class Game {
     private double refreshRate = 1;
 
     /**
+     * The level of the game.
+     */
+    private Level level;
+
+    /**
      * Returns the singleton instance.
      *
      * @return The game singleton.
@@ -80,7 +85,6 @@ public class Game {
 
     /**
      * Reset the game, for instance necessary when the user wants to start a new try.
-     * Must be called after {@link #initialize()}, otherwise an IllegalStateException is thrown.
      */
     public static void reset() {
         Game.initialized = true;
@@ -93,6 +97,7 @@ public class Game {
     private void initializeInternal() {
         Map.reset();
         Point.resetActivePointSeconds();
+        Level.reset();
 
         this.map = Map.getInstance();
 
@@ -103,9 +108,14 @@ public class Game {
                 6
         );
         this.pacmanContainer = new PacmanContainer();
+        this.level = Level.getInstance();
 
         this.eventHandlerManager = new EventHandlerManager();
         this.eventHandlerManager.register(new EventHandler());
+    }
+
+    public Level getLevel() {
+        return level;
     }
 
     /**
