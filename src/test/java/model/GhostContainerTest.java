@@ -9,6 +9,7 @@
 package model;
 
 import controller.MainController;
+import model.Ghost.Colour;
 import model.exception.ObjectAlreadyInListException;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,13 +39,13 @@ public class GhostContainerTest {
     @Before
     public void setUp() {
         MainController.reset();
-        instance = Game.getInstance().getGhostContainer();
+        instance = new GhostContainer();
 
         pos1 = Game.getInstance().getMap().getPositionContainer().get(0, 0);
         pos2 = Game.getInstance().getMap().getPositionContainer().get(0, 1);
 
-        g1 = new Ghost(pos1, "Whity", Colour.WHITE);
-        g2 = new Ghost(pos2, "Greeny", Colour.GREEN);
+        g1 = new Ghost(pos1, Colour.ORANGE);
+        g2 = new Ghost(pos2, Colour.PINK);
     }
 
     @Test

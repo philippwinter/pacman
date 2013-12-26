@@ -8,6 +8,8 @@
 
 package model;
 
+import controller.MainController;
+
 /**
  * @author Philipp Winter
  * @author Jonas Heidecke
@@ -30,17 +32,17 @@ public class Level {
     }
 
     public void nextLevel() {
-        // TODO Implement method
-
         // Reduce the amount of time the user has to munch a ghost
         this.secondsPerCoin *= 0.85;
 
         // Change the refresh rate = How fast is the pacman moving
         Game.getInstance().changeRefreshRate(this);
 
+        Game.getInstance().getEventHandlerManager().restartExecution();
+
         this.level++;
 
-        //MainController.getInstance().getGui().rebuild();
+        // TODO Reset pacman, ghost etc.
     }
 
     public int getLevel() {

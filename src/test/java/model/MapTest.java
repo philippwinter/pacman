@@ -9,6 +9,7 @@
 package model;
 
 import controller.MainController;
+import model.Map.Direction;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -46,23 +47,13 @@ public class MapTest {
     }
 
     @Test
-    public void testGetAmountOfNotBlockedPlaces() {
-        // TODO Implement test
-    }
-
-    @Test
-    public void testGetAmountOfPoints() {
-        // TODO Implement test
-    }
-
-    @Test
     public void testGetPositionContainer() {
         assertNotNull(instance.getPositionContainer());
     }
 
     @Test
     public void testGetPositionByDirectionIfMoveableTo() {
-        assertNull(Map.getPositionByDirectionIfMoveableTo(Map.getInstance().getPositionContainer().get(0, 0), Direction.WEST));
-        assertNotNull(Map.getPositionByDirectionIfMoveableTo(Map.getInstance().getPositionContainer().get(1, 1), Direction.WEST));
+        assertNull(Map.getPositionByDirectionIfMovableTo(Map.getInstance().getPositionContainer().get(0, 0), Direction.WEST));
+        assertNotNull(Map.getPositionByDirectionIfMovableTo(Map.getInstance().getPositionContainer().get(3, 6), Direction.WEST));
     }
 }

@@ -19,17 +19,32 @@ public class Pacman extends DynamicTarget {
 
     private Highscore highscore;
 
-    public Pacman(Position pos, String name) {
+    private Sex sex;
+
+    public Pacman(Position pos, Sex sex) {
         this.highscore = new Highscore(this);
-        this.state = DynamicTargetState.HUNTED;
-        this.setName(name);
+        this.state = State.HUNTED;
+        switch (sex) {
+            case MALE:
+                this.setName("Mr. Pacman");
+                break;
+            case FEMALE:
+                if (Settings.getInstance().getGameMode() == Game.Mode.SINGLEPLAYER) {
+                    throw new IllegalArgumentException("There can be no female Pacman in Singleplayer mode");
+                }
+                this.setName("Mrs. Pacman");
+                break;
+            default:
+                throw new IllegalArgumentException("Something went wrong, there cannot be a sexless Pacman");
+        }
+        this.sex = sex;
         this.setPosition(pos);
     }
 
     @Override
     public void gotEaten() {
         // TODO Implement method
-        this.changeState(DynamicTargetState.MUNCHED);
+        this.changeState(State.MUNCHED);
     }
 
     public String getName() {
@@ -63,7 +78,7 @@ public class Pacman extends DynamicTarget {
     }
 
     @Override
-    public void changeState(DynamicTargetState state) {
+    public void changeState(State state) {
         // TODO Maybe insert some logic
         this.state = state;
     }
@@ -79,6 +94,14 @@ public class Pacman extends DynamicTarget {
             }
         }
         return false;
+    }
+
+    public Sex getSex() {
+        return sex;
+    }
+
+    public enum Sex {
+        MALE, FEMALE
     }
 
 }

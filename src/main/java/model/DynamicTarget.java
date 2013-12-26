@@ -8,6 +8,8 @@
 
 package model;
 
+import model.Map.Direction;
+
 /**
  * The parent class of all MapObjects that can move by themselves.
  *
@@ -20,12 +22,12 @@ package model;
 @SuppressWarnings("unused")
 public abstract class DynamicTarget extends Target {
 
-    protected DynamicTargetState state = DynamicTargetState.WAITING;
+    protected State state = State.WAITING;
 
     /**
      * The direction the object is heading to, e.g. moving to.
      */
-    private Direction headingTo = Direction.WEST;
+    private Direction headingTo = Direction.NORTH;
 
     /**
      * Move the object to the new position.
@@ -66,6 +68,7 @@ public abstract class DynamicTarget extends Target {
      * Similar to {@code obj.getHeadingTo() == direction}.
      *
      * @param direction The direction to be checked against.
+     *
      * @return <code>True</code> if the position is equal, <code>false</code> if not.
      */
     public boolean isHeadingTo(Direction direction) {
@@ -86,9 +89,9 @@ public abstract class DynamicTarget extends Target {
      *
      * @param state The new state.
      */
-    public abstract void changeState(DynamicTargetState state);
+    public abstract void changeState(State state);
 
-    public DynamicTargetState getState() {
+    public State getState() {
         return this.state;
     }
 
@@ -101,5 +104,29 @@ public abstract class DynamicTarget extends Target {
             }
         }
         return false;
+    }
+
+    public enum State {
+
+        /**
+         * The object is on the hunt.
+         */
+        HUNTER,
+
+        /**
+         * The object is getting hunted.
+         */
+        HUNTED,
+
+        /**
+         * The object was munched / eaten.
+         */
+        MUNCHED,
+
+        /**
+         * The object is waiting, for example to respawn.
+         */
+        WAITING
+
     }
 }

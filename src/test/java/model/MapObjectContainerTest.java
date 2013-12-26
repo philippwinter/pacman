@@ -8,10 +8,11 @@
 
 package model;
 
+import model.Ghost.Colour;
+import model.Map.Direction;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 /**
@@ -31,10 +32,10 @@ public class MapObjectContainerTest {
 
     @Before
     public void setUp() {
-        this.pos = Map.getInstance().getPositionContainer().get(1,1);
-        this.otherPos = Map.getPositionByDirectionIfMoveableTo(pos, Direction.WEST);
-        this.pac = new Pacman(pos, "Mr. Pacman");
-        this.ghost = new Ghost(pos, "Blinky", Colour.PINK);
+        this.pos = Map.getInstance().getPositionContainer().get(1, 1);
+        this.otherPos = Map.getPositionByDirectionIfMovableTo(pos, Direction.EAST);
+        this.pac = new Pacman(pos, Pacman.Sex.MALE);
+        this.ghost = new Ghost(pos, Colour.PINK);
         this.instance = pos.getOnPosition();
     }
 
@@ -57,7 +58,7 @@ public class MapObjectContainerTest {
 
     @Test
     public void testAdd() {
-        new Pacman(pos, "Mrs. Pacman");
+        new Pacman(pos, Pacman.Sex.MALE);
     }
 
     @Test
@@ -69,6 +70,6 @@ public class MapObjectContainerTest {
     public void testContains() {
         assertTrue(instance.contains(pac));
         assertTrue(instance.contains(ghost));
-        assertFalse(instance.contains(new Ghost(otherPos, "Geeky", Colour.WHITE)));
+        assertFalse(instance.contains(new Ghost(otherPos, Colour.RED)));
     }
 }

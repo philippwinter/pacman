@@ -41,6 +41,7 @@ public class CoinContainer implements Container<Coin> {
      * Adds an element to the list if it isn't there yet.
      *
      * @param coin The element to add.
+     *
      * @throws ListFullException            When the list is already filled with {@link CoinContainer#max} elements.
      * @throws ObjectAlreadyInListException When the object is already in the list.
      */
@@ -58,9 +59,22 @@ public class CoinContainer implements Container<Coin> {
     }
 
     /**
+     * Adds the elements of another container of the same type.
+     *
+     * @param container The other container.
+     */
+    @Override
+    public void add(Container<Coin> container) {
+        for (Coin c : container) {
+            this.add(c);
+        }
+    }
+
+    /**
      * Returns a Coin element per index.
      *
      * @param i The index.
+     *
      * @return The coin object on the index.
      */
     public Coin get(int i) {
@@ -71,6 +85,7 @@ public class CoinContainer implements Container<Coin> {
      * Returns a Coin element on the position, or null if none is found.
      *
      * @param pos The position.
+     *
      * @return The coin on the position.
      */
     public Coin get(Position pos) {
@@ -117,7 +132,7 @@ public class CoinContainer implements Container<Coin> {
         return coins.iterator();
     }
 
-    public boolean contains(Coin mO){
+    public boolean contains(Coin mO) {
         return this.coins.contains(mO);
     }
 

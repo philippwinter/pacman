@@ -13,6 +13,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import static model.Ghost.Colour;
 import static org.junit.Assert.*;
 
 /**
@@ -31,7 +32,7 @@ public class GhostTest {
     public void setUp() {
         MainController.reset();
         this.pos = Map.getInstance().getPositionContainer().get(0, 0);
-        this.instance = new Ghost(pos, "Whity", Colour.WHITE);
+        this.instance = new Ghost(pos, Colour.RED);
     }
 
     @After
@@ -46,8 +47,8 @@ public class GhostTest {
 
     @Test
     public void testSetColour() {
-        instance.setColour(Colour.GREEN);
-        assertSame(Colour.GREEN, instance.getColour());
+        instance.setColour(Colour.BLUE);
+        assertSame(Colour.BLUE, instance.getColour());
     }
 
     @Test
@@ -58,42 +59,24 @@ public class GhostTest {
 
     @Test
     public void testEat() {
-        Pacman p = new Pacman(pos, "Mr. Pacman");
+        Pacman p = new Pacman(pos, Pacman.Sex.MALE);
 
-        assertSame(DynamicTargetState.HUNTER, instance.getState());
-        assertSame(DynamicTargetState.HUNTED, p.getState());
+        assertSame(DynamicTarget.State.HUNTER, instance.getState());
+        assertSame(DynamicTarget.State.HUNTED, p.getState());
         instance.eat(p);
-        assertSame(DynamicTargetState.HUNTER, instance.getState());
-        assertSame(DynamicTargetState.MUNCHED, p.getState());
-    }
-
-    @Test
-    public void testChangeState() {
-
-    }
-
-    @Test
-    public void testSetWaitingSeconds() {
-
-    }
-
-    @Test
-    public void testGetWaitingSeconds() {
-
-    }
-
-    @Test
-    public void testGetMovedInLastTurn() {
-
-    }
-
-    @Test
-    public void testSetMovedInLastTurn() {
-
+        assertSame(DynamicTarget.State.HUNTER, instance.getState());
+        assertSame(DynamicTarget.State.MUNCHED, p.getState());
     }
 
     @Test
     public void testGetScore() {
+        assertEquals(200, instance.getScore());
+    }
+
+    // TODO Implement
+
+    @Test
+    public void testChangeState() {
 
     }
 

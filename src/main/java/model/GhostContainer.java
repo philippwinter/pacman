@@ -44,6 +44,7 @@ public class GhostContainer implements Container<Ghost> {
      * Adds a ghost to the List.
      *
      * @param ghost The ghost to add.
+     *
      * @throws model.exception.ListFullException            When the list is already filled with {@link #max} ghosts.
      * @throws model.exception.ObjectAlreadyInListException When the submitted ghost is already in the list.
      */
@@ -60,9 +61,22 @@ public class GhostContainer implements Container<Ghost> {
     }
 
     /**
+     * Adds the elements of another container of the same type.
+     *
+     * @param container The other container.
+     */
+    @Override
+    public void add(Container<Ghost> container) {
+        for (Ghost g : container) {
+            this.add(g);
+        }
+    }
+
+    /**
      * Gets a ghost per index.
      *
      * @param i The index of the element.
+     *
      * @return The ghost at position <i>i</i>.
      */
     public Ghost get(int i) {
@@ -73,6 +87,7 @@ public class GhostContainer implements Container<Ghost> {
      * Gets all ghosts on the submitted position.
      *
      * @param pos The position to look for.
+     *
      * @return All ghosts on <i>pos</i>.
      */
     public ArrayList<Ghost> get(Position pos) {
@@ -136,7 +151,7 @@ public class GhostContainer implements Container<Ghost> {
         return false;
     }
 
-    public boolean contains(Ghost g){
+    public boolean contains(Ghost g) {
         return this.ghosts.contains(g);
     }
 

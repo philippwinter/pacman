@@ -26,7 +26,7 @@ public class PositionContainer implements Container<Position> {
     private int height;
 
     public PositionContainer(int width, int height) {
-        this.positions = new HashMap<>();
+        this.positions = new HashMap<>(width*height);
         this.width = width;
         this.height = height;
     }
@@ -38,9 +38,9 @@ public class PositionContainer implements Container<Position> {
      * <pre><blockquote>
      * y
      *   +-----+
-     * 2 |klmno|
+     * 0 |klmno|
      * 1 |fghij|
-     * 0 |abcde|
+     * 2 |abcde|
      *   +-----+
      *    01234  x
      * </blockquote></pre>
@@ -48,14 +48,15 @@ public class PositionContainer implements Container<Position> {
      * but in some cases it might be useful to retrieve a value per index.
      * Our values can be imagined as such a map, with their respective x and y value.
      * <p/>
-     * Ex.: 0 => "a", [...], 6 => "f", [...], 12 => "k"
      */
     public Position get(int index) {
         String key = "";
 
         // TODO Implement algorithm
 
-        return this.positions.get(key);
+        throw new RuntimeException("Method not implemented");
+
+        //return this.positions.get(key);
     }
 
     /**
@@ -63,6 +64,7 @@ public class PositionContainer implements Container<Position> {
      *
      * @param x The x coordinate.
      * @param y The y coordinate.
+     *
      * @return The position object.
      */
     public Position get(int x, int y) {
@@ -83,10 +85,23 @@ public class PositionContainer implements Container<Position> {
     }
 
     /**
+     * Adds the elements of another container of the same type.
+     *
+     * @param container The other container.
+     */
+    @Override
+    public void add(Container<Position> container) {
+        for (Position p : container) {
+            this.add(p);
+        }
+    }
+
+    /**
      * Generate a key based on the supplied values.
      *
      * @param x The x coordinate.
      * @param y The y coordinate.
+     *
      * @return The position object.
      */
     private String generateKey(int x, int y) {
@@ -115,8 +130,24 @@ public class PositionContainer implements Container<Position> {
         return positions.values().iterator();
     }
 
-    public boolean contains(Position p){
+    public boolean contains(Position p) {
         return this.positions.containsKey(this.generateKey(p));
     }
 
+    public PositionContainer getRange(Position startPos, Position endPos) {
+        int startX = startPos.getX();
+        int startY = startPos.getY();
+        int endX = endPos.getX();
+        int endY = endPos.getY();
+
+        PositionContainer ret = new PositionContainer(width, height);
+
+        for (int i = startX; i <= endX; i++) {
+            for (int j = startY; j <= endY; j++) {
+                ret.add(get(i, j));
+            }
+        }
+
+        return ret;
+    }
 }

@@ -8,9 +8,12 @@
 
 package model.event;
 
+import controller.MainController;
 import model.*;
+import model.Map.Direction;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * @author Philipp Winter
@@ -40,9 +43,14 @@ public class EventHandler implements Runnable {
     }
 
     public void run() {
-        this.handlePacmans();
-        this.handleGhosts();
-        this.handleCoins();
+        try{
+            this.handlePacmans();
+            this.handleGhosts();
+            this.handleCoins();
+            MainController.getInstance().getGui().render();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void handlePacmans() {
@@ -60,11 +68,11 @@ public class EventHandler implements Runnable {
 
         if (this.activePointSeconds <= 0) {
             for (Ghost g : Game.getInstance().getGhostContainer()) {
-                g.changeState(DynamicTargetState.HUNTER);
+                g.changeState(DynamicTarget.State.HUNTER);
             }
 
             for (Pacman p : Game.getInstance().getPacmanContainer()) {
-                p.changeState(DynamicTargetState.HUNTED);
+                p.changeState(DynamicTarget.State.HUNTED);
             }
         }
 
@@ -91,7 +99,7 @@ public class EventHandler implements Runnable {
                 pac.eat((Target) mO);
             } else if (mO instanceof Ghost) {
                 Ghost g = (Ghost) mO;
-                if (g.getState() == DynamicTargetState.HUNTED) {
+                if (g.getState() == DynamicTarget.State.HUNTED) {
                     pac.eat(g);
                 } else {
                     g.eat(pac);
@@ -101,45 +109,62 @@ public class EventHandler implements Runnable {
     }
 
     private void handleGhost(Ghost g) {
-        Position newPosition = Map.getPositionByDirectionIfMoveableTo(g.getPosition(), g.getHeadingTo());
+        Position newPosition = Map.getPositionByDirectionIfMovableTo(g.getPosition(), g.getHeadingTo());
 
-        if (newPosition == null) {
-            Direction wantedDirection = g.getHeadingTo();
-            Direction realizedDirection = null;
+        // If the Ghost stands in front of a wall OR it could take another way
+        if(newPosition == null || Map.freeNeighbourFields(g.getPosition()) > 1){
+            Direction[] directions = Direction.values();
+            Position guessedPosition = null;
+            Direction guessedDirection = null;
 
-            for (Direction d : Direction.values()) {
-                if (d == g.getHeadingTo()) {
-                    continue;
-                }
-                Position temp = Map.getPositionByDirectionIfMoveableTo(g.getPosition(), g.getHeadingTo());
-                if (temp != null) {
-                    newPosition = temp;
-                    realizedDirection = d;
+            shuffle(directions);
+
+            for (Direction direction : directions) {
+                guessedPosition = Map.getPositionByDirectionIfMovableTo(g.getPosition(), direction);
+                if (guessedPosition != null) {
+                    guessedDirection = direction;
+                    break;
                 }
             }
-
-            if (wantedDirection.equals(realizedDirection)) {
-                throw new RuntimeException("Cannot move to any point, something went wrong.");
+            if(guessedPosition == null){
+                throw new RuntimeException("Couldn't find any free position :(");
+            } else {
+                newPosition = guessedPosition;
+                g.setHeadingTo(guessedDirection);
             }
         }
 
-        if (g.getState() == DynamicTargetState.HUNTER) {
+
+        if (g.getState() == DynamicTarget.State.HUNTER) {
             g.move(newPosition);
-        } else if (g.getState() == DynamicTargetState.MUNCHED) {
+        } else if (g.getState() == DynamicTarget.State.MUNCHED) {
             // Move to base
-        } else if (g.getState() == DynamicTargetState.WAITING) {
+        } else if (g.getState() == DynamicTarget.State.WAITING) {
             if (g.getWaitingSeconds() > 0) {
                 g.reduceWaitingSeconds(1000 / Game.getInstance().getRefreshRate());
             } else if (g.getWaitingSeconds() == 0) {
                 // If time is up, releash the kraken
-                g.changeState(DynamicTargetState.HUNTER);
+                g.changeState(DynamicTarget.State.HUNTER);
             }
-        } else if (g.getState() == DynamicTargetState.HUNTED) {
+        } else if (g.getState() == DynamicTarget.State.HUNTED) {
             if (g.getMovedInLastTurn()) {
                 g.setMovedInLastTurn(false);
             } else {
                 g.move(newPosition);
                 g.setMovedInLastTurn(true);
+            }
+        }
+    }
+
+    private <E> void shuffle(E[] values) {
+        int index;
+        Random random = new Random();
+        for(int i = values.length - 1; i > 0; i--) {
+            index = random.nextInt(i + 1);
+            if(index != i){
+                E temp = values[index];
+                values[index] = values[i];
+                values[i] = temp;
             }
         }
     }

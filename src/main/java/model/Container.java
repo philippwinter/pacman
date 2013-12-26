@@ -24,6 +24,7 @@ public interface Container<E> extends Iterable<E> {
      * The per index getter.
      *
      * @param i The index of the element.
+     *
      * @return Element on index i.
      */
     public E get(int i);
@@ -32,11 +33,19 @@ public interface Container<E> extends Iterable<E> {
      * Adds an element to the container.
      *
      * @param el The element to add.
+     *
      * @throws model.exception.ListException                Parent class of all following exceptions.
      * @throws model.exception.ObjectAlreadyInListException When the object <i>el</i> is already in the list.
      * @throws model.exception.ListFullException            When the list is already filled with the maximum amount of elements.
      */
     public void add(E el);
+
+    /**
+     * Adds the elements of another container of the same type.
+     *
+     * @param container The other container.
+     */
+    public void add(Container<E> container);
 
     /**
      * Returns an ArrayList instance with all elements.
@@ -55,7 +64,9 @@ public interface Container<E> extends Iterable<E> {
 
     /**
      * Returns whether an object is in the container (compares by the .equals() method, so be sure to implement it!).
+     *
      * @param o The object to check again.
+     *
      * @return Whether <i>o</i> is contained in this container.
      */
     public boolean contains(E o);

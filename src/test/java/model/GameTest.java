@@ -45,11 +45,6 @@ public class GameTest {
         assertNotSame(old, Game.getInstance());
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void testInitialize() {
-        Game.initialize();
-    }
-
     @Test
     public void testIsInitialized() {
         assertTrue(Game.isInitialized());
@@ -82,8 +77,10 @@ public class GameTest {
 
     @Test
     public void testChangeRefreshRate() {
+        double prev = Game.getInstance().getRefreshRate();
         Level.getInstance().nextLevel();
         Game.getInstance().changeRefreshRate(Level.getInstance());
+        assertTrue(Game.getInstance().getRefreshRate() > prev);
     }
 
     @Test

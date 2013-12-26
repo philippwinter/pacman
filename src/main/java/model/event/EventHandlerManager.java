@@ -60,4 +60,10 @@ public class EventHandlerManager {
         this.executor.shutdown();
         this.executor = null;
     }
+
+    public void restartExecution() {
+        this.executor.shutdownNow();
+        this.executor = null;
+        this.startExecution();
+    }
 }

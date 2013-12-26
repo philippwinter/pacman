@@ -20,7 +20,7 @@ import javax.swing.*;
  * @author Jonas Heidecke
  * @author Niklas Kaddatz
  */
-public class MainController {
+public class MainController extends Thread {
 
     private static MainController instance;
 
@@ -42,23 +42,13 @@ public class MainController {
      * @param args The command line arguments given to the program.
      */
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Thread() {
-            @Override
-            public void run() {
-                MainController.reset();
-            }
-        });
-    }
-
-    public static void initialize() {
-        if (MainController.instance != null) {
-            throw new IllegalStateException("The class is already initialized.");
-        }
-        MainController.instance = new MainController();
+        MainController.reset();
     }
 
     public static void reset() {
         MainController.instance = new MainController();
+        MainController.instance.prepare();
+
     }
 
     public MainGui getGui() {
@@ -70,14 +60,14 @@ public class MainController {
     }
 
     private MainController() {
-        Game.reset();
-        this.prepare();
+
     }
 
     private void prepare() {
+        Game.reset();
         game = Game.getInstance();
         gui = new MainGui();
-        new Thread(gui).start();
+        SwingUtilities.invokeLater(new Thread(gui));
     }
 
     /**

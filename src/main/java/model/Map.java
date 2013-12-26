@@ -23,6 +23,8 @@ public class Map {
 
     private final int height;
 
+    private boolean objectsPlaced = false;
+
     public static Map getInstance() {
         if (Map.instance == null) {
             Map.instance = new Map();
@@ -36,7 +38,7 @@ public class Map {
     }
 
     private Map() {
-        this(25, 20);
+        this(20, 10);
     }
 
     private Map(int width, int height) {
@@ -51,39 +53,36 @@ public class Map {
                 this.positionContainer.add(new Position(actX, actY));
             }
         }
-
-    }
-
-    public int getAmountOfNotBlockedPlaces() {
-        // TODO Implement method
-
-        return 25;
-    }
-
-    public int getAmountOfPoints() {
-        // TODO Implement method
-
-        return 4;
     }
 
     public PositionContainer getPositionContainer() {
         return this.positionContainer;
     }
 
-    public static Position getPositionByDirectionIfMoveableTo(Position prevPos, Direction movingTo) {
+    public static int freeNeighbourFields(Position pos){
+        int count = 0;
+        for(Direction d : Direction.values()){
+            if(getPositionByDirectionIfMovableTo(pos, d) != null){
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static Position getPositionByDirectionIfMovableTo(Position prevPos, Direction movingTo) {
         Position p = null;
-        if(prevPos == null){
+        if (prevPos == null) {
             throw new IllegalArgumentException("prevPos cannot be null.");
         }
         try {
             if (movingTo == Direction.NORTH) {
-                p = Map.getInstance().getPositionContainer().get(prevPos.getX(), prevPos.getY() + 1);
+                p = Map.getInstance().getPositionContainer().get(prevPos.getX(), prevPos.getY() - 1);
             } else if (movingTo == Direction.EAST) {
                 p = Map.getInstance().getPositionContainer().get(prevPos.getX() + 1, prevPos.getY());
             } else if (movingTo == Direction.WEST) {
                 p = Map.getInstance().getPositionContainer().get(prevPos.getX() - 1, prevPos.getY());
             } else if (movingTo == Direction.SOUTH) {
-                p = Map.getInstance().getPositionContainer().get(prevPos.getX(), prevPos.getY() - 1);
+                p = Map.getInstance().getPositionContainer().get(prevPos.getX(), prevPos.getY() + 1);
             }
             if (p != null && p.isMoveableTo()) {
                 return p;
@@ -100,10 +99,156 @@ public class Map {
         if (o != null) {
             if (o instanceof Map) {
                 return this.getPositionContainer().equals(((Map) o).getPositionContainer())
-                        && this.getAmountOfNotBlockedPlaces() == ((Map) o).getAmountOfNotBlockedPlaces()
-                        && this.getAmountOfPoints() == ((Map) o).getAmountOfPoints();
+                        && this.objectsPlaced == ((Map) o).isObjectsPlaced();
             }
         }
         return false;
+    }
+
+    public void placeObjects() {
+        Game g = Game.getInstance();
+        assert g != null;
+
+        // --------- WALLS ---------
+
+        PositionContainer wallPositions = new PositionContainer(width, height);
+        // Top border
+        wallPositions.add(positionContainer.getRange(
+                positionContainer.get(0, 0),
+                positionContainer.get(19, 0)
+        ));
+        // Left border
+        wallPositions.add(positionContainer.getRange(
+                positionContainer.get(0, 1),
+                positionContainer.get(0, 9)
+        ));
+        // Bottom border
+        wallPositions.add(positionContainer.getRange(
+                positionContainer.get(1, 9),
+                positionContainer.get(19, 9)
+        ));
+        // Right border
+        wallPositions.add(positionContainer.getRange(
+                positionContainer.get(19, 1),
+                positionContainer.get(19, 8)
+        ));
+
+        // Left Side
+        wallPositions.add(positionContainer.getRange(
+                positionContainer.get(2, 2),
+                positionContainer.get(2, 5)
+        ));
+        wallPositions.add(positionContainer.getRange(
+                positionContainer.get(3, 2),
+                positionContainer.get(5, 2)
+        ));
+        wallPositions.add(positionContainer.getRange(
+                positionContainer.get(5, 3),
+                positionContainer.get(5, 5)
+        ));
+        wallPositions.add(positionContainer.getRange(
+                positionContainer.get(3, 5),
+                positionContainer.get(4, 5)
+        ));
+        wallPositions.add(positionContainer.getRange(
+                positionContainer.get(2, 7),
+                positionContainer.get(5, 7)
+        ));
+
+        // Right Side
+        wallPositions.add(positionContainer.getRange(
+                positionContainer.get(14, 2),
+                positionContainer.get(14, 5)
+        ));
+        wallPositions.add(positionContainer.getRange(
+                positionContainer.get(15, 2),
+                positionContainer.get(17, 2)
+        ));
+        wallPositions.add(positionContainer.getRange(
+                positionContainer.get(17, 3),
+                positionContainer.get(17, 5)
+        ));
+        wallPositions.add(positionContainer.getRange(
+                positionContainer.get(15, 5),
+                positionContainer.get(16, 5)
+        ));
+        wallPositions.add(positionContainer.getRange(
+                positionContainer.get(14, 7),
+                positionContainer.get(17, 7)
+        ));
+
+        // Center Top
+        wallPositions.add(positionContainer.getRange(
+                positionContainer.get(7, 2),
+                positionContainer.get(7, 4)
+        ));
+        wallPositions.add(positionContainer.getRange(
+                positionContainer.get(8, 4),
+                positionContainer.get(12,4)
+        ));
+        wallPositions.add(positionContainer.getRange(
+                positionContainer.get(12, 2),
+                positionContainer.get(12, 3)
+        ));
+
+        // Center Bottom
+        wallPositions.add(positionContainer.getRange(
+                positionContainer.get(7, 6),
+                positionContainer.get(7, 8)
+        ));
+        wallPositions.add(positionContainer.getRange(
+                positionContainer.get(8, 6),
+                positionContainer.get(12, 6)
+        ));
+        wallPositions.add(positionContainer.getRange(
+                positionContainer.get(12, 7),
+                positionContainer.get(12, 8)
+        ));
+
+        for (Position p : wallPositions) {
+            new Wall(p, Wall.Type.SQUARE);
+        }
+
+        // --------- PACMANS ---------
+        PacmanContainer pacC = g.getPacmanContainer();
+
+        pacC.add(new Pacman(positionContainer.get(13, 8), Pacman.Sex.MALE));
+
+        if (Settings.getInstance().getGameMode() == Game.Mode.MULTIPLAYER) {
+            pacC.add(new Pacman(positionContainer.get(6, 8), Pacman.Sex.FEMALE));
+        }
+
+        // --------- GHOSTS ---------
+        GhostContainer gC = g.getGhostContainer();
+        gC.add(new Ghost(positionContainer.get(8, 3), Ghost.Colour.BLUE));
+        gC.add(new Ghost(positionContainer.get(9, 3), Ghost.Colour.ORANGE));
+        gC.add(new Ghost(positionContainer.get(10, 3), Ghost.Colour.PINK));
+        gC.add(new Ghost(positionContainer.get(11, 3), Ghost.Colour.RED));
+
+        // --------- COINS ---------
+        CoinContainer cC = Game.getInstance().getCoinContainer();
+        cC.add(new Coin(positionContainer.get(1, 1)));
+        cC.add(new Coin(positionContainer.get(1, 8)));
+        cC.add(new Coin(positionContainer.get(18, 1)));
+        cC.add(new Coin(positionContainer.get(18, 8)));
+
+        // --------- POINTS ---------
+
+        for(Position p : positionContainer){
+            if(p.getOnPosition().size() == 0){
+                new Point(p);
+            }
+        }
+
+    }
+
+    public boolean isObjectsPlaced() {
+        return objectsPlaced;
+    }
+
+    public enum Direction {
+
+        NORTH, WEST, EAST, SOUTH
+
     }
 }

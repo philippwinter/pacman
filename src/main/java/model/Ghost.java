@@ -33,10 +33,26 @@ public class Ghost extends DynamicTarget implements Scorable {
 
     private boolean movedInLastTurn = false;
 
-    public Ghost(Position pos, String name, Colour colour) {
+    public Ghost(Position pos, Colour colour) {
         this.colour = colour;
+        switch (colour) {
+            case RED:
+                this.setName("Blinky");
+                break;
+            case ORANGE:
+                this.setName("Clyde");
+                break;
+            case BLUE:
+                this.setName("Inky");
+                break;
+            case PINK:
+                this.setName("Pinky");
+                break;
+            default:
+                throw new IllegalArgumentException("You cannot construct a ghost with the colour " + colour);
+        }
         this.setName(name);
-        this.state = DynamicTargetState.HUNTER;
+        this.state = State.HUNTER;
         this.setPosition(pos);
     }
 
@@ -83,7 +99,7 @@ public class Ghost extends DynamicTarget implements Scorable {
      */
     public void eat(Target target) {
         if (target instanceof Pacman) {
-            ((Pacman) target).changeState(DynamicTargetState.MUNCHED);
+            ((Pacman) target).changeState(State.MUNCHED);
         }
     }
 
@@ -92,10 +108,10 @@ public class Ghost extends DynamicTarget implements Scorable {
      *
      * @param state The new state.
      */
-    public void changeState(DynamicTargetState state) {
-        if (state == DynamicTargetState.HUNTED) {
+    public void changeState(State state) {
+        if (state == State.HUNTED) {
             this.speed *= 0.5;
-        } else if (state == DynamicTargetState.HUNTER) {
+        } else if (state == State.HUNTER) {
             this.speed *= 2;
             this.waitingSeconds = -1;
         }
@@ -126,7 +142,7 @@ public class Ghost extends DynamicTarget implements Scorable {
     @Override
     public void gotEaten() {
         // TODO Implement method
-        this.changeState(DynamicTargetState.MUNCHED);
+        this.changeState(State.MUNCHED);
     }
 
     public void reduceWaitingSeconds(double amount) {
@@ -151,5 +167,11 @@ public class Ghost extends DynamicTarget implements Scorable {
             }
         }
         return false;
+    }
+
+    public enum Colour {
+
+        RED, WHITE, PINK, BLUE, ORANGE
+
     }
 }

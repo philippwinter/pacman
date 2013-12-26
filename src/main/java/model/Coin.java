@@ -18,17 +18,18 @@ package model;
 public class Coin extends StaticTarget implements Scorable {
 
     public Coin(Position pos) {
-        this.state = StaticTargetState.AVAILABLE;
+        this.state = State.AVAILABLE;
         this.setPosition(pos);
     }
+
     /**
      * Change the state and perform necessary actions in order to do this, f.e. increasing the highscore.
      *
      * @param state The new state.
      */
     @Override
-    public void changeState(StaticTargetState state) {
-        if(state == null){
+    public void changeState(State state) {
+        if (state == null) {
             throw new IllegalArgumentException("A null state is not allowed.");
         }
         this.state = state;

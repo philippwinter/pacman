@@ -12,8 +12,9 @@ import controller.MainController;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
 
 /**
  * CoinTest
@@ -43,8 +44,8 @@ public class CoinTest {
 
     @Test
     public void testChangeState() {
-        instance.changeState(StaticTargetState.EATEN);
-        assertEquals(StaticTargetState.EATEN, instance.getState());
+        instance.changeState(StaticTarget.State.EATEN);
+        assertEquals(StaticTarget.State.EATEN, instance.getState());
     }
 
     @Test

@@ -8,8 +8,6 @@
 
 package model;
 
-import model.exception.ObjectAlreadyInListException;
-
 /**
  * The position class represents a point on the map. IT SHOULD NOT BE CONSTRUCTED OUTSIDE THE {@link Map} CLASS.
  *
@@ -45,6 +43,7 @@ public class Position {
 
     @SuppressWarnings("unused")
     public void add(MapObject mapObject) {
+        assert mapObject.getPosition() != null;
         this.onPosition.add(mapObject);
     }
 
@@ -63,7 +62,7 @@ public class Position {
     }
 
     public double calcDistance(Position pos) {
-        if(pos == null){
+        if (pos == null) {
             throw new IllegalArgumentException("Position cannot be null");
         }
         // A little bit of math, using Pythagoras' Theorem

@@ -27,11 +27,12 @@ public abstract class MapObject {
     }
 
     protected void setPosition(Position pos) {
-        if(pos == null){
+        if (pos == null) {
             throw new IllegalArgumentException("Position cannot be null.");
         }
-        if (this.position != null) {
-            this.position.remove(this);
+        Position oldPos = this.position;
+        if (oldPos != null) {
+            oldPos.remove(this);
         }
         this.position = pos;
         this.position.add(this);
@@ -40,7 +41,8 @@ public abstract class MapObject {
     public boolean equals(Object o) {
         if (o != null) {
             if (o instanceof MapObject) {
-                return this.getPosition().equals(((MapObject) o).getPosition());
+                MapObject mO = (MapObject) o;
+                return this.getPosition().equals(mO.getPosition());
             }
         }
         return false;

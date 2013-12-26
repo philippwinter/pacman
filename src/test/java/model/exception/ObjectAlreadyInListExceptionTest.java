@@ -24,7 +24,7 @@ public class ObjectAlreadyInListExceptionTest {
 
     @Test(expected = ObjectAlreadyInListException.class)
     public void testConstruct() {
-        Pacman p = new Pacman(new Position(0, 0), "Mr. Pacman");
+        Pacman p = new Pacman(new Position(0, 0), Pacman.Sex.MALE);
         PacmanContainer pC = new PacmanContainer();
 
         // Add the same object two times to cause the expected exception to be thrown.

@@ -18,21 +18,62 @@ package model;
 @SuppressWarnings("unused")
 public class Wall extends MapObject {
 
-    private WallType type;
+    private Type type;
 
-    private Position position;
-
-    public Wall(Position position, WallType type) {
+    public Wall(Position position, Type type) {
         this.type = type;
         this.setPosition(position);
     }
 
-    public WallType getType() {
+    public Type getType() {
         return type;
     }
 
-    public Position getPosition() {
-        return position;
+    public enum Type {
+
+        /**
+         * &#9474;
+         */
+        STRAIGHT_LEFT,
+
+        /**
+         * &#9150;
+         */
+        LEFT_TOP,
+
+        /**
+         * &#9151;
+         */
+        LEFT_BOT,
+
+        /**
+         * &#9474;
+         */
+        STRAIGHT_RIGHT,
+
+        /**
+         * &#9163;
+         */
+        RIGHT_TOP,
+
+        /**
+         * &#9164;
+         */
+        RIGHT_BOT,
+
+        /**
+         * &#9473;
+         */
+        LAYING_TOP,
+
+        /**
+         * &#9473;
+         */
+        LAYING_BOT,
+
+        SQUARE
+
     }
+
 
 }

@@ -12,7 +12,8 @@ import controller.MainController;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 
 /**
  * HighscoreTest
@@ -31,8 +32,8 @@ public class HighscoreTest {
     public void setUp() {
         MainController.reset();
 
-        pos = Game.getInstance().getMap().getPositionContainer().get(0,0);
-        pac = new Pacman(pos, "Mr. Pacman");
+        pos = Game.getInstance().getMap().getPositionContainer().get(0, 0);
+        pac = new Pacman(pos, Pacman.Sex.MALE);
         instance = pac.getHighscore();
     }
 
@@ -44,7 +45,7 @@ public class HighscoreTest {
     @Test
     public void testAddToScore() {
         assertEquals(0, instance.getScore());
-        Ghost g = new Ghost(pos, "Blue Guy", Colour.BLUE);
+        Ghost g = new Ghost(pos, Ghost.Colour.BLUE);
         instance.addToScore(g);
         assertEquals(g.getScore(), instance.getScore());
     }

@@ -49,8 +49,24 @@ public class MapObjectContainer implements Container<MapObject> {
         }
     }
 
+    /**
+     * Adds the elements of another container of the same type.
+     *
+     * @param container The other container.
+     */
+    @Override
+    public void add(Container<MapObject> container) {
+        for (MapObject mO : container) {
+            this.add(mO);
+        }
+    }
+
     public Iterator<MapObject> iterator() {
         return mapObjects.iterator();
+    }
+
+    public int size() {
+        return this.mapObjects.size();
     }
 
     public boolean equals(Object o) {
@@ -62,7 +78,7 @@ public class MapObjectContainer implements Container<MapObject> {
         return false;
     }
 
-    public boolean contains(MapObject mO){
+    public boolean contains(MapObject mO) {
         return this.mapObjects.contains(mO);
     }
 

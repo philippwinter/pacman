@@ -9,53 +9,32 @@
 package model;
 
 /**
- * WallType
+ * Settings
  *
  * @author Philipp Winter
- * @author Jonas Heidecke
- * @author Niklas Kaddatz
  */
-@SuppressWarnings("unused")
-public enum WallType {
+public class Settings {
 
-    /**
-     * &#9474;
-     */
-    STRAIGHT_LEFT,
+    private Game.Mode gameMode = Game.Mode.SINGLEPLAYER;
+    private static Settings instance = new Settings();
 
-    /**
-     * &#9150;
-     */
-    LEFT_TOP,
+    public Settings() {
+        // TODO Implement class
+    }
 
-    /**
-     * &#9151;
-     */
-    LEFT_BOT,
+    public static Settings getInstance() {
+        return instance;
+    }
 
-    /**
-     * &#9474;
-     */
-    STRAIGHT_RIGHT,
+    public static void setInstance(Settings instance) {
+        Settings.instance = instance;
+    }
 
-    /**
-     * &#9163;
-     */
-    RIGHT_TOP,
+    public Game.Mode getGameMode() {
+        return gameMode;
+    }
 
-    /**
-     * &#9164;
-     */
-    RIGHT_BOT,
-
-    /**
-     * &#9473;
-     */
-    LAYING_TOP,
-
-    /**
-     * &#9473;
-     */
-    LAYING_BOT
-
+    public void setGameMode(Game.Mode gameMode) {
+        this.gameMode = gameMode;
+    }
 }

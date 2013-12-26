@@ -44,6 +44,18 @@ public class PacmanContainer implements Container<Pacman> {
         }
     }
 
+    /**
+     * Adds the elements of another container of the same type.
+     *
+     * @param container The other container.
+     */
+    @Override
+    public void add(Container<Pacman> container) {
+        for (Pacman p : container) {
+            this.add(p);
+        }
+    }
+
     public Pacman get(int i) {
         return this.pacmans.get(i);
     }
@@ -79,7 +91,7 @@ public class PacmanContainer implements Container<Pacman> {
         return pacmans.iterator();
     }
 
-    public boolean contains(Pacman p){
+    public boolean contains(Pacman p) {
         return this.pacmans.contains(p);
     }
 

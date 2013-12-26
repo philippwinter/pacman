@@ -26,8 +26,8 @@ public class Point extends StaticTarget implements Scorable {
     }
 
     @Override
-    public void changeState(StaticTargetState s) {
-        if (s == StaticTargetState.EATEN) {
+    public void changeState(State s) {
+        if (s == State.EATEN) {
             this.gotEaten();
         }
 

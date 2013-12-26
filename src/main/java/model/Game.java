@@ -71,14 +71,16 @@ public class Game {
      */
     private Level level;
 
+    public final static Settings settings = Settings.getInstance();
+
     /**
      * Returns the singleton instance.
      *
      * @return The game singleton.
      */
-    public static Game getInstance() {
+    public synchronized static Game getInstance() {
         if (!Game.isInitialized()) {
-            Game.initialize();
+            Game.reset();
         }
         return Game.instance;
     }
@@ -86,15 +88,16 @@ public class Game {
     /**
      * Reset the game, for instance necessary when the user wants to start a new try.
      */
-    public static void reset() {
+    public synchronized static void reset() {
         Game.initialized = true;
         Game.instance = new Game();
+        Game.instance.initializeInternal();
     }
 
     /**
-     * The internal initialization class, performing tasks used in {@link #initialize()} and {@link #reset()}.
+     * The internal initialization class.
      */
-    private void initializeInternal() {
+    private synchronized void initializeInternal() {
         Map.reset();
         Point.resetActivePointSeconds();
         Level.reset();
@@ -103,15 +106,14 @@ public class Game {
 
         this.ghostContainer = new GhostContainer();
         this.coinContainer = new CoinContainer();
-        this.pointContainer = new PointContainer(
-                // TODO Make dynamic
-                6
-        );
+        this.pointContainer = new PointContainer();
         this.pacmanContainer = new PacmanContainer();
         this.level = Level.getInstance();
 
         this.eventHandlerManager = new EventHandlerManager();
         this.eventHandlerManager.register(new EventHandler());
+
+        this.map.placeObjects();
     }
 
     public Level getLevel() {
@@ -119,24 +121,7 @@ public class Game {
     }
 
     /**
-     * Initializes the game.
-     * Must be called before retrieving the instance with {@link #getInstance()}.
-     *
-     * @throws java.lang.IllegalStateException When the game has already been initialized.
-     */
-    public static void initialize() {
-        if (!Game.isInitialized()) {
-            Game.initialized = true;
-            Game.instance = new Game();
-        } else {
-            throw new IllegalStateException("The game is already initialized.");
-        }
-    }
-
-    /**
      * Is the Game already initialized?
-     *
-     * @return Returns {@code true} if, and only if, the {@link #initialize()} method has been called, otherwise {@code false}.
      */
     public static boolean isInitialized() {
         return Game.initialized;
@@ -146,7 +131,7 @@ public class Game {
      * Constructs a new Game object.
      */
     private Game() {
-        this.initializeInternal();
+
     }
 
     /**
@@ -202,7 +187,7 @@ public class Game {
      */
     public void changeRefreshRate(Level l) {
         // f(x) = (x^5)^(1/7) or "The refresh rate per second is the 7th root of the level raised to 5"
-        this.refreshRate = Math.pow(Math.pow(l.getLevel(), 5), 1 / 7);
+        this.refreshRate = Math.pow(Math.pow(l.getLevel(), 5), 1 / 7) + 1;
     }
 
     /**
@@ -236,6 +221,13 @@ public class Game {
         this.eventHandlerManager.pauseExecution();
     }
 
+    /**
+     * Compares two objects for equality.
+     *
+     * @param o The other object.
+     *
+     * @return Whether both objects are equal.
+     */
     public boolean equals(Object o) {
         if (o != null) {
             if (o instanceof Game) {
@@ -244,5 +236,9 @@ public class Game {
             }
         }
         return false;
+    }
+
+    public enum Mode {
+        SINGLEPLAYER, MULTIPLAYER
     }
 }

@@ -24,8 +24,8 @@ public class PointContainer implements Container<Point> {
 
     public final int max;
 
-    public PointContainer(int max) {
-        this.max = max;
+    public PointContainer() {
+        this.max = 4;
         this.points = new ArrayList<>(max);
     }
 
@@ -34,6 +34,18 @@ public class PointContainer implements Container<Point> {
             this.points.add(point);
         } else {
             throw new ObjectAlreadyInListException(points.getClass().getCanonicalName());
+        }
+    }
+
+    /**
+     * Adds the elements of another container of the same type.
+     *
+     * @param container The other container.
+     */
+    @Override
+    public void add(Container<Point> container) {
+        for (Point p : container) {
+            this.add(p);
         }
     }
 
@@ -70,7 +82,7 @@ public class PointContainer implements Container<Point> {
         return points.iterator();
     }
 
-    public boolean contains(Point p){
+    public boolean contains(Point p) {
         return this.points.contains(p);
     }
 }
