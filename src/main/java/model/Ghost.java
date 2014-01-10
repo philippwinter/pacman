@@ -141,8 +141,9 @@ public class Ghost extends DynamicTarget implements Scorable {
 
     @Override
     public void gotEaten() {
-        // TODO Implement method
         this.changeState(State.MUNCHED);
+
+        System.out.println(this + " got eaten");
     }
 
     public void reduceWaitingSeconds(double amount) {
@@ -173,5 +174,9 @@ public class Ghost extends DynamicTarget implements Scorable {
 
         RED, WHITE, PINK, BLUE, ORANGE
 
+    }
+
+    public String toString() {
+        return "Ghost [" + position + ", " + state + ", " + colour + ", visible: " + visible + "]";
     }
 }

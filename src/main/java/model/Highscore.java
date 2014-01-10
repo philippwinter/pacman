@@ -53,7 +53,7 @@ public class Highscore {
      *
      * @throws java.lang.IllegalArgumentException When <i>i</i> is not positive.
      */
-    public void addToScore(int i) {
+    private void addToScore(int i) {
         if (i > 0) {
             this.score += i;
         } else {

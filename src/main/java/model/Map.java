@@ -8,6 +8,8 @@
 
 package model;
 
+import java.util.ArrayList;
+
 /**
  * @author Philipp Winter
  * @author Jonas Heidecke
@@ -19,9 +21,9 @@ public class Map {
 
     private PositionContainer positionContainer;
 
-    private final int width;
+    public final int width;
 
-    private final int height;
+    public final int height;
 
     private boolean objectsPlaced = false;
 
@@ -107,7 +109,6 @@ public class Map {
 
     public void placeObjects() {
         Game g = Game.getInstance();
-        assert g != null;
 
         // --------- WALLS ---------
 
@@ -209,6 +210,70 @@ public class Map {
             new Wall(p, Wall.Type.SQUARE);
         }
 
+        // ------- PLACEHOLDER -------
+
+        PositionContainer placeholderPositions = new PositionContainer(width, height);
+
+        // LEFT
+        placeholderPositions.add(
+                positionContainer.getRange(
+                        positionContainer.get(3, 3),
+                        positionContainer.get(3, 4)
+                )
+        );
+
+        placeholderPositions.add(
+                positionContainer.getRange(
+                        positionContainer.get(4, 3),
+                        positionContainer.get(4, 4)
+                )
+        );
+
+        // RIGHT
+
+        placeholderPositions.add(
+                positionContainer.getRange(
+                        positionContainer.get(15, 3),
+                        positionContainer.get(15, 4)
+                )
+        );
+
+        placeholderPositions.add(
+                positionContainer.getRange(
+                        positionContainer.get(16, 3),
+                        positionContainer.get(16, 4)
+                )
+        );
+
+        // TOP
+
+        placeholderPositions.add(
+                positionContainer.getRange(
+                        positionContainer.get(8, 2),
+                        positionContainer.get(11, 2)
+                )
+        );
+
+        // BOTTOM
+
+        placeholderPositions.add(
+                positionContainer.getRange(
+                        positionContainer.get(8, 7),
+                        positionContainer.get(11, 7)
+                )
+        );
+
+        placeholderPositions.add(
+                positionContainer.getRange(
+                        positionContainer.get(8, 8),
+                        positionContainer.get(11, 8)
+                )
+        );
+
+        for(Position p : placeholderPositions) {
+            new Placeholder(p);
+        }
+
         // --------- PACMANS ---------
         PacmanContainer pacC = g.getPacmanContainer();
 
@@ -248,7 +313,28 @@ public class Map {
 
     public enum Direction {
 
-        NORTH, WEST, EAST, SOUTH
+        NORTH, WEST, EAST, SOUTH;
+
+        public static Direction guessDirection(MapObject mO) {
+            Direction[] directions = Direction.values();
+            Position guessedPosition = null;
+            Direction guessedDirection = null;
+
+            Helper.shuffle(directions);
+
+            for (Direction direction : directions) {
+                guessedPosition = Map.getPositionByDirectionIfMovableTo(mO.getPosition(), direction);
+                if (guessedPosition != null) {
+                    guessedDirection = direction;
+                    break;
+                }
+            }
+            if(guessedPosition == null){
+                throw new RuntimeException("Couldn't find any free position :(");
+            } else {
+                return guessedDirection;
+            }
+        }
 
     }
 }

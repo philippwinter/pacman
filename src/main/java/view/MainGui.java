@@ -9,30 +9,30 @@
 package view;
 
 import controller.MainController;
-import model.Map;
-import model.MapObject;
-import model.Position;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
-import java.awt.image.BufferedImage;
+import java.io.IOException;
 
-public class MainGui extends JFrame implements Runnable {
+public class MainGui extends JFrame {
+
     private static final long serialVersionUID = 6812319670817799344L;
 
     private JMenuBar menuBar;
 
     private JMenu menuGame;
 
-    private JMenuItem menuItemToggle;
+    private JMenuItem menuItemToggleGameState;
+    private JMenuItem menuItemToggleOptions;
 
     private JPanel pnlPreGame;
     private JPanel pnlGame;
+    private JPanel pnlOptions;
+
     private JPanel pnlButtons;
 
     private JLabel lblBackground;
@@ -40,13 +40,26 @@ public class MainGui extends JFrame implements Runnable {
     private JButton btnPlay;
     private JButton btnOptions;
 
-    private MainController controller;
+    private final MainController controller;
     private final ImageOrganizer imgOrganizer;
 
     private boolean initialized;
 
+    private boolean optionsShown = false;
+
+    private final Renderer renderer;
+
     public MainGui() {
+        controller = MainController.getInstance();
         imgOrganizer = ImageOrganizer.getInstance();
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        renderer = new Renderer(this);
+
+        this.initialize();
     }
 
     private void initializeComponents() {
@@ -55,9 +68,12 @@ public class MainGui extends JFrame implements Runnable {
 
         menuGame = new JMenu("Game");
 
-        menuItemToggle = new JMenuItem("Start");
+        menuItemToggleGameState = new JMenuItem("Start");
+        menuItemToggleOptions = new JMenuItem("Options");
 
-        menuGame.add(menuItemToggle);
+        menuGame.add(menuItemToggleGameState);
+        menuGame.add(menuItemToggleOptions);
+
         menuBar.add(menuGame);
 
         pnlPreGame = new JPanel();
@@ -65,6 +81,9 @@ public class MainGui extends JFrame implements Runnable {
 
         pnlGame = new JPanel();
         pnlGame.setLayout(new FlowLayout());
+
+        pnlOptions = new JPanel();
+        pnlOptions.setLayout(new FlowLayout());
 
         lblBackground = new JLabel(new ImageIcon(this.getClass().getResource("/graphics/background/main_background.png")));
         lblBackground.setLayout(new FlowLayout());
@@ -94,17 +113,13 @@ public class MainGui extends JFrame implements Runnable {
     }
 
     private void initializeListeners() {
-        ActionListener listenerToggle = new ActionListener() {
+        ActionListener toggleGameStateListener = new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (controller.isGameActive()) {
-                    menuItemToggle.setText("Start");
-                    btnPlay.setText("Play");
                     controller.pauseGame();
                 } else {
-                    menuItemToggle.setText("Pause");
-                    btnPlay.setText("Pause");
                     controller.startGame();
                 }
                 repaint();
@@ -112,79 +127,93 @@ public class MainGui extends JFrame implements Runnable {
 
         };
 
-        btnPlay.addActionListener(listenerToggle);
-        menuItemToggle.addActionListener(listenerToggle);
+        ActionListener toggleOptionsListener = new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (controller.isGameActive()) {
+                    controller.pauseGame();
+                }
+
+                if (!optionsShown) {
+                    showOptions();
+                } else {
+                    showPreGame();
+                }
+
+                optionsShown = !optionsShown;
+                repaint();
+            }
+
+        };
+
+        btnPlay.addActionListener(toggleGameStateListener);
+        menuItemToggleGameState.addActionListener(toggleGameStateListener);
+
+        btnOptions.addActionListener(toggleOptionsListener);
+        menuItemToggleOptions.addActionListener(toggleOptionsListener);
 
         KeyListener keyEventListener = new KeyboardProcesser();
         this.addKeyListener(keyEventListener);
         pnlGame.addKeyListener(keyEventListener);
     }
 
-    public void startGame() {
-        this.initialize();
+    public void showOptions() {
+        getContentPane().removeAll();
+        getContentPane().add(pnlOptions);
+        setTitle("Pacman: Options");
+    }
 
+    public void showGame() {
+        menuItemToggleGameState.setText("Pause");
+        btnPlay.setText("Pause");
         getContentPane().removeAll();
         getContentPane().add(pnlGame);
-        render();
+        setTitle("Pacman: Game running");
     }
 
-    public void pauseGame() {
+    public void showPreGame() {
+        menuItemToggleGameState.setText("Start");
+        btnPlay.setText("Play");
         getContentPane().removeAll();
         getContentPane().add(pnlPreGame);
-    }
-
-    @Override
-    public void run() {
-        if (!this.initialized) {
-            this.initialize();
-        }
+        setTitle("Pacman: Game paused");
     }
 
     private synchronized void initialize() {
-        if (this.initialized) {
-            return;
-        }
-        this.initialized = true;
+        if (!this.initialized) {
+            setTitle("Pacman");
 
-        controller = MainController.getInstance();
-
-        setTitle("Pacman");
-        setSize(400, 300);
-        setLocationRelativeTo(null);
-        setResizable(false);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        getContentPane().setLayout(new BorderLayout());
-
-        initializeComponents();
-        initializeListeners();
-
-        setVisible(true);
-    }
-
-    public void render() {
-        requestFocusInWindow();
-        if(hasFocus()){
-            System.out.println("Got focus!");
-        }
-        if (controller.isGameActive()) {
-            System.out.println("Rendering: " + System.currentTimeMillis());
-            JPanel pnl = pnlGame;
-            Graphics2D g = (Graphics2D) pnl.getGraphics();
-
-            for (Position pos : Map.getInstance().getPositionContainer()) {
-                for (MapObject mO : pos.getOnPosition()) {
-                    BufferedImage img = imgOrganizer.get(mO);
-                    g.drawImage(
-                            img,
-                            null,
-                            pos.getX() * 10,
-                            pos.getY() * 10
-                    );
-                }
+            try {
+                setIconImage(ImageIO.read(this.getClass().getResource("/graphics/pacman/4.png")));
+            } catch (IOException e) {
+                MainController.uncaughtExceptionHandler.uncaught(e);
             }
 
-            System.out.println("Done rendering: " + System.currentTimeMillis());
+            int windowWidth = renderer.mapWidth + (renderer.leftSpace * 2);
+            int windowHeight = renderer.mapHeight + (renderer.topSpace * 3);
+
+            setSize(windowWidth, windowHeight);
+            setLocationRelativeTo(null);
+            setResizable(false);
+            setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+            getContentPane().setLayout(new BorderLayout());
+
+            initializeComponents();
+            initializeListeners();
+
+            setVisible(true);
+
+            this.initialized = true;
         }
+    }
+
+    public JPanel getPnlGame() {
+        return pnlGame;
+    }
+
+    public Renderer getRenderer() {
+        return renderer;
     }
 }

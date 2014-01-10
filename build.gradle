@@ -19,9 +19,6 @@ jacoco {
     reportsDir = file("$buildDir/coverage")
 }
 
-// In this section you declare the dependencies for your production and test code
 dependencies {
-
     testCompile group: 'junit', name: 'junit', version: '4.+'
-
 }

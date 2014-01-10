@@ -15,20 +15,23 @@ package model;
  */
 public class Point extends StaticTarget implements Scorable {
 
-    private static int activePointSeconds = 0;
-
-    public static void resetActivePointSeconds() {
-        Point.activePointSeconds = 0;
-    }
-
     public Point(Position pos) {
+        this.state = State.AVAILABLE;
         this.setPosition(pos);
     }
 
     @Override
     public void changeState(State s) {
+        if (s == null) {
+            throw new IllegalArgumentException("A null state is not allowed.");
+        } else if (state == s) {
+            throw new IllegalArgumentException("The new state must differ from the old one.");
+        }
+
         if (s == State.EATEN) {
-            this.gotEaten();
+            setVisible(false);
+        } else if (s == State.AVAILABLE) {
+            setVisible(true);
         }
 
         this.state = s;
@@ -41,6 +44,16 @@ public class Point extends StaticTarget implements Scorable {
 
     @Override
     public void gotEaten() {
-        Point.activePointSeconds += 4;
+        this.changeState(State.EATEN);
+
+        for(Pacman p : Game.getInstance().getPacmanContainer()) {
+            p.changeState(DynamicTarget.State.HUNTER);
+        }
+
+        System.out.println(this + " got eaten");
+    }
+
+    public String toString() {
+        return "Point [" + position + ", " + state + ", visible: " + visible + "]";
     }
 }

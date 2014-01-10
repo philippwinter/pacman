@@ -18,6 +18,8 @@ public abstract class MapObject {
 
     protected Position position;
 
+    protected boolean visible = true;
+
     public boolean isOnPosition(Position pos) {
         return this.getPosition().equals(pos);
     }
@@ -36,6 +38,14 @@ public abstract class MapObject {
         }
         this.position = pos;
         this.position.add(this);
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    protected void setVisible(boolean value) {
+        visible = value;
     }
 
     public boolean equals(Object o) {

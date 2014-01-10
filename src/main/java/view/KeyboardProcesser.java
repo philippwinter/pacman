@@ -9,8 +9,7 @@
 package view;
 
 import controller.MainController;
-import model.Game;
-import model.Settings;
+import model.*;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -45,34 +44,58 @@ public class KeyboardProcesser implements KeyListener{
     public void keyPressed(KeyEvent e) {
         System.out.println("Pressed key " + e.getKeyCode());
         if(MainController.getInstance().isGameActive()){
+            PacmanContainer pacmanContainer = Game.getInstance().getPacmanContainer();
+            Pacman mrPacman = null;
+            Pacman mrsPacman = null;
+            for(Pacman p : pacmanContainer) {
+                if (p.getSex() == Pacman.Sex.MALE) {
+                    mrPacman = p;
+                } else {
+                    mrsPacman = p;
+                }
+            }
+            if(mrPacman == null) {
+                throw new RuntimeException("Couldn't find Mr. Pacman");
+            }
             switch(e.getKeyCode()){
                 case KeyEvent.VK_UP:
                     // Move north
+                    mrPacman.setHeadingTo(Map.Direction.NORTH);
                     break;
                 case KeyEvent.VK_LEFT:
                     // Move west
+                    mrPacman.setHeadingTo(Map.Direction.WEST);
                     break;
                 case KeyEvent.VK_DOWN:
                     // Move south
+                    mrPacman.setHeadingTo(Map.Direction.SOUTH);
                     break;
                 case KeyEvent.VK_RIGHT:
                     // Move east
+                    mrPacman.setHeadingTo(Map.Direction.EAST);
                     break;
             }
 
             if(Settings.getInstance().getGameMode() == Game.Mode.MULTIPLAYER){
+                if(mrsPacman == null) {
+                    throw new RuntimeException("Couldn't find Mr. Pacman");
+                }
                 switch(e.getKeyCode()){
                     case KeyEvent.VK_W:
                         // Move north
+                        mrsPacman.setHeadingTo(Map.Direction.NORTH);
                         break;
                     case KeyEvent.VK_A:
                         // Move west
+                        mrsPacman.setHeadingTo(Map.Direction.WEST);
                         break;
                     case KeyEvent.VK_S:
                         // Move south
+                        mrsPacman.setHeadingTo(Map.Direction.SOUTH);
                         break;
                     case KeyEvent.VK_D:
                         // Move east
+                        mrsPacman.setHeadingTo(Map.Direction.EAST);
                         break;
                 }
             }

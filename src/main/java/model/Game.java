@@ -20,6 +20,10 @@ import model.event.EventHandlerManager;
  */
 public class Game {
 
+    static {
+        Game.reset();
+    }
+
     /**
      * The singleton instance.
      */
@@ -78,10 +82,7 @@ public class Game {
      *
      * @return The game singleton.
      */
-    public synchronized static Game getInstance() {
-        if (!Game.isInitialized()) {
-            Game.reset();
-        }
+    public static Game getInstance() {
         return Game.instance;
     }
 
@@ -91,15 +92,16 @@ public class Game {
     public synchronized static void reset() {
         Game.initialized = true;
         Game.instance = new Game();
+        // Initialization work must be done in a new method in order to retrieve the game object during the following work
         Game.instance.initializeInternal();
     }
 
     /**
-     * The internal initialization class.
+     * The internal initialization method.
      */
     private synchronized void initializeInternal() {
         Map.reset();
-        Point.resetActivePointSeconds();
+        Coin.resetActiveSeconds();
         Level.reset();
 
         this.map = Map.getInstance();

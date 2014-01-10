@@ -43,7 +43,7 @@ public class Pacman extends DynamicTarget {
 
     @Override
     public void gotEaten() {
-        // TODO Implement method
+        System.out.println(this + " got eaten");
         this.changeState(State.MUNCHED);
     }
 
@@ -69,12 +69,17 @@ public class Pacman extends DynamicTarget {
         if (target instanceof Ghost) {
             Ghost g = (Ghost) target;
             g.setWaitingSeconds(4);
-            this.highscore.addToScore(g.getScore());
-        } else if (target instanceof Coin) {
-            // TODO something
+            g.gotEaten();
+        } else if (target instanceof StaticTarget) {
+            StaticTarget staticTarget = (StaticTarget) target;
+            if(staticTarget.getState() != StaticTarget.State.EATEN) {
+                target.gotEaten();
+            }
+        } else {
+            throw new IllegalArgumentException("A pacman is no cannibal");
         }
 
-        target.gotEaten();
+        this.highscore.addToScore(((Scorable) target));
     }
 
     @Override
@@ -102,6 +107,10 @@ public class Pacman extends DynamicTarget {
 
     public enum Sex {
         MALE, FEMALE
+    }
+
+    public String toString() {
+        return "Pacman [" + position + ", " + state + ", " + sex + ", " + highscore + ", visible: " + visible + "]";
     }
 
 }

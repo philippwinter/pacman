@@ -13,7 +13,6 @@ import model.*;
 import model.Map.Direction;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * @author Philipp Winter
@@ -21,8 +20,6 @@ import java.util.Random;
  * @author Niklas Kaddatz
  */
 public class EventHandler implements Runnable {
-
-    private double activePointSeconds = 0;
 
     private PointContainer points;
 
@@ -34,6 +31,8 @@ public class EventHandler implements Runnable {
 
     private Map map;
 
+    private boolean coinEaten = false;
+
     public void onLoad() {
         this.points = Game.getInstance().getPointContainer();
         this.coins = Game.getInstance().getCoinContainer();
@@ -43,13 +42,16 @@ public class EventHandler implements Runnable {
     }
 
     public void run() {
-        try{
+        try {
             this.handlePacmans();
             this.handleGhosts();
             this.handleCoins();
-            MainController.getInstance().getGui().render();
-        } catch (Exception e) {
-            e.printStackTrace();
+            assert MainController.getInstance() != null;
+            assert MainController.getInstance().getGui() != null;
+            assert MainController.getInstance().getGui().getRenderer() != null;
+            MainController.getInstance().getGui().getRenderer().markReady();
+        } catch (Throwable t) {
+            MainController.uncaughtExceptionHandler.uncaught(t);
         }
     }
 
@@ -62,11 +64,11 @@ public class EventHandler implements Runnable {
     }
 
     public void handleCoins() {
-        if (this.activePointSeconds > 0) {
-            this.activePointSeconds -= Game.getInstance().getRefreshRate();
+        if (Coin.getActiveSeconds() > 0) {
+            Coin.setActiveSeconds(Coin.getActiveSeconds() - (Game.getInstance().getRefreshRate() / 1000));
         }
 
-        if (this.activePointSeconds <= 0) {
+        if (coinEaten && Coin.getActiveSeconds() == Coin.PACMAN_AINT_EATER) {
             for (Ghost g : Game.getInstance().getGhostContainer()) {
                 g.changeState(DynamicTarget.State.HUNTER);
             }
@@ -74,10 +76,7 @@ public class EventHandler implements Runnable {
             for (Pacman p : Game.getInstance().getPacmanContainer()) {
                 p.changeState(DynamicTarget.State.HUNTED);
             }
-        }
-
-        for (Coin c : this.coins) {
-            this.handleCoin(c);
+            coinEaten = false;
         }
     }
 
@@ -87,16 +86,30 @@ public class EventHandler implements Runnable {
         }
     }
 
-    private void handleCoin(Coin c) {
-        // TODO Implement
-    }
-
     private void handlePacman(Pacman pac) {
         MapObjectContainer mapObjectsOnPos = pac.getPosition().getOnPosition();
 
+        if (pac.getState() != DynamicTarget.State.MUNCHED && pac.getState() != DynamicTarget.State.WAITING) {
+            Position newPosition = Map.getPositionByDirectionIfMovableTo(pac.getPosition(), pac.getHeadingTo());
+
+            if (newPosition != null) {
+                pac.move(newPosition);
+                //System.out.println(pac + " moves to " + newPosition);
+            } else {
+                System.out.println("Couldn't move from " + pac.getPosition() + " in direction " + pac.getHeadingTo());
+            }
+        }
+
         for (MapObject mO : mapObjectsOnPos.getAll()) {
-            if (mO instanceof Coin || mO instanceof Point) {
-                pac.eat((Target) mO);
+            if (mO instanceof StaticTarget) {
+                StaticTarget t = (StaticTarget) mO;
+                // An already eaten thing hasn't to be eaten again
+                if (t.getState() != StaticTarget.State.EATEN) {
+                    if (t instanceof Coin) {
+                        coinEaten = true;
+                    }
+                    pac.eat(t);
+                }
             } else if (mO instanceof Ghost) {
                 Ghost g = (Ghost) mO;
                 if (g.getState() == DynamicTarget.State.HUNTED) {
@@ -112,38 +125,22 @@ public class EventHandler implements Runnable {
         Position newPosition = Map.getPositionByDirectionIfMovableTo(g.getPosition(), g.getHeadingTo());
 
         // If the Ghost stands in front of a wall OR it could take another way
-        if(newPosition == null || Map.freeNeighbourFields(g.getPosition()) > 1){
-            Direction[] directions = Direction.values();
-            Position guessedPosition = null;
-            Direction guessedDirection = null;
-
-            shuffle(directions);
-
-            for (Direction direction : directions) {
-                guessedPosition = Map.getPositionByDirectionIfMovableTo(g.getPosition(), direction);
-                if (guessedPosition != null) {
-                    guessedDirection = direction;
-                    break;
-                }
-            }
-            if(guessedPosition == null){
-                throw new RuntimeException("Couldn't find any free position :(");
-            } else {
-                newPosition = guessedPosition;
-                g.setHeadingTo(guessedDirection);
-            }
+        if (newPosition == null || (Map.freeNeighbourFields(g.getPosition()) > 1 && Math.round(Math.random()) == 1)) {
+            Direction guessedDirection = Map.Direction.guessDirection(g);
+            g.setHeadingTo(guessedDirection);
+            newPosition = Map.getPositionByDirectionIfMovableTo(g.getPosition(), guessedDirection);
         }
 
 
         if (g.getState() == DynamicTarget.State.HUNTER) {
             g.move(newPosition);
         } else if (g.getState() == DynamicTarget.State.MUNCHED) {
-            // Move to base
+            g.changeState(DynamicTarget.State.WAITING);
         } else if (g.getState() == DynamicTarget.State.WAITING) {
             if (g.getWaitingSeconds() > 0) {
                 g.reduceWaitingSeconds(1000 / Game.getInstance().getRefreshRate());
             } else if (g.getWaitingSeconds() == 0) {
-                // If time is up, releash the kraken
+                // If time is up, release the ghost
                 g.changeState(DynamicTarget.State.HUNTER);
             }
         } else if (g.getState() == DynamicTarget.State.HUNTED) {
@@ -152,19 +149,6 @@ public class EventHandler implements Runnable {
             } else {
                 g.move(newPosition);
                 g.setMovedInLastTurn(true);
-            }
-        }
-    }
-
-    private <E> void shuffle(E[] values) {
-        int index;
-        Random random = new Random();
-        for(int i = values.length - 1; i > 0; i--) {
-            index = random.nextInt(i + 1);
-            if(index != i){
-                E temp = values[index];
-                values[index] = values[i];
-                values[i] = temp;
             }
         }
     }

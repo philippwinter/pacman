@@ -75,5 +75,8 @@ public class Wall extends MapObject {
 
     }
 
+    public String toString() {
+        return "Wall [" + position + ", " + type + "]";
+    }
 
 }

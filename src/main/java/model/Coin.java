@@ -8,6 +8,8 @@
 
 package model;
 
+import controller.MainController;
+
 /**
  * A coin represents the object our Pacman has to eat in order to be able to hunt the ghosts.
  *
@@ -16,6 +18,26 @@ package model;
  * @author Niklas Kaddatz
  */
 public class Coin extends StaticTarget implements Scorable {
+
+    private static double activeSeconds = 0;
+
+    public static final double PACMAN_AINT_EATER = -1000;
+
+    public static void resetActiveSeconds() {
+        Coin.activeSeconds = 0;
+    }
+
+    public static double getActiveSeconds () {
+        return activeSeconds;
+    }
+
+    public static void setActiveSeconds(double value) {
+        double result = activeSeconds - value;
+        if (result <= 0) {
+            result = PACMAN_AINT_EATER;
+        }
+        activeSeconds = result;
+    }
 
     public Coin(Position pos) {
         this.state = State.AVAILABLE;
@@ -32,6 +54,14 @@ public class Coin extends StaticTarget implements Scorable {
         if (state == null) {
             throw new IllegalArgumentException("A null state is not allowed.");
         }
+
+        if (state == State.EATEN) {
+            setVisible(false);
+            Coin.activeSeconds += 4;
+        } else if (state == State.AVAILABLE) {
+            setVisible(true);
+        }
+
         this.state = state;
     }
 
@@ -61,7 +91,14 @@ public class Coin extends StaticTarget implements Scorable {
     }
 
     public void gotEaten() {
-        // TODO Implement method
+       this.changeState(State.EATEN);
+
+       System.out.println(this + " got eaten");
+    }
+
+    @Override
+    public String toString() {
+        return "Coin [" + position + ", " + state + ", visible: " + visible + "]";
     }
 
 }

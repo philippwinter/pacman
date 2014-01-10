@@ -36,7 +36,12 @@ public class ImageOrganizer {
     }
 
     public BufferedImage get(MapObject mO) {
-        String key = mO.getClass().getCanonicalName();
+        String key = null;
+        if(mO != null){
+            key = mO.getClass().getCanonicalName();
+        } else {
+            key = null;
+        }
 
         if (mO instanceof Pacman) {
             key += ">" + ((Pacman) mO).getSex();
@@ -84,6 +89,12 @@ public class ImageOrganizer {
         );
         data.add(
                 new String[]{"/graphics/primitive/green.png", Point.class.getCanonicalName()}
+        );
+        data.add(
+                new String[]{"/graphics/primitive/white.png", null}
+        );
+        data.add(
+                new String[]{"/graphics/primitive/white.png", Placeholder.class.getCanonicalName()}
         );
 
         try {
