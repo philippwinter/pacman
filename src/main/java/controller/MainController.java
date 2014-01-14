@@ -8,8 +8,8 @@
 
 package controller;
 
-import model.exception.BasicUncaughtExceptionHandler;
 import model.Game;
+import model.exception.BasicUncaughtExceptionHandler;
 import view.MainGui;
 
 import javax.swing.*;
@@ -49,7 +49,13 @@ public class MainController extends Thread {
      * @param args The command line arguments given to the program.
      */
     public static void main(String[] args) {
-        MainController.instance.prepare();
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                MainController.instance.prepare();
+            }
+
+        });
     }
 
     public static void reset() {
@@ -58,7 +64,7 @@ public class MainController extends Thread {
 
     public static void reset(boolean prepare) {
         MainController.instance = new MainController();
-        if(prepare) {
+        if (prepare) {
             MainController.instance.prepare();
         }
     }

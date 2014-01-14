@@ -11,8 +11,9 @@ package model;
 import model.exception.ListFullException;
 import model.exception.ObjectAlreadyInListException;
 
-import java.util.ArrayList;
+import java.util.Vector;
 import java.util.Iterator;
+import java.util.Vector;
 
 /**
  * The container of all coins on the map.
@@ -26,7 +27,7 @@ public class CoinContainer implements Container<Coin> {
     /**
      * A list of all coins.
      */
-    private ArrayList<Coin> coins;
+    private Vector<Coin> coins;
 
     public final int max = 4;
 
@@ -34,7 +35,7 @@ public class CoinContainer implements Container<Coin> {
      * Constructs a new CoinContainer.
      */
     public CoinContainer() {
-        this.coins = new ArrayList<>(max);
+        this.coins = new Vector<>(max);
     }
 
     /**
@@ -99,8 +100,8 @@ public class CoinContainer implements Container<Coin> {
     }
 
     @SuppressWarnings("unchecked")
-    public ArrayList<Coin> getAll() {
-        return (ArrayList<Coin>) this.coins.clone();
+    public Vector<Coin> getAll() {
+        return (Vector<Coin>) this.coins.clone();
     }
 
     /**
@@ -125,7 +126,7 @@ public class CoinContainer implements Container<Coin> {
      * Iterate over all coins.
      *
      * @return An iterator over all coin objects.
-     * @see java.util.ArrayList
+     * @see java.util.Vector
      */
     @Override
     public Iterator<Coin> iterator() {
@@ -146,4 +147,11 @@ public class CoinContainer implements Container<Coin> {
         return false;
     }
 
+    public void removeAll() {
+        for(Coin c : this) {
+            c.deSpawn();
+        }
+
+        this.coins.clear();
+    }
 }

@@ -76,14 +76,6 @@ public class GameTest {
     }
 
     @Test
-    public void testChangeRefreshRate() {
-        double prev = Game.getInstance().getRefreshRate();
-        Level.getInstance().nextLevel();
-        Game.getInstance().changeRefreshRate(Level.getInstance());
-        assertTrue(Game.getInstance().getRefreshRate() > prev);
-    }
-
-    @Test
     public void testGetRefreshRate() {
         assertNotNull(Game.getInstance().getRefreshRate());
     }

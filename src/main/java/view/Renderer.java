@@ -14,6 +14,7 @@ import model.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Vector;
 
 /**
  * Renderer
@@ -33,7 +34,7 @@ public class Renderer {
     public final int topSpace;
     public final int leftSpace;
 
-    public final int multiplier = 10;
+    public final int multiplier = 20;
 
 
     private final ImageOrganizer imgOrganizer;
@@ -59,17 +60,23 @@ public class Renderer {
         try {
             gui.requestFocusInWindow();
 
-
             JPanel pnl = gui.getPnlGame();
             Graphics2D g = (Graphics2D) pnl.getGraphics();
 
-            for (Position pos : Map.getInstance().getPositionContainer()) {
-                int i = 0;
+            for (Position pos : Map.positionsToRender) {
                 final int paintX = pos.getX() * multiplier + leftSpace;
-                final int paintY = pos.getY() * multiplier + topSpace ;
-                for (MapObject mO : pos.getOnPosition()) {
-                    if(mO.isVisible()) {
-                        i++;
+                final int paintY = pos.getY() * multiplier + topSpace;
+
+                g.clearRect(
+                        paintX,
+                        paintY,
+                        multiplier,
+                        multiplier
+                );
+
+                Vector<MapObject> mapObjects = pos.getOnPosition().getAll();
+                for (MapObject mO : mapObjects) {
+                    if (mO.isVisible()) {
                         BufferedImage img = imgOrganizer.get(mO);
                         g.drawImage(
                                 img,
@@ -79,19 +86,7 @@ public class Renderer {
                         );
                     }
                 }
-
-                if (i == 0) {
-                    BufferedImage img = imgOrganizer.get(null);
-                    g.drawImage(
-                            img,
-                            null,
-                            paintX,
-                            paintY
-                    );
-                }
             }
-
-            int i = 0;
 
             // Clear the space below the game, in order to paint new statistics there
             g.clearRect(
@@ -100,25 +95,33 @@ public class Renderer {
                     pnl.getWidth(),
                     pnl.getHeight());
 
-            for(Pacman p : Game.getInstance().getPacmanContainer()) {
-                i++;
-                g.drawString(
-                        "Highscore of " + p.getName() + ":\t" + p.getHighscore().getScore(),
-                        10 + (i * 10) + leftSpace,
-                        (Map.getInstance().height * multiplier) + (i*10) + topSpace
-                );
+            int i = 0;
+
+            for (Pacman p : Game.getInstance().getPacmanContainer()) {
+                drawString(g, "Highscore of " + p.getName() + ":\t" + p.getHighscore().getScore(), ++i);
             }
 
+            drawString(g, "Player Lifes: " + Game.getInstance().getPlayerLifes(), ++i);
+            drawString(g, "Level: " + Game.getInstance().getLevel().getLevel(), ++i);
         } catch (Throwable e) {
             e.printStackTrace();
         } finally {
             this.readyForReRendering = false;
+            Map.positionsToRender.removeAll();
         }
 
     }
 
+    private void drawString(Graphics2D target, String s, int offset) {
+        target.drawString(
+                s,
+                15 + leftSpace,
+                (Map.getInstance().height * multiplier) + (offset * multiplier) + topSpace
+        );
+    }
+
     public void markReady() {
-        if(readyForReRendering) {
+        if (readyForReRendering) {
             System.out.println("Rendering must be completed before rendering again");
         }
         this.readyForReRendering = true;

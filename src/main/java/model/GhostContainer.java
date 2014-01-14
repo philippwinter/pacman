@@ -11,7 +11,7 @@ package model;
 import model.exception.ListFullException;
 import model.exception.ObjectAlreadyInListException;
 
-import java.util.ArrayList;
+import java.util.Vector;
 import java.util.Iterator;
 
 /**
@@ -26,7 +26,7 @@ public class GhostContainer implements Container<Ghost> {
     /**
      * The ghosts.
      */
-    private ArrayList<Ghost> ghosts;
+    private Vector<Ghost> ghosts;
 
     /**
      * The maximal amount of ghosts.
@@ -37,7 +37,7 @@ public class GhostContainer implements Container<Ghost> {
      * Constructs a new GhostContainer.
      */
     public GhostContainer() {
-        this.ghosts = new ArrayList<>(max);
+        this.ghosts = new Vector<>(max);
     }
 
     /**
@@ -90,8 +90,8 @@ public class GhostContainer implements Container<Ghost> {
      *
      * @return All ghosts on <i>pos</i>.
      */
-    public ArrayList<Ghost> get(Position pos) {
-        ArrayList<Ghost> onPosition = new ArrayList<>();
+    public Vector<Ghost> get(Position pos) {
+        Vector<Ghost> onPosition = new Vector<>();
         for (Ghost g : this.ghosts) {
             if (g.isOnPosition(pos)) {
                 onPosition.add(g);
@@ -102,14 +102,14 @@ public class GhostContainer implements Container<Ghost> {
     }
 
     /**
-     * Returns an ArrayList instance with all elements.
+     * Returns an Vector instance with all elements.
      *
-     * @return A clone of the internal used ArrayList, so it can be mutated securely.
-     * @see java.util.ArrayList#clone()
+     * @return A clone of the internal used Vector, so it can be mutated securely.
+     * @see java.util.Vector#clone()
      */
     @SuppressWarnings("unchecked")
-    public ArrayList<Ghost> getAll() {
-        return (ArrayList<Ghost>) this.ghosts.clone();
+    public Vector<Ghost> getAll() {
+        return (Vector<Ghost>) this.ghosts.clone();
     }
 
     /**
@@ -135,7 +135,7 @@ public class GhostContainer implements Container<Ghost> {
      * Gets the iterator over all ghosts.
      *
      * @return An iterator over all elements in this container.
-     * @see java.util.ArrayList#iterator()
+     * @see java.util.Vector#iterator()
      */
     public Iterator<Ghost> iterator() {
         return ghosts.iterator();

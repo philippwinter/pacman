@@ -9,6 +9,7 @@
 package view;
 
 import controller.MainController;
+import model.Map;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -162,6 +163,8 @@ public class MainGui extends JFrame {
         getContentPane().removeAll();
         getContentPane().add(pnlOptions);
         setTitle("Pacman: Options");
+
+        Map.getInstance().markAllForRendering();
     }
 
     public void showGame() {
@@ -170,6 +173,8 @@ public class MainGui extends JFrame {
         getContentPane().removeAll();
         getContentPane().add(pnlGame);
         setTitle("Pacman: Game running");
+
+        Map.getInstance().markAllForRendering();
     }
 
     public void showPreGame() {
@@ -178,6 +183,8 @@ public class MainGui extends JFrame {
         getContentPane().removeAll();
         getContentPane().add(pnlPreGame);
         setTitle("Pacman: Game paused");
+
+        Map.getInstance().markAllForRendering();
     }
 
     private synchronized void initialize() {
@@ -185,7 +192,7 @@ public class MainGui extends JFrame {
             setTitle("Pacman");
 
             try {
-                setIconImage(ImageIO.read(this.getClass().getResource("/graphics/pacman/4.png")));
+                setIconImage(ImageIO.read(this.getClass().getResource("/graphics/resized/pacman/4.png")));
             } catch (IOException e) {
                 MainController.uncaughtExceptionHandler.uncaught(e);
             }

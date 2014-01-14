@@ -8,8 +8,9 @@
 
 package model;
 
-import model.event.EventHandler;
-import model.event.EventHandlerManager;
+import model.event.RendererProcess;
+import model.event.Timer;
+import model.event.WorkerProcess;
 
 /**
  * The Game class is kind of a <i>master</i>-class, organizing all other business logic objects.
@@ -23,6 +24,8 @@ public class Game {
     static {
         Game.reset();
     }
+
+    public static final double BASIC_REFRESH_RATE = 4.;
 
     /**
      * The singleton instance.
@@ -57,7 +60,7 @@ public class Game {
     /**
      * The event handler reacts on events happening in the game.
      */
-    private EventHandlerManager eventHandlerManager;
+    private Timer eventHandlerManager;
 
     /**
      * The map is like a two dimensional array of positions, containing all map objects
@@ -68,12 +71,24 @@ public class Game {
      * The amount of time, our UI will be repainted.
      * Also how often the user is able to interact with it's character, e.g. by pressing a key.
      */
-    private double refreshRate = 1;
+    private double refreshRate = BASIC_REFRESH_RATE;
 
     /**
      * The level of the game.
      */
     private Level level;
+
+    private boolean isOver = false;
+
+    public int getPlayerLifes() {
+        return playerLifes;
+    }
+
+    public void reducePLayerLifes() {
+        this.playerLifes -= 1;
+    }
+
+    private int playerLifes = 3;
 
     public final static Settings settings = Settings.getInstance();
 
@@ -112,10 +127,13 @@ public class Game {
         this.pacmanContainer = new PacmanContainer();
         this.level = Level.getInstance();
 
-        this.eventHandlerManager = new EventHandlerManager();
-        this.eventHandlerManager.register(new EventHandler());
+        this.eventHandlerManager = new Timer();
+        this.eventHandlerManager.register(new WorkerProcess());
+        this.eventHandlerManager.register(new RendererProcess());
 
         this.map.placeObjects();
+
+
     }
 
     public Level getLevel() {
@@ -189,7 +207,7 @@ public class Game {
      */
     public void changeRefreshRate(Level l) {
         // f(x) = (x^5)^(1/7) or "The refresh rate per second is the 7th root of the level raised to 5"
-        this.refreshRate = Math.pow(Math.pow(l.getLevel(), 5), 1 / 7) + 1;
+        this.refreshRate = Math.pow(Math.pow(l.getLevel(), 5), 1 / 7) + BASIC_REFRESH_RATE;
     }
 
     /**
@@ -201,23 +219,23 @@ public class Game {
         return this.refreshRate;
     }
 
-    public EventHandlerManager getEventHandlerManager() {
+    public Timer getEventHandlerManager() {
         return eventHandlerManager;
     }
 
     /**
-     * Starts the game, in detail it causes all {@link model.event.EventHandler}'s to start working.
+     * Starts the game, in detail it causes all {@link model.event.WorkerProcess}'s to start working.
      *
-     * @see model.event.EventHandlerManager#startExecution()
+     * @see model.event.Timer#startExecution()
      */
     public void start() {
         this.eventHandlerManager.startExecution();
     }
 
     /**
-     * Pauses the game, by stopping/pausing all {@link model.event.EventHandler}'s.
+     * Pauses the game, by stopping/pausing all {@link model.event.WorkerProcess}'s.
      *
-     * @see model.event.EventHandlerManager#pauseExecution()
+     * @see model.event.Timer#pauseExecution()
      */
     public void pause() {
         this.eventHandlerManager.pauseExecution();
@@ -238,6 +256,24 @@ public class Game {
             }
         }
         return false;
+    }
+
+    public void gameOver() {
+        this.isOver = true;
+        System.out.println("Game is over!");
+        Game.getInstance().getEventHandlerManager().pauseExecution();
+    }
+
+    public boolean isGameOver() {
+        return this.isOver;
+    }
+
+    public void onPacmanGotEaten() {
+        Map.getInstance().onPacmanGotEaten();
+    }
+
+    public void increasePlayerLifes() {
+        this.playerLifes++;
     }
 
     public enum Mode {

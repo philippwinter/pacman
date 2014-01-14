@@ -65,7 +65,8 @@ public class GhostTest {
         assertSame(DynamicTarget.State.HUNTED, p.getState());
         instance.eat(p);
         assertSame(DynamicTarget.State.HUNTER, instance.getState());
-        assertSame(DynamicTarget.State.MUNCHED, p.getState());
+        assertSame(DynamicTarget.State.HUNTED, p.getState());
+        // As our Pacman gets immediately respawned, it won't have a different state
     }
 
     @Test

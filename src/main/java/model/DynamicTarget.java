@@ -35,15 +35,7 @@ public abstract class DynamicTarget extends Target {
      * @param pos The new position of this object.
      */
     public void move(Position pos) {
-        if (this.getPosition().equals(pos)) {
-            throw new IllegalArgumentException("Cannot move an object to its current place.");
-        } else {
-            if (this.getPosition().calcDistance(pos) > 1) {
-                throw new IllegalArgumentException("Cannot move an object further than 1 unit at once.");
-            } else {
-                this.setPosition(pos);
-            }
-        }
+        this.setPosition(pos);
 
     }
 

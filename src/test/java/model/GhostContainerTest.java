@@ -14,7 +14,7 @@ import model.exception.ObjectAlreadyInListException;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
+import java.util.Vector;
 import java.util.Iterator;
 
 import static org.junit.Assert.*;
@@ -73,7 +73,7 @@ public class GhostContainerTest {
             System.out.println(gg);
         }
 
-        ArrayList<Ghost> retrieved = instance.get(g1.getPosition());
+        Vector<Ghost> retrieved = instance.get(g1.getPosition());
 
         assertTrue(retrieved.contains(g1));
         assertEquals(1, retrieved.size());
@@ -84,7 +84,7 @@ public class GhostContainerTest {
         instance.add(g1);
         instance.add(g2);
 
-        ArrayList<Ghost> list = instance.getAll();
+        Vector<Ghost> list = instance.getAll();
         assertNotNull(list);
         assertEquals(2, list.size());
         assertTrue(list.contains(g1));

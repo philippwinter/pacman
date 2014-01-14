@@ -35,6 +35,7 @@ public abstract class MapObject {
         Position oldPos = this.position;
         if (oldPos != null) {
             oldPos.remove(this);
+            Map.positionsToRender.add(oldPos);
         }
         this.position = pos;
         this.position.add(this);

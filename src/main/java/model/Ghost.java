@@ -111,15 +111,12 @@ public class Ghost extends DynamicTarget implements Scorable {
     public void changeState(State state) {
         if (state == State.HUNTED) {
             this.speed *= 0.5;
+            this.waitingSeconds = 4.;
         } else if (state == State.HUNTER) {
             this.speed *= 2;
-            this.waitingSeconds = -1;
+            this.waitingSeconds = -1.;
         }
         this.state = state;
-    }
-
-    public void setWaitingSeconds(double waitingSeconds) {
-        this.waitingSeconds = waitingSeconds;
     }
 
     public double getWaitingSeconds() {
@@ -136,14 +133,12 @@ public class Ghost extends DynamicTarget implements Scorable {
 
     @Override
     public int getScore() {
-        return 200; // TODO Insert correct number
+        return 200;
     }
 
     @Override
     public void gotEaten() {
         this.changeState(State.MUNCHED);
-
-        System.out.println(this + " got eaten");
     }
 
     public void reduceWaitingSeconds(double amount) {
@@ -151,6 +146,9 @@ public class Ghost extends DynamicTarget implements Scorable {
             throw new IllegalArgumentException("The amount has to be positive");
         } else {
             this.waitingSeconds -= amount;
+            if(this.waitingSeconds < 0) {
+                this.waitingSeconds = 0;
+            }
         }
     }
 

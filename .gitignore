@@ -1,6 +1,7 @@
 # Gradle Files #
 build/
 .gradle/
+target/
 
 # Compiled Files #
 *.class

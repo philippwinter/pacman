@@ -8,14 +8,14 @@
 
 package model;
 
-import java.util.ArrayList;
-
 /**
  * @author Philipp Winter
  * @author Jonas Heidecke
  * @author Niklas Kaddatz
  */
 public class Map {
+
+    public static final PositionContainer positionsToRender = new PositionContainer(Map.getInstance().width, Map.getInstance().height);
 
     private static Map instance;
 
@@ -26,6 +26,8 @@ public class Map {
     public final int height;
 
     private boolean objectsPlaced = false;
+
+    public static final StartingPosition startingPositions = new StartingPosition();
 
     public static Map getInstance() {
         if (Map.instance == null) {
@@ -61,10 +63,10 @@ public class Map {
         return this.positionContainer;
     }
 
-    public static int freeNeighbourFields(Position pos){
+    public static int freeNeighbourFields(Position pos) {
         int count = 0;
-        for(Direction d : Direction.values()){
-            if(getPositionByDirectionIfMovableTo(pos, d) != null){
+        for (Direction d : Direction.values()) {
+            if (getPositionByDirectionIfMovableTo(pos, d) != null) {
                 count++;
             }
         }
@@ -108,8 +110,34 @@ public class Map {
     }
 
     public void placeObjects() {
+        placeDynamicObjects();
+        placeStaticObjects();
+        spawnStaticTargets();
+
+        this.markAllForRendering();
+    }
+
+    private void placeDynamicObjects() {
         Game g = Game.getInstance();
 
+        // --------- PACMANS ---------
+        PacmanContainer pacC = g.getPacmanContainer();
+
+        pacC.add(new Pacman(startingPositions.PACMAN_MALE, Pacman.Sex.MALE));
+
+        if (Settings.getInstance().getGameMode() == Game.Mode.MULTIPLAYER) {
+            pacC.add(new Pacman(startingPositions.PACMAN_FEMALE, Pacman.Sex.FEMALE));
+        }
+
+        // --------- GHOSTS ---------
+        GhostContainer gC = g.getGhostContainer();
+        gC.add(new Ghost(positionContainer.get(8, 3), Ghost.Colour.BLUE));
+        gC.add(new Ghost(positionContainer.get(9, 3), Ghost.Colour.ORANGE));
+        gC.add(new Ghost(positionContainer.get(10, 3), Ghost.Colour.PINK));
+        gC.add(new Ghost(positionContainer.get(11, 3), Ghost.Colour.RED));
+    }
+
+    private void placeStaticObjects() {
         // --------- WALLS ---------
 
         PositionContainer wallPositions = new PositionContainer(width, height);
@@ -185,7 +213,7 @@ public class Map {
         ));
         wallPositions.add(positionContainer.getRange(
                 positionContainer.get(8, 4),
-                positionContainer.get(12,4)
+                positionContainer.get(12, 4)
         ));
         wallPositions.add(positionContainer.getRange(
                 positionContainer.get(12, 2),
@@ -207,7 +235,7 @@ public class Map {
         ));
 
         for (Position p : wallPositions) {
-            new Wall(p, Wall.Type.SQUARE);
+            new Wall(p);
         }
 
         // ------- PLACEHOLDER -------
@@ -253,6 +281,12 @@ public class Map {
                         positionContainer.get(11, 2)
                 )
         );
+        placeholderPositions.add(
+                positionContainer.getRange(
+                        positionContainer.get(8, 3),
+                        positionContainer.get(11, 3)
+                )
+        );
 
         // BOTTOM
 
@@ -270,45 +304,116 @@ public class Map {
                 )
         );
 
-        for(Position p : placeholderPositions) {
+        for (Position p : placeholderPositions) {
             new Placeholder(p);
         }
 
-        // --------- PACMANS ---------
-        PacmanContainer pacC = g.getPacmanContainer();
+        Map.positionsToRender.add(wallPositions);
+        Map.positionsToRender.add(placeholderPositions);
+    }
 
-        pacC.add(new Pacman(positionContainer.get(13, 8), Pacman.Sex.MALE));
-
-        if (Settings.getInstance().getGameMode() == Game.Mode.MULTIPLAYER) {
-            pacC.add(new Pacman(positionContainer.get(6, 8), Pacman.Sex.FEMALE));
-        }
-
-        // --------- GHOSTS ---------
-        GhostContainer gC = g.getGhostContainer();
-        gC.add(new Ghost(positionContainer.get(8, 3), Ghost.Colour.BLUE));
-        gC.add(new Ghost(positionContainer.get(9, 3), Ghost.Colour.ORANGE));
-        gC.add(new Ghost(positionContainer.get(10, 3), Ghost.Colour.PINK));
-        gC.add(new Ghost(positionContainer.get(11, 3), Ghost.Colour.RED));
-
+    public void spawnStaticTargets() {
         // --------- COINS ---------
         CoinContainer cC = Game.getInstance().getCoinContainer();
+        PointContainer pC = Game.getInstance().getPointContainer();
+
+        cC.removeAll();
+        pC.removeAll();
+
+        positionsToRender.add((positionContainer.get(1, 1)));
+        positionsToRender.add((positionContainer.get(1, 8)));
+        positionsToRender.add((positionContainer.get(18, 1)));
+        positionsToRender.add((positionContainer.get(18, 8)));
+
         cC.add(new Coin(positionContainer.get(1, 1)));
         cC.add(new Coin(positionContainer.get(1, 8)));
         cC.add(new Coin(positionContainer.get(18, 1)));
         cC.add(new Coin(positionContainer.get(18, 8)));
 
         // --------- POINTS ---------
-
-        for(Position p : positionContainer){
-            if(p.getOnPosition().size() == 0){
-                new Point(p);
+        for (Position p : positionContainer) {
+            if (p.getOnPosition().size() == 0) {
+                pC.add(new Point(p));
+                positionsToRender.add(p);
             }
+        }
+
+
+    }
+
+    public void onNextLevel() {
+        this.replaceDynamicObjects();
+
+        for(Coin c : Game.getInstance().getCoinContainer()){
+            if(c.getState() == StaticTarget.State.EATEN) {
+                c.changeState(StaticTarget.State.AVAILABLE);
+            }
+        }
+        for(Point p : Game.getInstance().getPointContainer()){
+            if(p.getState() == StaticTarget.State.EATEN){
+                p.changeState(StaticTarget.State.AVAILABLE);
+            }
+        }
+
+        this.markAllForRendering();
+    }
+
+    public void onPacmanGotEaten() {
+        this.replaceDynamicObjects();
+    }
+
+    public static class StartingPosition {
+
+        public final Position GHOST_RED = Map.getInstance().positionContainer.get(11, 3);
+        public final Position GHOST_PINK = Map.getInstance().positionContainer.get(10, 3);
+        public final Position GHOST_BLUE = Map.getInstance().positionContainer.get(8, 3);
+        public final Position GHOST_ORANGE = Map.getInstance().positionContainer.get(9, 3);
+
+        public final Position PACMAN_MALE = Map.getInstance().positionContainer.get(13, 8);
+        public final Position PACMAN_FEMALE = Map.getInstance().positionContainer.get(6, 8);
+
+    }
+
+    private void replaceDynamicObjects() {
+        GhostContainer gC = Game.getInstance().getGhostContainer();
+
+        for(Ghost g : gC) {
+            switch(g.getColour()) {
+                case RED: g.move(startingPositions.GHOST_RED);
+                    break;
+                case PINK: g.move(startingPositions.GHOST_PINK);
+                    break;
+                case BLUE: g.move(startingPositions.GHOST_BLUE);
+                    break;
+                case ORANGE: g.move(startingPositions.GHOST_ORANGE);
+                    break;
+                default:
+                    throw new RuntimeException("Bla");
+            }
+        }
+
+        PacmanContainer pC = Game.getInstance().getPacmanContainer();
+
+        for(Pacman p : pC) {
+            switch(p.getSex()) {
+                case MALE:
+                    p.move(startingPositions.PACMAN_MALE);
+                    break;
+                case FEMALE:
+                    p.move(startingPositions.PACMAN_FEMALE);
+                    break;
+            }
+            positionsToRender.add(p.getPosition());
         }
 
     }
 
     public boolean isObjectsPlaced() {
         return objectsPlaced;
+    }
+
+    public void markAllForRendering() {
+        positionsToRender.add(positionContainer);
     }
 
     public enum Direction {
@@ -329,7 +434,7 @@ public class Map {
                     break;
                 }
             }
-            if(guessedPosition == null){
+            if (guessedPosition == null) {
                 throw new RuntimeException("Couldn't find any free position :(");
             } else {
                 return guessedDirection;
@@ -337,4 +442,5 @@ public class Map {
         }
 
     }
+
 }

@@ -8,7 +8,7 @@
 
 package model;
 
-import java.util.ArrayList;
+import java.util.Vector;
 import java.util.Iterator;
 
 /**
@@ -18,10 +18,10 @@ import java.util.Iterator;
  */
 public class MapObjectContainer implements Container<MapObject> {
 
-    private ArrayList<MapObject> mapObjects;
+    private Vector<MapObject> mapObjects;
 
     public MapObjectContainer() {
-        this.mapObjects = new ArrayList<>();
+        this.mapObjects = new Vector<>();
     }
 
     public MapObject get(int i) {
@@ -29,8 +29,8 @@ public class MapObjectContainer implements Container<MapObject> {
     }
 
     @SuppressWarnings("unchecked")
-    public ArrayList<MapObject> getAll() {
-        return (ArrayList<MapObject>) this.mapObjects.clone();
+    public Vector<MapObject> getAll() {
+        return (Vector<MapObject>) this.mapObjects.clone();
     }
 
     /**

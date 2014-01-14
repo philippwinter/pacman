@@ -11,7 +11,7 @@ package model;
 import model.exception.ListFullException;
 import model.exception.ObjectAlreadyInListException;
 
-import java.util.ArrayList;
+import java.util.Vector;
 import java.util.Iterator;
 
 /**
@@ -24,12 +24,12 @@ public class PacmanContainer implements Container<Pacman> {
     /**
      * All pacman instances, for example Pacman and Mrs. Pacman
      */
-    private ArrayList<Pacman> pacmans;
+    private Vector<Pacman> pacmans;
 
     public final int max = 2;
 
     public PacmanContainer() {
-        this.pacmans = new ArrayList<>(max);
+        this.pacmans = new Vector<>(max);
     }
 
     public void add(Pacman pacman) {
@@ -60,8 +60,8 @@ public class PacmanContainer implements Container<Pacman> {
         return this.pacmans.get(i);
     }
 
-    public ArrayList<Pacman> get(Position pos) {
-        ArrayList<Pacman> pacmansOnPosition = new ArrayList<>(2);
+    public Vector<Pacman> get(Position pos) {
+        Vector<Pacman> pacmansOnPosition = new Vector<>(2);
 
         for (Pacman p : this.pacmans) {
             if (p.isOnPosition(pos)) {
@@ -73,8 +73,8 @@ public class PacmanContainer implements Container<Pacman> {
     }
 
     @SuppressWarnings("unchecked")
-    public ArrayList<Pacman> getAll() {
-        return (ArrayList<Pacman>) this.pacmans.clone();
+    public Vector<Pacman> getAll() {
+        return (Vector<Pacman>) this.pacmans.clone();
     }
 
     /**

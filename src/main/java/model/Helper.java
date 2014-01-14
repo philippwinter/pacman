@@ -20,9 +20,9 @@ public class Helper {
     public static <E> void shuffle(E[] values) {
         int index;
         Random random = new Random();
-        for(int i = values.length - 1; i > 0; i--) {
+        for (int i = values.length - 1; i > 0; i--) {
             index = random.nextInt(i + 1);
-            if(index != i){
+            if (index != i) {
                 E temp = values[index];
                 values[index] = values[i];
                 values[i] = temp;

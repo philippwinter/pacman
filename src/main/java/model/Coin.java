@@ -8,8 +8,6 @@
 
 package model;
 
-import controller.MainController;
-
 /**
  * A coin represents the object our Pacman has to eat in order to be able to hunt the ghosts.
  *
@@ -19,19 +17,21 @@ import controller.MainController;
  */
 public class Coin extends StaticTarget implements Scorable {
 
-    private static double activeSeconds = 0;
+    public static final double PACMAN_AINT_EATER = -1;
 
-    public static final double PACMAN_AINT_EATER = -1000;
+    public static final double SECONDS_PER_COIN = 12.;
+
+    private static double activeSeconds = PACMAN_AINT_EATER;
 
     public static void resetActiveSeconds() {
-        Coin.activeSeconds = 0;
+        Coin.activeSeconds = PACMAN_AINT_EATER;
     }
 
-    public static double getActiveSeconds () {
+    public static double getActiveSeconds() {
         return activeSeconds;
     }
 
-    public static void setActiveSeconds(double value) {
+    public static void reduceActiveSeconds(double value) {
         double result = activeSeconds - value;
         if (result <= 0) {
             result = PACMAN_AINT_EATER;
@@ -53,11 +53,25 @@ public class Coin extends StaticTarget implements Scorable {
     public void changeState(State state) {
         if (state == null) {
             throw new IllegalArgumentException("A null state is not allowed.");
+        } else if (state == this.state) {
+            throw new IllegalArgumentException("State must differ from previous one");
         }
 
         if (state == State.EATEN) {
             setVisible(false);
-            Coin.activeSeconds += 4;
+            if (Coin.activeSeconds == Coin.PACMAN_AINT_EATER) {
+                Coin.activeSeconds = SECONDS_PER_COIN;
+            } else {
+                Coin.activeSeconds += SECONDS_PER_COIN;
+            }
+            for (Pacman p : Game.getInstance().getPacmanContainer()) {
+                p.changeState(DynamicTarget.State.HUNTER);
+            }
+            for (Ghost g : Game.getInstance().getGhostContainer()) {
+                if (g.getState() == DynamicTarget.State.HUNTER) {
+                    g.changeState(DynamicTarget.State.HUNTED);
+                }
+            }
         } else if (state == State.AVAILABLE) {
             setVisible(true);
         }
@@ -91,9 +105,7 @@ public class Coin extends StaticTarget implements Scorable {
     }
 
     public void gotEaten() {
-       this.changeState(State.EATEN);
-
-       System.out.println(this + " got eaten");
+        this.changeState(State.EATEN);
     }
 
     @Override

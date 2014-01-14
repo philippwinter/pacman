@@ -8,7 +8,7 @@
 
 package model;
 
-import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  * The basic Container interface.
@@ -51,9 +51,9 @@ public interface Container<E> extends Iterable<E> {
      * Returns an ArrayList instance with all elements.
      *
      * @return A clone of the internal used ArrayList, so it can be mutated securely.
-     * @see java.util.ArrayList#clone()
+     * @see java.util.Vector#clone()
      */
-    public ArrayList<E> getAll();
+    public Vector<E> getAll();
 
     /**
      * Removes an element from the container.

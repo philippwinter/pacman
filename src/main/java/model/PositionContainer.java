@@ -8,9 +8,9 @@
 
 package model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Vector;
 import java.util.Iterator;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author Philipp Winter
@@ -19,44 +19,16 @@ import java.util.Iterator;
  */
 public class PositionContainer implements Container<Position> {
 
-    private HashMap<String, Position> positions;
+    private ConcurrentHashMap<String, Position> positions;
 
     private int width;
 
     private int height;
 
     public PositionContainer(int width, int height) {
-        this.positions = new HashMap<>(width*height);
+        this.positions = new ConcurrentHashMap<>(width * height);
         this.width = width;
         this.height = height;
-    }
-
-    /**
-     * Retrieves a value per index.
-     * <p/>
-     * Imagine the following map:
-     * <pre><blockquote>
-     * y
-     *   +-----+
-     * 0 |klmno|
-     * 1 |fghij|
-     * 2 |abcde|
-     *   +-----+
-     *    01234  x
-     * </blockquote></pre>
-     * If you want to retrieve the "a", you would have to specify the coordinates to do so (here x=0, y=0)
-     * but in some cases it might be useful to retrieve a value per index.
-     * Our values can be imagined as such a map, with their respective x and y value.
-     * <p/>
-     */
-    public Position get(int index) {
-        String key = "";
-
-        // TODO Implement algorithm
-
-        throw new RuntimeException("Method not implemented");
-
-        //return this.positions.get(key);
     }
 
     /**
@@ -73,6 +45,12 @@ public class PositionContainer implements Container<Position> {
             throw new IllegalArgumentException("The point " + x + "|" + y + " doesn't exist.");
         }
         return val;
+    }
+
+    @Override
+    public Position get(int i) {
+        // Not available here
+        return null;
     }
 
     /**
@@ -112,8 +90,8 @@ public class PositionContainer implements Container<Position> {
         return generateKey(pos.getX(), pos.getY());
     }
 
-    public ArrayList<Position> getAll() {
-        return new ArrayList<>(this.positions.values());
+    public Vector<Position> getAll() {
+        return new Vector<>(this.positions.values());
     }
 
     /**
@@ -149,5 +127,9 @@ public class PositionContainer implements Container<Position> {
         }
 
         return ret;
+    }
+
+    public void removeAll() {
+        this.positions.clear();
     }
 }

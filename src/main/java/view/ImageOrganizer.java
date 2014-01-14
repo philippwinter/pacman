@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -37,16 +38,22 @@ public class ImageOrganizer {
 
     public BufferedImage get(MapObject mO) {
         String key = null;
-        if(mO != null){
+        if (mO != null) {
             key = mO.getClass().getCanonicalName();
         } else {
             key = null;
         }
 
-        if (mO instanceof Pacman) {
-            key += ">" + ((Pacman) mO).getSex();
-        } else if (mO instanceof Ghost) {
-            key += ">" + ((Ghost) mO).getColour();
+        if (mO instanceof Ghost) {
+            Ghost g = (Ghost) mO;
+            if (g.getState() == DynamicTarget.State.HUNTER) {
+                key += ">" + g.getColour();
+                key += ">" + g.getHeadingTo();
+            } else if (g.getState() == DynamicTarget.State.HUNTED) {
+                key += ">SCARE>" + (g.getMovedInLastTurn() ? "BLUE" : "WHITE");
+            } else if (g.getState() == DynamicTarget.State.WAITING) {
+                key += ">SCARE>" + "BLUE";
+            }
         }
 
         if (images.containsKey(key)) {
@@ -63,57 +70,119 @@ public class ImageOrganizer {
         Class<?> c = this.getClass();
 
         ArrayList<String[]> data = new ArrayList<>();
+        // WALL
         data.add(
-                new String[]{"/graphics/primitive/black.png", Wall.class.getCanonicalName()}
+                new String[]{"/graphics/primitive/black_big.png", Wall.class.getCanonicalName()}
         );
+        // PACMAN
         data.add(
-                new String[]{"/graphics/primitive/yellow.png", Pacman.class.getCanonicalName() + ">MALE"}
-        );
-        data.add(
-                new String[]{"/graphics/primitive/white.png", Pacman.class.getCanonicalName() + ">FEMALE"}
-        );
-        data.add(
-                new String[]{"/graphics/primitive/red.png", Ghost.class.getCanonicalName() + ">RED"}
-        );
-        data.add(
-                new String[]{"/graphics/primitive/orange.png", Ghost.class.getCanonicalName() + ">ORANGE"}
-        );
-        data.add(
-                new String[]{"/graphics/primitive/blue.png", Ghost.class.getCanonicalName() + ">BLUE"}
-        );
-        data.add(
-                new String[]{"/graphics/primitive/pink.png", Ghost.class.getCanonicalName() + ">PINK"}
-        );
-        data.add(
-                new String[]{"/graphics/primitive/grey.png", Coin.class.getCanonicalName()}
-        );
-        data.add(
-                new String[]{"/graphics/primitive/green.png", Point.class.getCanonicalName()}
-        );
-        data.add(
-                new String[]{"/graphics/primitive/white.png", null}
-        );
-        data.add(
-                new String[]{"/graphics/primitive/white.png", Placeholder.class.getCanonicalName()}
+                new String[]{"/graphics/resized/pacman/4.png", Pacman.class.getCanonicalName()}
         );
 
-        try {
+        // SCARED GHOST
+        data.add(
+                new String[]{"/graphics/resized/ghosts/scared/blue.png", Ghost.class.getCanonicalName() + ">SCARE>BLUE"}
+        );
+        data.add(
+                new String[]{"/graphics/resized/ghosts/scared/white.png", Ghost.class.getCanonicalName() + ">SCARE>WHITE"}
+        );
+
+        // BLINKY
+        data.add(
+                new String[]{"/graphics/resized/ghosts/blinky/0.png", Ghost.class.getCanonicalName() + ">RED" + ">WEST"}
+        );
+        data.add(
+                new String[]{"/graphics/resized/ghosts/blinky/2.png", Ghost.class.getCanonicalName() + ">RED" + ">NORTH"}
+        );
+        data.add(
+                new String[]{"/graphics/resized/ghosts/blinky/4.png", Ghost.class.getCanonicalName() + ">RED" + ">EAST"}
+        );
+        data.add(
+                new String[]{"/graphics/resized/ghosts/blinky/6.png", Ghost.class.getCanonicalName() + ">RED" + ">SOUTH"}
+        );
+
+        // CLYDE
+        data.add(
+                new String[]{"/graphics/resized/ghosts/clyde/0.png", Ghost.class.getCanonicalName() + ">ORANGE" + ">WEST"}
+        );
+        data.add(
+                new String[]{"/graphics/resized/ghosts/clyde/2.png", Ghost.class.getCanonicalName() + ">ORANGE" + ">NORTH"}
+        );
+        data.add(
+                new String[]{"/graphics/resized/ghosts/clyde/4.png", Ghost.class.getCanonicalName() + ">ORANGE" + ">EAST"}
+        );
+        data.add(
+                new String[]{"/graphics/resized/ghosts/clyde/6.png", Ghost.class.getCanonicalName() + ">ORANGE" + ">SOUTH"}
+        );
+
+        // INKY
+        data.add(
+                new String[]{"/graphics/resized/ghosts/inky/0.png", Ghost.class.getCanonicalName() + ">BLUE" + ">WEST"}
+        );
+        data.add(
+                new String[]{"/graphics/resized/ghosts/inky/2.png", Ghost.class.getCanonicalName() + ">BLUE" + ">NORTH"}
+        );
+        data.add(
+                new String[]{"/graphics/resized/ghosts/inky/4.png", Ghost.class.getCanonicalName() + ">BLUE" + ">EAST"}
+        );
+        data.add(
+                new String[]{"/graphics/resized/ghosts/inky/6.png", Ghost.class.getCanonicalName() + ">BLUE" + ">SOUTH"}
+        );
+
+        // PINKY
+        data.add(
+                new String[]{"/graphics/resized/ghosts/pinky/0.png", Ghost.class.getCanonicalName() + ">PINK" + ">WEST"}
+        );
+        data.add(
+                new String[]{"/graphics/resized/ghosts/pinky/2.png", Ghost.class.getCanonicalName() + ">PINK" + ">NORTH"}
+        );
+        data.add(
+                new String[]{"/graphics/resized/ghosts/pinky/4.png", Ghost.class.getCanonicalName() + ">PINK" + ">EAST"}
+        );
+        data.add(
+                new String[]{"/graphics/resized/ghosts/pinky/6.png", Ghost.class.getCanonicalName() + ">PINK" + ">SOUTH"}
+        );
+
+        // COIN
+        data.add(
+                new String[]{"/graphics/resized/dots/blue.png", Coin.class.getCanonicalName()}
+        );
+
+        // POINT
+        data.add(
+                new String[]{"/graphics/resized/dots/white.png", Point.class.getCanonicalName()}
+        );
+
+        // NOTHING
+        data.add(
+                new String[]{"/graphics/primitive/white_big.png", null}
+        );
+
+        //PLACEHOLDER
+        data.add(
+                new String[]{"/graphics/primitive/white_big.png", Placeholder.class.getCanonicalName()}
+        );
+
             for (String[] d : data) {
                 //Load image
-                BufferedImage before = ImageIO.read(c.getResource(d[0]));
-                //Scale it
-                int w = before.getWidth();
-                int h = before.getHeight();
-                BufferedImage after = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
-                AffineTransform at = new AffineTransform();
-                at.scale(1, 1);
-                AffineTransformOp scaleOp = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
-                after = scaleOp.filter(before, after);
-                //Put it in the list
-                images.put(d[1], after);
+                try {
+                    BufferedImage before = ImageIO.read(c.getResource(d[0]));
+                    //Scale it
+                    int w = before.getWidth();
+                    int h = before.getHeight();
+                    BufferedImage after = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+                    AffineTransform at = new AffineTransform();
+                    at.scale(1, 1);
+                    AffineTransformOp scaleOp = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
+                    after = scaleOp.filter(before, after);
+                    //Put it in the list
+                    images.put(d[1], after);
+                } catch(IllegalArgumentException e) {
+                    System.out.println("Failed to load resource picture for path " + d[0] + " and key " + d[1]);
+                    e.printStackTrace();
+                } catch(IOException e) {
+                    e.printStackTrace();
+                }
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
     }
 }

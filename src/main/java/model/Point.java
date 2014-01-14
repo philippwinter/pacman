@@ -45,12 +45,6 @@ public class Point extends StaticTarget implements Scorable {
     @Override
     public void gotEaten() {
         this.changeState(State.EATEN);
-
-        for(Pacman p : Game.getInstance().getPacmanContainer()) {
-            p.changeState(DynamicTarget.State.HUNTER);
-        }
-
-        System.out.println(this + " got eaten");
     }
 
     public String toString() {

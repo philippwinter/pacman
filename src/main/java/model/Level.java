@@ -8,8 +8,6 @@
 
 package model;
 
-import controller.MainController;
-
 /**
  * @author Philipp Winter
  * @author Jonas Heidecke
@@ -35,14 +33,22 @@ public class Level {
         // Reduce the amount of time the user has to munch a ghost
         this.secondsPerCoin *= 0.85;
 
+        this.level++;
+
         // Change the refresh rate = How fast is the pacman moving
         Game.getInstance().changeRefreshRate(this);
 
+        for (Ghost g : Game.getInstance().getGhostContainer()) {
+            g.changeState(DynamicTarget.State.HUNTER);
+        }
+
+        for (Pacman p : Game.getInstance().getPacmanContainer()) {
+            p.changeState(DynamicTarget.State.HUNTED);
+        }
+
+        Game.getInstance().increasePlayerLifes();
+        Map.getInstance().onNextLevel();
         Game.getInstance().getEventHandlerManager().restartExecution();
-
-        this.level++;
-
-        // TODO Reset pacman, ghost etc.
     }
 
     public int getLevel() {

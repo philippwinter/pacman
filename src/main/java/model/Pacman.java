@@ -43,7 +43,6 @@ public class Pacman extends DynamicTarget {
 
     @Override
     public void gotEaten() {
-        System.out.println(this + " got eaten");
         this.changeState(State.MUNCHED);
     }
 
@@ -68,11 +67,10 @@ public class Pacman extends DynamicTarget {
     public void eat(Target target) {
         if (target instanceof Ghost) {
             Ghost g = (Ghost) target;
-            g.setWaitingSeconds(4);
             g.gotEaten();
         } else if (target instanceof StaticTarget) {
             StaticTarget staticTarget = (StaticTarget) target;
-            if(staticTarget.getState() != StaticTarget.State.EATEN) {
+            if (staticTarget.getState() != StaticTarget.State.EATEN) {
                 target.gotEaten();
             }
         } else {
@@ -83,10 +81,20 @@ public class Pacman extends DynamicTarget {
     }
 
     @Override
-    public void changeState(State state) {
-        // TODO Maybe insert some logic
-        this.state = state;
+    public void changeState(State s) {
+        if (s == State.MUNCHED) {
+            State prevState = state;
+            Game.getInstance().reducePLayerLifes();
+            if (Game.getInstance().getPlayerLifes() <= 0) {
+                Game.getInstance().gameOver();
+            }
+            Game.getInstance().onPacmanGotEaten();
+            this.changeState(prevState);
+        } else {
+            this.state = s;
+        }
     }
+
 
     public boolean equals(Object o) {
         if (o != null) {

@@ -10,7 +10,7 @@ package model;
 
 import model.exception.ObjectAlreadyInListException;
 
-import java.util.ArrayList;
+import java.util.Vector;
 import java.util.Iterator;
 
 /**
@@ -20,13 +20,13 @@ import java.util.Iterator;
  */
 public class PointContainer implements Container<Point> {
 
-    private ArrayList<Point> points;
+    private Vector<Point> points;
 
     public final int max;
 
     public PointContainer() {
         this.max = 4;
-        this.points = new ArrayList<>(max);
+        this.points = new Vector<>(max);
     }
 
     public void add(Point point) {
@@ -64,8 +64,8 @@ public class PointContainer implements Container<Point> {
     }
 
     @SuppressWarnings("unchecked")
-    public ArrayList<Point> getAll() {
-        return (ArrayList<Point>) this.points.clone();
+    public Vector<Point> getAll() {
+        return (Vector<Point>) this.points.clone();
     }
 
     /**
@@ -84,5 +84,17 @@ public class PointContainer implements Container<Point> {
 
     public boolean contains(Point p) {
         return this.points.contains(p);
+    }
+
+    public int size() {
+        return this.points.size();
+    }
+
+    public void removeAll() {
+        for (Point p : this) {
+            p.deSpawn();
+        }
+
+        this.points.clear();
     }
 }
