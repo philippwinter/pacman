@@ -35,8 +35,15 @@ public abstract class DynamicTarget extends Target {
      * @param pos The new position of this object.
      */
     public void move(Position pos) {
-        this.setPosition(pos);
-
+        boolean placeholderOnPosition = false;
+        for(MapObject m : pos.getOnPosition()){
+            if(m instanceof Placeholder){
+                placeholderOnPosition = true;
+            }
+        }
+        if(!placeholderOnPosition || this.isHeadingTo(Map.Direction.NORTH)){
+            this.setPosition(pos);
+        }
     }
 
     /**

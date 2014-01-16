@@ -37,7 +37,7 @@ public class ImageOrganizer {
     }
 
     public BufferedImage get(MapObject mO) {
-        String key = null;
+        String key;
         if (mO != null) {
             key = mO.getClass().getCanonicalName();
         } else {
@@ -56,10 +56,14 @@ public class ImageOrganizer {
             }
         }
 
+        if (mO instanceof Pacman) {
+            Pacman p = (Pacman) mO;
+            key += ">" + p.getHeadingTo();
+        }
+
         if (images.containsKey(key)) {
             return images.get(key);
         } else {
-            System.out.println(images.keySet());
             throw new IllegalArgumentException("There is no image for the key \"" + key + "\"!");
         }
     }
@@ -76,7 +80,16 @@ public class ImageOrganizer {
         );
         // PACMAN
         data.add(
-                new String[]{"/graphics/resized/pacman/4.png", Pacman.class.getCanonicalName()}
+                new String[]{"/graphics/resized/pacman/4_north.png", Pacman.class.getCanonicalName() + ">NORTH"}
+        );
+        data.add(
+                new String[]{"/graphics/resized/pacman/4_east.png", Pacman.class.getCanonicalName() + ">EAST"}
+        );
+        data.add(
+                new String[]{"/graphics/resized/pacman/4_south.png", Pacman.class.getCanonicalName() + ">SOUTH"}
+        );
+        data.add(
+                new String[]{"/graphics/resized/pacman/4_west.png", Pacman.class.getCanonicalName() + ">WEST"}
         );
 
         // SCARED GHOST
@@ -145,12 +158,12 @@ public class ImageOrganizer {
 
         // COIN
         data.add(
-                new String[]{"/graphics/resized/dots/blue.png", Coin.class.getCanonicalName()}
+                new String[]{"/graphics/resized/dots/orange.png", Coin.class.getCanonicalName()}
         );
 
         // POINT
         data.add(
-                new String[]{"/graphics/resized/dots/white.png", Point.class.getCanonicalName()}
+                new String[]{"/graphics/resized/dots/blue_filled.png", Point.class.getCanonicalName()}
         );
 
         // NOTHING

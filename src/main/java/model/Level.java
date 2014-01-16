@@ -19,7 +19,7 @@ public class Level {
 
     private int level = 1;
 
-    private double secondsPerCoin = 15;
+    private double secondsPerCoin = 7;
 
     public static Level getInstance() {
         if (Level.instance == null) {
@@ -35,6 +35,10 @@ public class Level {
 
         this.level++;
 
+        if(Math.random() >= 0.7) {
+            Game.getInstance().increasePlayerLifes();
+        }
+
         // Change the refresh rate = How fast is the pacman moving
         Game.getInstance().changeRefreshRate(this);
 
@@ -46,7 +50,6 @@ public class Level {
             p.changeState(DynamicTarget.State.HUNTED);
         }
 
-        Game.getInstance().increasePlayerLifes();
         Map.getInstance().onNextLevel();
         Game.getInstance().getEventHandlerManager().restartExecution();
     }

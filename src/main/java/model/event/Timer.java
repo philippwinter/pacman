@@ -57,13 +57,17 @@ public class Timer {
     }
 
     public void pauseExecution() {
-        this.executor.shutdown();
-        this.executor = null;
+        if(this.executor != null) {
+            this.executor.shutdown();
+            this.executor = null;
+        }
     }
 
     public void restartExecution() {
-        this.executor.shutdownNow();
-        this.executor = null;
+        if(this.executor != null){
+            this.executor.shutdownNow();
+            this.executor = null;
+        }
         this.startExecution();
     }
 }

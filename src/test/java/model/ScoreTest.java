@@ -12,52 +12,45 @@ import controller.MainController;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 
 /**
- * LevelTest
+ * HighscoreTest
  *
  * @author Philipp Winter
  * @author Jonas Heidecke
  * @author Niklas Kaddatz
  */
-public class LevelTest {
+public class ScoreTest {
 
-    private Level instance;
+    private Score instance;
+    private Position pos;
+    private Pacman pac;
 
     @Before
     public void setUp() {
         MainController.reset();
 
-        this.instance = Level.getInstance();
+        pos = Game.getInstance().getMap().getPositionContainer().get(0, 0);
+        pac = new Pacman(pos, Pacman.Sex.MALE);
+        instance = pac.getScore();
     }
 
     @Test
-    public void testGetInstance() {
-        assertNotNull(Level.getInstance());
+    public void testGetScore() {
+        assertEquals(0, instance.getScore());
     }
 
     @Test
-    public void testNextLevel() {
-        assertEquals(1, instance.getLevel());
-        instance.nextLevel();
-        assertTrue("Assert that " + Game.getInstance().getRefreshRate() + " is greater than " + Game.BASIC_REFRESH_RATE, Game.getInstance().getRefreshRate() > Game.BASIC_REFRESH_RATE);
-        assertEquals(2, instance.getLevel());
+    public void testAddToScore() {
+        assertEquals(0, instance.getScore());
+        Ghost g = new Ghost(pos, Ghost.Colour.BLUE);
+        instance.addToScore(g);
+        assertEquals(g.getScore(), instance.getScore());
     }
-
-    @Test
-    public void testGetLevel() {
-        assertEquals(1, instance.getLevel());
-    }
-
-    @Test
-    public void testGetSecondsPerCoin() {
-        assertThat(instance.getSecondsPerCoin(), is(7.0));
-    }
-
     @Test
     public void testEquals() {
-        assertThat(instance, is(instance));
+        assertEquals(instance, pac.getScore());
     }
 }

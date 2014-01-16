@@ -8,6 +8,8 @@
 
 package model;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Random;
 
 /**
@@ -29,4 +31,41 @@ public class Helper {
             }
         }
     }
+
+    public static <T extends Comparable<T>> void quickSort(ArrayList<T> list,
+                                                           Comparator<T> c) {
+        int low = 0;
+        int high = list.size() - 1;
+        quickSort(list, low, high, c);
+    }
+
+    private static <T extends Comparable<T>> void quickSort(ArrayList<T> list,
+                                                            int low, int high, Comparator<T> c) {
+        int left = low;
+        int right = high;
+        T pivot = list.get((low + high) / 2);
+        do {
+            while (c.compare(list.get(left), pivot) < 0) {
+                left++;
+            }
+            while (c.compare(pivot, list.get(right)) < 0) {
+                right--;
+            }
+            if (left <= right) {
+                T tmp = list.get(left);
+                list.set(left, list.get(right));
+                list.set(right, tmp);
+                left++;
+                right--;
+            }
+        } while (left <= right);
+        if (low < right) {
+            quickSort(list, low, right, c);
+        }
+        if (left < high) {
+            quickSort(list, left, high, c);
+
+        }
+    }
+
 }

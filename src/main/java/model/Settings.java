@@ -16,6 +16,7 @@ package model;
 public class Settings {
 
     private Game.Mode gameMode = Game.Mode.SINGLEPLAYER;
+
     private static Settings instance = new Settings();
 
     public Settings() {

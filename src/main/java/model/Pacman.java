@@ -17,12 +17,12 @@ public class Pacman extends DynamicTarget {
 
     private String name;
 
-    private Highscore highscore;
+    private Score score;
 
     private Sex sex;
 
     public Pacman(Position pos, Sex sex) {
-        this.highscore = new Highscore(this);
+        this.score = new Score();
         this.state = State.HUNTED;
         switch (sex) {
             case MALE:
@@ -54,8 +54,8 @@ public class Pacman extends DynamicTarget {
         this.name = name;
     }
 
-    public Highscore getHighscore() {
-        return highscore;
+    public Score getScore() {
+        return score;
     }
 
     /**
@@ -77,7 +77,7 @@ public class Pacman extends DynamicTarget {
             throw new IllegalArgumentException("A pacman is no cannibal");
         }
 
-        this.highscore.addToScore(((Scorable) target));
+        this.score.addToScore(((Scorable) target));
     }
 
     @Override
@@ -99,7 +99,7 @@ public class Pacman extends DynamicTarget {
     public boolean equals(Object o) {
         if (o != null) {
             if (o instanceof Pacman) {
-                return this.getHighscore().equals(((Pacman) o).getHighscore())
+                return this.getScore().equals(((Pacman) o).getScore())
                         && this.getPosition().equals(((Pacman) o).getPosition())
                         && this.getState().equals(((Pacman) o).getState())
                         && this.getHeadingTo().equals(((Pacman) o).getHeadingTo())
@@ -118,7 +118,7 @@ public class Pacman extends DynamicTarget {
     }
 
     public String toString() {
-        return "Pacman [" + position + ", " + state + ", " + sex + ", " + highscore + ", visible: " + visible + "]";
+        return "Pacman [" + position + ", " + state + ", " + sex + ", " + score + ", visible: " + visible + "]";
     }
 
 }

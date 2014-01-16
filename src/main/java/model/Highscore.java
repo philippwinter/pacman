@@ -8,81 +8,99 @@
 
 package model;
 
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+
 /**
- * The highscore is the collection of numbers, the user will be proud of.
+ * Highscore
  *
  * @author Philipp Winter
- * @author Jonas Heidecke
- * @author Niklas Kaddatz
  */
-@SuppressWarnings("unused")
-public class Highscore {
+public class Highscore implements Serializable {
 
-    /**
-     * The score, starting at zero.
-     */
-    private long score = 0;
+    private static final long serialVersionUID = -5739894473572621875L;
 
-    /**
-     * The Pacman the highscore is belonging to.
-     */
-    private Pacman applicableObject;
+    private static Highscore instance = null;
 
-    /**
-     * Constructs a new Highscore for a specific pacman.
-     *
-     * @param pacMan The pacman, this highscore belongs to.
-     */
-    public Highscore(Pacman pacMan) {
-        this.applicableObject = (pacMan);
-    }
+    private static final File file = new File("highscore.dat");
 
-    /**
-     * Gets the score.
-     *
-     * @return The current score.
-     */
-    public long getScore() {
-        return score;
-    }
+    private ObjectInputStream inputStream;
+    private ObjectOutputStream outputStream;
 
-    /**
-     * Adds an amount of points to the highscore.
-     *
-     * @param i A positive integer.
-     *
-     * @throws java.lang.IllegalArgumentException When <i>i</i> is not positive.
-     */
-    private void addToScore(int i) {
-        if (i > 0) {
-            this.score += i;
+    private ArrayList<Score> scores;
+
+    private Highscore() {
+        scores = new ArrayList<Score>();
+
+        if (file.exists()) {
+            try {
+                this.inputStream = new ObjectInputStream(new FileInputStream(file.getAbsolutePath()));
+                this.scores = (ArrayList<Score>) inputStream.readObject();
+
+                Helper.quickSort(scores, new Comparator<Score>() {
+                    @Override
+                    public int compare(Score o1, Score o2) {
+                        return o1.compareTo(o2);
+                    }
+                });
+
+                while(scores.size() > 3){
+                    scores.remove(0);
+                }
+            } catch(IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+                System.out.println("An error occurred while reading the Highscore");
+            } finally {
+                try {
+                    if (inputStream != null) {
+                        inputStream.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         } else {
-            throw new IllegalArgumentException("The amount of points must be positive.");
-        }
-    }
-
-    public void addToScore(Scorable s) {
-        this.addToScore(s.getScore());
-    }
-
-    /**
-     * Gets the pacman, this Highscore is belonging to.
-     *
-     * @return The highscore's owner.
-     */
-    public Pacman getApplicableObject() {
-        return applicableObject;
-    }
-
-    public boolean equals(Object o) {
-        if (o != null) {
-            if (o instanceof Highscore) {
-                return this.getScore() == ((Highscore) o).getScore()
-                        // Just compare the two pacmans per reference to prevent infinite recursion
-                        && this.getApplicableObject() == ((Highscore) o).getApplicableObject();
+            try {
+                boolean newFile = file.createNewFile();
+                if (!newFile) {
+                    throw new RuntimeException("Could not create Highscore data file.");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
-        return false;
     }
 
+    public void add(Score s) {
+        scores.add(s);
+    }
+
+    public static Highscore getInstance() {
+        if(instance == null){
+            instance = new Highscore();
+        }
+        return instance;
+    }
+
+    public void writeToFile() {
+        try {
+            outputStream = new ObjectOutputStream(new FileOutputStream(file));
+
+            outputStream.writeObject(instance.scores);
+        } catch (IOException e) {
+            System.out.println("Could not save highscores");
+            e.printStackTrace();
+        } finally {
+            try {
+                outputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public ArrayList<Score> getScores() {
+        return scores;
+    }
 }

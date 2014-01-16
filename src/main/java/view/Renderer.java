@@ -36,7 +36,6 @@ public class Renderer {
 
     public final int multiplier = 20;
 
-
     private final ImageOrganizer imgOrganizer;
 
     public Renderer(MainGui gui) {
@@ -48,71 +47,26 @@ public class Renderer {
         this.mapWidth = (Map.getInstance().width * multiplier);
 
         this.topSpace = (mapHeight / 2);
-        this.leftSpace = (mapWidth / 2);
+        this.leftSpace = (mapWidth / 4);
     }
 
-    public void render() {
+    private void render() {
         if (!controller.isGameActive() || !readyForReRendering) {
             System.out.println("Returned without rendering: " + System.currentTimeMillis());
             return;
         }
 
         try {
-            gui.requestFocusInWindow();
-
-            JPanel pnl = gui.getPnlGame();
-            Graphics2D g = (Graphics2D) pnl.getGraphics();
-
-            for (Position pos : Map.positionsToRender) {
-                final int paintX = pos.getX() * multiplier + leftSpace;
-                final int paintY = pos.getY() * multiplier + topSpace;
-
-                g.clearRect(
-                        paintX,
-                        paintY,
-                        multiplier,
-                        multiplier
-                );
-
-                Vector<MapObject> mapObjects = pos.getOnPosition().getAll();
-                for (MapObject mO : mapObjects) {
-                    if (mO.isVisible()) {
-                        BufferedImage img = imgOrganizer.get(mO);
-                        g.drawImage(
-                                img,
-                                null,
-                                paintX,
-                                paintY
-                        );
-                    }
-                }
-            }
-
-            // Clear the space below the game, in order to paint new statistics there
-            g.clearRect(
-                    leftSpace,
-                    (Map.getInstance().height * multiplier) + topSpace,
-                    pnl.getWidth(),
-                    pnl.getHeight());
-
-            int i = 0;
-
-            for (Pacman p : Game.getInstance().getPacmanContainer()) {
-                drawString(g, "Highscore of " + p.getName() + ":\t" + p.getHighscore().getScore(), ++i);
-            }
-
-            drawString(g, "Player Lifes: " + Game.getInstance().getPlayerLifes(), ++i);
-            drawString(g, "Level: " + Game.getInstance().getLevel().getLevel(), ++i);
+            gui.getPnlGame().repaint();
         } catch (Throwable e) {
             e.printStackTrace();
         } finally {
             this.readyForReRendering = false;
-            Map.positionsToRender.removeAll();
         }
 
     }
 
-    private void drawString(Graphics2D target, String s, int offset) {
+    protected void drawString(Graphics2D target, String s, int offset) {
         target.drawString(
                 s,
                 15 + leftSpace,

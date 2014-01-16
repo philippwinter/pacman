@@ -8,9 +8,11 @@
 
 package model;
 
+import controller.MainController;
 import model.event.RendererProcess;
 import model.event.Timer;
 import model.event.WorkerProcess;
+import view.MainGui;
 
 /**
  * The Game class is kind of a <i>master</i>-class, organizing all other business logic objects.
@@ -26,6 +28,8 @@ public class Game {
     }
 
     public static final double BASIC_REFRESH_RATE = 4.;
+
+    public final static Settings settings = Settings.getInstance();
 
     /**
      * The singleton instance.
@@ -80,25 +84,13 @@ public class Game {
 
     private boolean isOver = false;
 
-    public int getPlayerLifes() {
-        return playerLifes;
-    }
-
-    public void reducePLayerLifes() {
-        this.playerLifes -= 1;
-    }
-
     private int playerLifes = 3;
 
-    public final static Settings settings = Settings.getInstance();
-
     /**
-     * Returns the singleton instance.
-     *
-     * @return The game singleton.
+     * Constructs a new Game object.
      */
-    public static Game getInstance() {
-        return Game.instance;
+    private Game() {
+
     }
 
     /**
@@ -131,13 +123,6 @@ public class Game {
         this.eventHandlerManager.register(new WorkerProcess());
         this.eventHandlerManager.register(new RendererProcess());
 
-        this.map.placeObjects();
-
-
-    }
-
-    public Level getLevel() {
-        return level;
     }
 
     /**
@@ -147,11 +132,16 @@ public class Game {
         return Game.initialized;
     }
 
-    /**
-     * Constructs a new Game object.
-     */
-    private Game() {
+    public int getPlayerLifes() {
+        return playerLifes;
+    }
 
+    public void reducePLayerLifes() {
+        this.playerLifes -= 1;
+    }
+
+    public Level getLevel() {
+        return level;
     }
 
     /**
@@ -219,16 +209,15 @@ public class Game {
         return this.refreshRate;
     }
 
-    public Timer getEventHandlerManager() {
-        return eventHandlerManager;
-    }
-
     /**
      * Starts the game, in detail it causes all {@link model.event.WorkerProcess}'s to start working.
      *
      * @see model.event.Timer#startExecution()
      */
     public void start() {
+        if(pointContainer.size() == 0){
+            this.map.placeObjects();
+        }
         this.eventHandlerManager.startExecution();
     }
 
@@ -260,8 +249,22 @@ public class Game {
 
     public void gameOver() {
         this.isOver = true;
-        System.out.println("Game is over!");
         Game.getInstance().getEventHandlerManager().pauseExecution();
+        MainController.getInstance().getGui().onGameOver();
+        MainController.getInstance().getGui().getRenderer().markReady();
+    }
+
+    public Timer getEventHandlerManager() {
+        return eventHandlerManager;
+    }
+
+    /**
+     * Returns the singleton instance.
+     *
+     * @return The game singleton.
+     */
+    public static Game getInstance() {
+        return Game.instance;
     }
 
     public boolean isGameOver() {

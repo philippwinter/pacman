@@ -109,9 +109,13 @@ public class Ghost extends DynamicTarget implements Scorable {
      * @param state The new state.
      */
     public void changeState(State state) {
-        if (state == State.HUNTED) {
+        if (state == State.WAITING) {
             this.speed *= 0.5;
-            this.waitingSeconds = 4.;
+            if(this.waitingSeconds == 0){
+                this.waitingSeconds = 4.;
+            } else {
+                this.waitingSeconds += 4.;
+            }
         } else if (state == State.HUNTER) {
             this.speed *= 2;
             this.waitingSeconds = -1.;
@@ -170,7 +174,7 @@ public class Ghost extends DynamicTarget implements Scorable {
 
     public enum Colour {
 
-        RED, WHITE, PINK, BLUE, ORANGE
+        RED, PINK, BLUE, ORANGE
 
     }
 
