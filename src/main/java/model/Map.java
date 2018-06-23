@@ -367,7 +367,7 @@ public class Map {
 
         NORTH, WEST, EAST, SOUTH;
 
-        public static Direction guessDirection(MapObject mO) {
+        public static Direction guessDirection(Position position) {
             Direction[] directions = Direction.values();
             Position guessedPosition = null;
             Direction guessedDirection = null;
@@ -375,7 +375,7 @@ public class Map {
             Helper.shuffle(directions);
 
             for (Direction direction : directions) {
-                guessedPosition = Map.getPositionByDirectionIfMovableTo(mO.getPosition(), direction);
+                guessedPosition = Map.getPositionByDirectionIfMovableTo(position, direction);
                 if (guessedPosition != null) {
                     guessedDirection = direction;
                     break;
