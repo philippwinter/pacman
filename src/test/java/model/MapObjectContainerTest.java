@@ -28,14 +28,13 @@ import static org.junit.Assert.*;
 public class MapObjectContainerTest {
 
     private MapObjectContainer instance;
-    private Position pos;
     private Position otherPos;
     private Pacman pac;
     private Ghost ghost;
 
     @Before
     public void setUp() {
-        this.pos = Map.getInstance().getPositionContainer().get(1, 1);
+        Position pos = Map.getInstance().getPositionContainer().get(1, 1);
         this.otherPos = Map.getPositionByDirectionIfMovableTo(pos, Direction.EAST);
         this.pac = new Pacman(Pacman.Sex.MALE);
         this.ghost = new Pinky(pos);

@@ -19,7 +19,7 @@ public class Settings {
 
     private static Settings instance = new Settings();
 
-    public Settings() {
+    private Settings() {
         // TODO Implement class
     }
 

@@ -17,7 +17,7 @@ import java.util.Random;
  *
  * @author Philipp Winter
  */
-public class Helper {
+class Helper {
 
     public static <E> void shuffle(E[] values) {
         int index;

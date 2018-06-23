@@ -76,13 +76,7 @@ public class Score implements Serializable, Comparable<Score>{
 
     @Override
     public int compareTo(Score o) {
-        if(this.getScore() < o.getScore()) {
-            return -1;
-        } else if (this.getScore() > o.getScore()) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return Long.compare(this.getScore(), o.getScore());
     }
 
     public String toString() {

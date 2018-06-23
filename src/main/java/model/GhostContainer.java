@@ -32,7 +32,7 @@ public class GhostContainer implements Container<Ghost> {
     /**
      * The maximal amount of ghosts.
      */
-    public final int max = 4;
+    private final int max = 4;
 
     /**
      * Constructs a new GhostContainer.

@@ -11,7 +11,6 @@ package model;
 import model.exception.ListFullException;
 import model.exception.ObjectAlreadyInListException;
 
-import java.util.Vector;
 import java.util.Iterator;
 import java.util.Vector;
 
@@ -29,7 +28,7 @@ public class CoinContainer implements Container<Coin> {
      */
     private Vector<Coin> coins;
 
-    public final int max = 4;
+    private final int max = 4;
 
     /**
      * Constructs a new CoinContainer.

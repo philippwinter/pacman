@@ -36,11 +36,9 @@ public class Renderer {
 
     public final int multiplier = 20;
 
-    private final ImageOrganizer imgOrganizer;
-
     public Renderer(MainGui gui) {
         this.controller = MainController.getInstance();
-        this.imgOrganizer = ImageOrganizer.getInstance();
+        ImageOrganizer imgOrganizer = ImageOrganizer.getInstance();
         this.gui = gui;
 
         this.mapHeight = (Map.getInstance().height * multiplier);

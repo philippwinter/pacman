@@ -22,7 +22,7 @@ public class PointContainer implements Container<Point> {
 
     private Vector<Point> points;
 
-    public final int max;
+    private final int max;
 
     public PointContainer() {
         this.max = 4;

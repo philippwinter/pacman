@@ -8,7 +8,6 @@
 
 package model.event;
 
-import controller.MainController;
 import model.*;
 
 /**

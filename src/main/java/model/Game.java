@@ -282,7 +282,7 @@ public class Game implements Process{
         return Game.instance;
     }
 
-    public boolean isGameOver() {
+    private boolean isGameOver() {
         return this.isOver;
     }
 
@@ -299,7 +299,7 @@ public class Game implements Process{
         this.playerLifes++;
     }
 
-    public boolean check() {
+    private boolean check() {
         boolean performFurtherActions;
 
         // Check whether level is completed
@@ -322,7 +322,7 @@ public class Game implements Process{
         return performFurtherActions;
     }
 
-    public void performCollisions() {
+    private void performCollisions() {
         for (Pacman p : getPacmanContainer()) {
             performCollision(p);
         }
@@ -355,7 +355,7 @@ public class Game implements Process{
     }
 
 
-    public void handleCoins() {
+    private void handleCoins() {
         double activeSeconds = Coin.getActiveSeconds();
 
         if (activeSeconds != Coin.PACMAN_AINT_EATER) {
@@ -377,7 +377,7 @@ public class Game implements Process{
         }
     }
 
-    public void markDynamicObjectsForRendering() {
+    private void markDynamicObjectsForRendering() {
         for(Pacman p : getInstance().getPacmanContainer()){
             Map.positionsToRender.add(p.getPosition());
         }

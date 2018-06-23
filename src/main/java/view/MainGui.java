@@ -34,10 +34,6 @@ public class MainGui extends JFrame {
 
     private GamePanel pnlGame;
 
-    private JPanel pnlButtons;
-
-    private JLabel lblBackground;
-
     private JButton btnPlaySingleplayer;
 
     private JButton btnPlayMultiplayer;
@@ -99,10 +95,10 @@ public class MainGui extends JFrame {
         pnlGame = new GamePanel();
         pnlGame.setLayout(new FlowLayout());
 
-        lblBackground = new JLabel(new ImageIcon(this.getClass().getResource("/graphics/background/main_background_middle.jpg")));
+        JLabel lblBackground = new JLabel(new ImageIcon(this.getClass().getResource("/graphics/background/main_background_middle.jpg")));
         lblBackground.setLayout(new FlowLayout());
 
-        pnlButtons = new JPanel();
+        JPanel pnlButtons = new JPanel();
         pnlButtons.setLayout(new FlowLayout());
         pnlButtons.setOpaque(false);
 

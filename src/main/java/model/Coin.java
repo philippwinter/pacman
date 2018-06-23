@@ -22,7 +22,7 @@ public class Coin extends StaticTarget implements Scorable {
 
     public static final double PACMAN_AINT_EATER = -1;
 
-    public static final double SECONDS_PER_COIN = 5.;
+    private static final double SECONDS_PER_COIN = 5.;
 
     private static double activeSeconds = PACMAN_AINT_EATER;
 

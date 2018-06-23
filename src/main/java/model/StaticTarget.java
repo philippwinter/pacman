@@ -15,7 +15,7 @@ package model;
  */
 public abstract class StaticTarget extends MapObject implements Target {
 
-    protected State state;
+    State state;
 
     public State getState() {
         return state;

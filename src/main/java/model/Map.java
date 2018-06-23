@@ -8,8 +8,6 @@
 
 package model;
 
-import model.pacman.Pacman;
-
 /**
  * @author Philipp Winter
  * @author Jonas Heidecke
@@ -293,7 +291,7 @@ public class Map {
         Map.positionsToRender.add(placeholderPositions);
     }
 
-    public void spawnStaticTargets() {
+    private void spawnStaticTargets() {
         // --------- COINS ---------
         CoinContainer cC = Game.getInstance().getCoinContainer();
         PointContainer pC = Game.getInstance().getPointContainer();
@@ -339,10 +337,6 @@ public class Map {
         this.markAllForRendering();
     }
 
-    public void onPacmanGotEaten() {
-
-    }
-
     public static class StartingPosition {
 
         public final Position GHOST_RED = Map.getInstance().positionContainer.get(11, 3);
@@ -355,7 +349,7 @@ public class Map {
 
     }
 
-    public boolean isObjectsPlaced() {
+    private boolean isObjectsPlaced() {
         return objectsPlaced;
     }
 

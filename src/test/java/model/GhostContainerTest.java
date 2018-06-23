@@ -36,16 +36,13 @@ public class GhostContainerTest {
     private Ghost g1;
     private Ghost g2;
 
-    private Position pos1;
-    private Position pos2;
-
     @Before
     public void setUp() {
         MainController.reset();
         instance = new GhostContainer();
 
-        pos1 = Game.getInstance().getMap().getPositionContainer().get(0, 0);
-        pos2 = Game.getInstance().getMap().getPositionContainer().get(0, 1);
+        Position pos1 = Game.getInstance().getMap().getPositionContainer().get(0, 0);
+        Position pos2 = Game.getInstance().getMap().getPositionContainer().get(0, 1);
 
         g1 = new Clyde(pos1);
         g2 = new Pinky(pos2);

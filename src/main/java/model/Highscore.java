@@ -31,7 +31,7 @@ public class Highscore implements Serializable {
     private ArrayList<Score> scores;
 
     private Highscore() {
-        scores = new ArrayList<Score>();
+        scores = new ArrayList<>();
 
         if (file.exists()) {
             try {
