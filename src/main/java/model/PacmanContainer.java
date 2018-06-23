@@ -95,4 +95,11 @@ public class PacmanContainer implements Container<Pacman> {
         return this.pacmans.contains(p);
     }
 
+    public void handlePacmans() {
+
+        for (Pacman p : pacmans) {
+            p.handlePacman();
+        }
+    }
+
 }

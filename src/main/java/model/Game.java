@@ -9,6 +9,7 @@
 package model;
 
 import controller.MainController;
+import model.event.Process;
 import model.event.RendererProcess;
 import model.event.Timer;
 import model.event.WorkerProcess;
@@ -21,7 +22,7 @@ import view.MainGui;
  * @author Jonas Heidecke
  * @author Niklas Kaddatz
  */
-public class Game {
+public class Game implements Process{
 
     static {
         Game.reset();
@@ -120,7 +121,7 @@ public class Game {
         this.level = Level.getInstance();
 
         this.eventHandlerManager = new Timer();
-        this.eventHandlerManager.register(new WorkerProcess());
+        this.eventHandlerManager.register(this);
         this.eventHandlerManager.register(new RendererProcess());
 
     }
@@ -277,6 +278,125 @@ public class Game {
 
     public void increasePlayerLifes() {
         this.playerLifes++;
+    }
+
+    public boolean check() {
+        boolean performFurtherActions;
+
+        // Check whether level is completed
+        int pointsEaten = 0;
+
+        for (Point p : pointContainer) {
+            if (p.getState() == StaticTarget.State.EATEN) {
+                pointsEaten++;
+            }
+        }
+
+        int size = getPointContainer().size();
+
+        performFurtherActions = (pointsEaten != size) && (!isGameOver());
+
+        if (pointsEaten == size) {
+            Level.getInstance().nextLevel();
+        }
+
+        return performFurtherActions;
+    }
+
+    public void performCollisions() {
+        for (Pacman p : getPacmanContainer()) {
+            performCollision(p);
+        }
+    }
+
+    private boolean checkCoinSeconds = false;
+
+    private void performCollision(Pacman pac) {
+        MapObjectContainer mapObjectsOnPos = pac.getPosition().getOnPosition();
+
+        for (MapObject mO : mapObjectsOnPos.getAll()) {
+            if (mO instanceof StaticTarget) {
+                StaticTarget t = (StaticTarget) mO;
+                // An already eaten thing hasn't to be eaten again
+                if (t.getState() != StaticTarget.State.EATEN) {
+                    if (t instanceof Coin) {
+                        checkCoinSeconds = true;
+                    }
+                    pac.eat(t);
+                }
+            } else if (mO instanceof Ghost) {
+                Ghost g = (Ghost) mO;
+                if (g.getState() == DynamicTarget.State.HUNTED) {
+                    pac.eat(g);
+                } else if (g.getState() == DynamicTarget.State.HUNTER) {
+                    g.eat(pac);
+                }
+            }
+        }
+    }
+
+
+    public void handleCoins() {
+        double activeSeconds = Coin.getActiveSeconds();
+
+        if (activeSeconds != Coin.PACMAN_AINT_EATER) {
+            Coin.reduceActiveSeconds(1 / Game.getInstance().getRefreshRate());
+        }
+
+        if (checkCoinSeconds && Coin.getActiveSeconds() == Coin.PACMAN_AINT_EATER) {
+            for (Ghost g : Game.getInstance().getGhostContainer()) {
+                if (g.getState() == DynamicTarget.State.HUNTED) {
+                    g.changeState(DynamicTarget.State.HUNTER);
+                }
+            }
+
+            for (Pacman p : Game.getInstance().getPacmanContainer()) {
+                p.changeState(DynamicTarget.State.HUNTED);
+            }
+
+            checkCoinSeconds = false;
+        }
+    }
+
+    public void markDynamicObjectsForRendering() {
+        for(Pacman p : getInstance().getPacmanContainer()){
+            Map.positionsToRender.add(p.getPosition());
+        }
+        for(Ghost g : getInstance().getGhostContainer()){
+            Map.positionsToRender.add(g.getPosition());
+        }
+    }
+
+    @Override
+    public void onLoad() {
+    }
+
+    @Override
+    public long getTiming() {
+        return (long) (1000 / refreshRate);
+    }
+
+    @Override
+    public long getStartupDelay() {
+        return 0;
+    }
+
+    @Override
+    public void run() {
+        try {
+            if (this.check()) {
+                this.markDynamicObjectsForRendering();
+                this.handleCoins();
+                this.performCollisions();
+                this.getPacmanContainer().handlePacmans();
+                this.performCollisions(); // Must be done two times to prevent two objects moving through each other
+                this.getGhostContainer().handleGhosts();
+
+                this.markDynamicObjectsForRendering();
+            }
+        } catch (Throwable t) {
+            MainController.uncaughtExceptionHandler.uncaught(t);
+        }
     }
 
     public enum Mode {

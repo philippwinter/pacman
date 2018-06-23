@@ -172,6 +172,51 @@ public class Ghost extends DynamicTarget implements Scorable {
         return false;
     }
 
+    public void handleGhost() {
+        Position newPosition = Map.getPositionByDirectionIfMovableTo(getPosition(), getHeadingTo());
+
+        // If the Ghost stands in front of a wall OR it could take another way
+        if (newPosition == null || (Map.freeNeighbourFields(getPosition()) > 1 && Math.round(Math.random()) == 1)) {
+            Map.Direction guessedDirection = Map.Direction.guessDirection(this);
+            setHeadingTo(guessedDirection);
+            newPosition = Map.getPositionByDirectionIfMovableTo(getPosition(), guessedDirection);
+        }
+
+
+        if (getState() == State.HUNTER) {
+            move(newPosition);
+        } else if (getState() == State.MUNCHED) {
+            changeState(State.WAITING);
+        } else if (getState() == State.WAITING) {
+            if (getWaitingSeconds() > 0) {
+                reduceWaitingSeconds(1 / Game.getInstance().getRefreshRate());
+            } else if (getWaitingSeconds() == 0) {
+                Map.StartingPosition startingPositions = Map.startingPositions;
+                switch (getColour()) {
+                    case RED:
+                        move(startingPositions.GHOST_RED);
+                        break;
+                    case BLUE:
+                        move(startingPositions.GHOST_BLUE);
+                        break;
+                    case ORANGE:
+                        move(startingPositions.GHOST_ORANGE);
+                        break;
+                    case PINK:
+                        move(startingPositions.GHOST_PINK);
+                }
+                changeState(State.HUNTER);
+            }
+        } else if (getState() == State.HUNTED) {
+            if (getMovedInLastTurn()) {
+                setMovedInLastTurn(false);
+            } else {
+                move(newPosition);
+                setMovedInLastTurn(true);
+            }
+        }
+    }
+
     public enum Colour {
 
         RED, PINK, BLUE, ORANGE

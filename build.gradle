@@ -1,9 +1,11 @@
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
 apply plugin: 'jacoco'
+apply plugin: 'application'
 
 sourceCompatibility = 1.7
 version = '0.1'
+mainClassName = "controller.MainController"
 
 jar {
     manifest {

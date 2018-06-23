@@ -25,3 +25,4 @@ doc/
 # Logging and Debug files #
 *.log
 *.debug
+/bin/

@@ -155,4 +155,10 @@ public class GhostContainer implements Container<Ghost> {
         return this.ghosts.contains(g);
     }
 
+    public void handleGhosts() {
+        for (Ghost g : this.ghosts) {
+            g.handleGhost();
+        }
+    }
+
 }

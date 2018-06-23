@@ -113,6 +113,18 @@ public class Pacman extends DynamicTarget {
         return sex;
     }
 
+    public void handlePacman() {
+        if (getState() != State.MUNCHED && getState() != State.WAITING) {
+            Position newPosition = Map.getPositionByDirectionIfMovableTo(getPosition(), getHeadingTo());
+
+            if (newPosition != null) {
+                move(newPosition);
+            }
+        }
+
+        Map.positionsToRender.add(getPosition());
+    }
+
     public enum Sex {
         MALE, FEMALE
     }
