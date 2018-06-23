@@ -64,11 +64,11 @@ public class GhostTest {
     public void testEat() {
         Pacman p = new Pacman(Pacman.Sex.MALE);
         p.move(pos);
-        assertSame(DynamicTarget.State.HUNTER, instance.getState());
-        assertSame(DynamicTarget.State.HUNTED, p.getState());
+        assertSame(DynamicObject.State.HUNTER, instance.getState());
+        assertSame(DynamicObject.State.HUNTED, p.getState());
         instance.eat(p);
-        assertSame(DynamicTarget.State.HUNTER, instance.getState());
-        assertSame(DynamicTarget.State.HUNTED, p.getState());
+        assertSame(DynamicObject.State.HUNTER, instance.getState());
+        assertSame(DynamicObject.State.HUNTED, p.getState());
         // As our Pacman gets immediately respawned, it won't have a different state
     }
 

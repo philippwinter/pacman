@@ -15,6 +15,6 @@ package model;
  */
 public interface Scorable {
 
-    public int getScore();
+    int getScore();
 
 }

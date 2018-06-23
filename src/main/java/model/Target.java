@@ -13,8 +13,8 @@ package model;
  * @author Jonas Heidecke
  * @author Niklas Kaddatz
  */
-public abstract class Target extends MapObject {
+public interface Target {
 
-    public abstract void gotEaten();
+    void gotEaten();
 
 }

@@ -13,7 +13,7 @@ package model;
  * @author Jonas Heidecke
  * @author Niklas Kaddatz
  */
-public abstract class StaticTarget extends Target {
+public abstract class StaticTarget extends MapObject implements Target {
 
     protected State state;
 

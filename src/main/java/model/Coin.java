@@ -68,11 +68,11 @@ public class Coin extends StaticTarget implements Scorable {
                 Coin.activeSeconds += SECONDS_PER_COIN;
             }
             for (Pacman p : Game.getInstance().getPacmanContainer()) {
-                p.changeState(DynamicTarget.State.HUNTER);
+                p.changeState(DynamicObject.State.HUNTER);
             }
             for (Ghost g : Game.getInstance().getGhostContainer()) {
-                if (g.getState() == DynamicTarget.State.HUNTER) {
-                    g.changeState(DynamicTarget.State.HUNTED);
+                if (g.getState() == DynamicObject.State.HUNTER) {
+                    g.changeState(DynamicObject.State.HUNTED);
                 }
             }
         } else if (state == State.AVAILABLE) {

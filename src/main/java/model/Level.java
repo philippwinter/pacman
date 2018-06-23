@@ -46,11 +46,11 @@ public class Level {
         Game.getInstance().changeRefreshRate(this);
 
         for (Ghost g : Game.getInstance().getGhostContainer()) {
-            g.changeState(DynamicTarget.State.HUNTER);
+            g.changeState(DynamicObject.State.HUNTER);
         }
 
         for (Pacman p : Game.getInstance().getPacmanContainer()) {
-            p.changeState(DynamicTarget.State.HUNTED);
+            p.changeState(DynamicObject.State.HUNTED);
         }
 
         Map.getInstance().onNextLevel();

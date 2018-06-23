@@ -287,6 +287,11 @@ public class Game implements Process{
     }
 
     public void onPacmanGotEaten() {
+
+        reducePLayerLifes();
+        if (getPlayerLifes() <= 0)
+            gameOver();
+
         this.replaceDinamicObjects();
     }
 
@@ -340,10 +345,10 @@ public class Game implements Process{
                 }
             } else if (mO instanceof Ghost) {
                 Ghost g = (Ghost) mO;
-                if (g.getState() == DynamicTarget.State.HUNTED) {
+                if (g.getState() == DynamicObject.State.HUNTED) {
                     pac.eat(g);
-                } else if (g.getState() == DynamicTarget.State.HUNTER) {
-                    g.eat(pac);
+                } else if (g.getState() == DynamicObject.State.HUNTER) {
+                    onPacmanGotEaten();
                 }
             }
         }
@@ -359,13 +364,13 @@ public class Game implements Process{
 
         if (checkCoinSeconds && Coin.getActiveSeconds() == Coin.PACMAN_AINT_EATER) {
             for (Ghost g : Game.getInstance().getGhostContainer()) {
-                if (g.getState() == DynamicTarget.State.HUNTED) {
-                    g.changeState(DynamicTarget.State.HUNTER);
+                if (g.getState() == DynamicObject.State.HUNTED) {
+                    g.changeState(DynamicObject.State.HUNTER);
                 }
             }
 
             for (Pacman p : Game.getInstance().getPacmanContainer()) {
-                p.changeState(DynamicTarget.State.HUNTED);
+                p.changeState(DynamicObject.State.HUNTED);
             }
 
             checkCoinSeconds = false;

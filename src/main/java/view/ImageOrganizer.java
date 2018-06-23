@@ -48,12 +48,12 @@ public class ImageOrganizer {
 
         if (mO instanceof Ghost) {
             Ghost g = (Ghost) mO;
-            if (g.getState() == DynamicTarget.State.HUNTER) {
+            if (g.getState() == DynamicObject.State.HUNTER) {
                 key += ">" + g.getColour();
                 key += ">" + g.getHeadingTo();
-            } else if (g.getState() == DynamicTarget.State.HUNTED) {
+            } else if (g.getState() == DynamicObject.State.HUNTED) {
                 key = Ghost.class.getCanonicalName() + ">SCARE>" + (g.getMovedInLastTurn() ? "BLUE" : "WHITE");
-            } else if (g.getState() == DynamicTarget.State.WAITING) {
+            } else if (g.getState() == DynamicObject.State.WAITING) {
                 key = Ghost.class.getCanonicalName() + ">SCARE>" + "BLUE";
             }
         }
