@@ -10,6 +10,7 @@ package model;
 
 import model.Ghost.Ghost;
 import model.Map.Direction;
+import model.pacman.Pacman;
 
 /**
  * The parent class of all MapObjects that can move by themselves.

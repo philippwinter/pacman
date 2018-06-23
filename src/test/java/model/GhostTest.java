@@ -11,6 +11,7 @@ package model;
 import controller.MainController;
 import model.Ghost.Ghost;
 import model.Ghost.GhostFactory;
+import model.pacman.Pacman;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -61,8 +62,8 @@ public class GhostTest {
 
     @Test
     public void testEat() {
-        Pacman p = new Pacman(pos, Pacman.Sex.MALE);
-
+        Pacman p = new Pacman(Pacman.Sex.MALE);
+        p.move(pos);
         assertSame(DynamicTarget.State.HUNTER, instance.getState());
         assertSame(DynamicTarget.State.HUNTED, p.getState());
         instance.eat(p);

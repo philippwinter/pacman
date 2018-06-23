@@ -10,9 +10,9 @@ package model;
 
 import model.Ghost.Blinky;
 import model.Ghost.Ghost;
-import model.Ghost.Ghost.Colour;
 import model.Ghost.Pinky;
 import model.Map.Direction;
+import model.pacman.Pacman;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -37,7 +37,7 @@ public class MapObjectContainerTest {
     public void setUp() {
         this.pos = Map.getInstance().getPositionContainer().get(1, 1);
         this.otherPos = Map.getPositionByDirectionIfMovableTo(pos, Direction.EAST);
-        this.pac = new Pacman(pos, Pacman.Sex.MALE);
+        this.pac = new Pacman(Pacman.Sex.MALE);
         this.ghost = new Pinky(pos);
         this.instance = pos.getOnPosition();
     }
@@ -61,7 +61,7 @@ public class MapObjectContainerTest {
 
     @Test
     public void testAdd() {
-        new Pacman(pos, Pacman.Sex.MALE);
+        new Pacman(Pacman.Sex.MALE);
     }
 
     @Test

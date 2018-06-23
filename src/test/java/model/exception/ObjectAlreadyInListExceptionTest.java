@@ -8,7 +8,7 @@
 
 package model.exception;
 
-import model.Pacman;
+import model.pacman.Pacman;
 import model.PacmanContainer;
 import model.Position;
 import org.junit.Test;
@@ -24,7 +24,7 @@ public class ObjectAlreadyInListExceptionTest {
 
     @Test(expected = ObjectAlreadyInListException.class)
     public void testConstruct() {
-        Pacman p = new Pacman(new Position(0, 0), Pacman.Sex.MALE);
+        Pacman p = new Pacman(Pacman.Sex.MALE);
         PacmanContainer pC = new PacmanContainer();
 
         // Add the same object two times to cause the expected exception to be thrown.

@@ -10,6 +10,7 @@ package view;
 
 import model.*;
 import model.Ghost.*;
+import model.pacman.Pacman;
 
 import javax.imageio.ImageIO;
 import java.awt.geom.AffineTransform;

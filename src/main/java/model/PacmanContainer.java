@@ -10,6 +10,7 @@ package model;
 
 import model.exception.ListFullException;
 import model.exception.ObjectAlreadyInListException;
+import model.pacman.Pacman;
 
 import java.util.Vector;
 import java.util.Iterator;

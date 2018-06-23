@@ -14,6 +14,7 @@ import model.Ghost.GhostFactory;
 import model.event.Process;
 import model.event.RendererProcess;
 import model.event.Timer;
+import model.pacman.Pacman;
 
 /**
  * The Game class is kind of a <i>master</i>-class, organizing all other business logic objects.
@@ -219,11 +220,16 @@ public class Game implements Process{
         if(pointContainer.size() == 0){
 
             // --------- GHOSTS ---------
-            GhostContainer gC = getGhostContainer();
-            gC.add(GhostFactory.createGhost(Ghost.Colour.BLUE));
-            gC.add(GhostFactory.createGhost(Ghost.Colour.RED));
-            gC.add(GhostFactory.createGhost(Ghost.Colour.ORANGE));
-            gC.add(GhostFactory.createGhost(Ghost.Colour.PINK));
+
+            ghostContainer.add(GhostFactory.createGhost(Ghost.Colour.BLUE));
+            ghostContainer.add(GhostFactory.createGhost(Ghost.Colour.RED));
+            ghostContainer.add(GhostFactory.createGhost(Ghost.Colour.ORANGE));
+            ghostContainer.add(GhostFactory.createGhost(Ghost.Colour.PINK));
+
+            pacmanContainer.add(new Pacman(Pacman.Sex.MALE));
+
+            if (Settings.getInstance().getGameMode() == Mode.MULTIPLAYER)
+                pacmanContainer.add(new Pacman(Pacman.Sex.FEMALE));
 
             this.map.placeObjects();
         }
@@ -281,7 +287,7 @@ public class Game implements Process{
     }
 
     public void onPacmanGotEaten() {
-        Map.getInstance().onPacmanGotEaten();
+        this.replaceDinamicObjects();
     }
 
     public void increasePlayerLifes() {
@@ -407,9 +413,12 @@ public class Game implements Process{
         }
     }
 
-    public void onNextLevel() {
+    public void replaceDinamicObjects() {
         for (Ghost g: Game.getInstance().getGhostContainer())
             g.replace();
+
+        for (Pacman p: Game.getInstance().getPacmanContainer())
+            p.replace();
     }
 
         public enum Mode {

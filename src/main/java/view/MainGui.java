@@ -10,6 +10,7 @@ package view;
 
 import controller.MainController;
 import model.*;
+import model.pacman.Pacman;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

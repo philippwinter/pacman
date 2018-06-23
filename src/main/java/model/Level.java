@@ -9,6 +9,7 @@
 package model;
 
 import model.Ghost.Ghost;
+import model.pacman.Pacman;
 
 /**
  * @author Philipp Winter
@@ -53,7 +54,7 @@ public class Level {
         }
 
         Map.getInstance().onNextLevel();
-        Game.getInstance().onNextLevel();
+        Game.getInstance().replaceDinamicObjects();
         Game.getInstance().getEventHandlerManager().restartExecution();
     }
 

@@ -10,6 +10,7 @@ package view;
 
 import controller.MainController;
 import model.*;
+import model.pacman.Pacman;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

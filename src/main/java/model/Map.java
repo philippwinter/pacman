@@ -8,6 +8,8 @@
 
 package model;
 
+import model.pacman.Pacman;
+
 /**
  * @author Philipp Winter
  * @author Jonas Heidecke
@@ -110,27 +112,10 @@ public class Map {
     }
 
     public void placeObjects() {
-        placeDynamicObjects();
         placeStaticObjects();
         spawnStaticTargets();
 
         this.markAllForRendering();
-    }
-
-    private void placeDynamicObjects() {
-        Game g = Game.getInstance();
-
-        // --------- PACMANS ---------
-        PacmanContainer pacC = g.getPacmanContainer();
-
-        pacC.add(new Pacman(startingPositions.PACMAN_MALE, Pacman.Sex.MALE));
-
-        if (Settings.getInstance().getGameMode() == Game.Mode.MULTIPLAYER) {
-            pacC.add(new Pacman(startingPositions.PACMAN_FEMALE, Pacman.Sex.FEMALE));
-        }
-
-        //Ghost have move in Game.
-
     }
 
     private void placeStaticObjects() {
@@ -339,8 +324,6 @@ public class Map {
 
     public void onNextLevel() {
 
-        this.replaceDynamicObjects();
-
 
         for(Coin c : Game.getInstance().getCoinContainer()){
             if(c.getState() == StaticTarget.State.EATEN) {
@@ -357,7 +340,7 @@ public class Map {
     }
 
     public void onPacmanGotEaten() {
-        this.replaceDynamicObjects();
+
     }
 
     public static class StartingPosition {
@@ -369,24 +352,6 @@ public class Map {
 
         public final Position PACMAN_MALE = Map.getInstance().positionContainer.get(13, 8);
         public final Position PACMAN_FEMALE = Map.getInstance().positionContainer.get(6, 8);
-
-    }
-
-    private void replaceDynamicObjects() {
-
-        PacmanContainer pC = Game.getInstance().getPacmanContainer();
-
-        for(Pacman p : pC) {
-            switch(p.getSex()) {
-                case MALE:
-                    p.move(startingPositions.PACMAN_MALE);
-                    break;
-                case FEMALE:
-                    p.move(startingPositions.PACMAN_FEMALE);
-                    break;
-            }
-            positionsToRender.add(p.getPosition());
-        }
 
     }
 
