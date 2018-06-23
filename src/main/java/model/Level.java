@@ -8,6 +8,8 @@
 
 package model;
 
+import model.Ghost.Ghost;
+
 /**
  * @author Philipp Winter
  * @author Jonas Heidecke

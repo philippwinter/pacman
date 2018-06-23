@@ -9,11 +9,12 @@
 package model;
 
 import controller.MainController;
+import model.Ghost.Ghost;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static model.Ghost.Colour;
+import static model.Ghost.Ghost.Colour;
 import static org.junit.Assert.*;
 
 /**

@@ -8,6 +8,7 @@
 
 package model;
 
+import model.Ghost.Ghost;
 import model.Map.Direction;
 
 /**

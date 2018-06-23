@@ -9,11 +9,10 @@
 package model;
 
 import controller.MainController;
+import model.Ghost.Ghost;
 import model.event.Process;
 import model.event.RendererProcess;
 import model.event.Timer;
-import model.event.WorkerProcess;
-import view.MainGui;
 
 /**
  * The Game class is kind of a <i>master</i>-class, organizing all other business logic objects.

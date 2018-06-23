@@ -8,6 +8,7 @@
 
 package model;
 
+import model.Ghost.Ghost;
 import model.exception.ListFullException;
 import model.exception.ObjectAlreadyInListException;
 

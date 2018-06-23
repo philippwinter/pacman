@@ -9,6 +9,7 @@
 package view;
 
 import model.*;
+import model.Ghost.*;
 
 import javax.imageio.ImageIO;
 import java.awt.geom.AffineTransform;
@@ -50,9 +51,9 @@ public class ImageOrganizer {
                 key += ">" + g.getColour();
                 key += ">" + g.getHeadingTo();
             } else if (g.getState() == DynamicTarget.State.HUNTED) {
-                key += ">SCARE>" + (g.getMovedInLastTurn() ? "BLUE" : "WHITE");
+                key = Ghost.class.getCanonicalName() + ">SCARE>" + (g.getMovedInLastTurn() ? "BLUE" : "WHITE");
             } else if (g.getState() == DynamicTarget.State.WAITING) {
-                key += ">SCARE>" + "BLUE";
+                key = Ghost.class.getCanonicalName() + ">SCARE>" + "BLUE";
             }
         }
 
@@ -102,58 +103,58 @@ public class ImageOrganizer {
 
         // BLINKY
         data.add(
-                new String[]{"/graphics/resized/ghosts/blinky/0.png", Ghost.class.getCanonicalName() + ">RED" + ">WEST"}
+                new String[]{"/graphics/resized/ghosts/blinky/0.png", Blinky.class.getCanonicalName() + ">RED" + ">WEST"}
         );
         data.add(
-                new String[]{"/graphics/resized/ghosts/blinky/2.png", Ghost.class.getCanonicalName() + ">RED" + ">NORTH"}
+                new String[]{"/graphics/resized/ghosts/blinky/2.png", Blinky.class.getCanonicalName() + ">RED" + ">NORTH"}
         );
         data.add(
-                new String[]{"/graphics/resized/ghosts/blinky/4.png", Ghost.class.getCanonicalName() + ">RED" + ">EAST"}
+                new String[]{"/graphics/resized/ghosts/blinky/4.png", Blinky.class.getCanonicalName() + ">RED" + ">EAST"}
         );
         data.add(
-                new String[]{"/graphics/resized/ghosts/blinky/6.png", Ghost.class.getCanonicalName() + ">RED" + ">SOUTH"}
+                new String[]{"/graphics/resized/ghosts/blinky/6.png", Blinky.class.getCanonicalName() + ">RED" + ">SOUTH"}
         );
 
         // CLYDE
         data.add(
-                new String[]{"/graphics/resized/ghosts/clyde/0.png", Ghost.class.getCanonicalName() + ">ORANGE" + ">WEST"}
+                new String[]{"/graphics/resized/ghosts/clyde/0.png", Clyde.class.getCanonicalName() + ">ORANGE" + ">WEST"}
         );
         data.add(
-                new String[]{"/graphics/resized/ghosts/clyde/2.png", Ghost.class.getCanonicalName() + ">ORANGE" + ">NORTH"}
+                new String[]{"/graphics/resized/ghosts/clyde/2.png", Clyde.class.getCanonicalName() + ">ORANGE" + ">NORTH"}
         );
         data.add(
-                new String[]{"/graphics/resized/ghosts/clyde/4.png", Ghost.class.getCanonicalName() + ">ORANGE" + ">EAST"}
+                new String[]{"/graphics/resized/ghosts/clyde/4.png", Clyde.class.getCanonicalName() + ">ORANGE" + ">EAST"}
         );
         data.add(
-                new String[]{"/graphics/resized/ghosts/clyde/6.png", Ghost.class.getCanonicalName() + ">ORANGE" + ">SOUTH"}
+                new String[]{"/graphics/resized/ghosts/clyde/6.png", Clyde.class.getCanonicalName() + ">ORANGE" + ">SOUTH"}
         );
 
         // INKY
         data.add(
-                new String[]{"/graphics/resized/ghosts/inky/0.png", Ghost.class.getCanonicalName() + ">BLUE" + ">WEST"}
+                new String[]{"/graphics/resized/ghosts/inky/0.png", Inky.class.getCanonicalName() + ">BLUE" + ">WEST"}
         );
         data.add(
-                new String[]{"/graphics/resized/ghosts/inky/2.png", Ghost.class.getCanonicalName() + ">BLUE" + ">NORTH"}
+                new String[]{"/graphics/resized/ghosts/inky/2.png", Inky.class.getCanonicalName() + ">BLUE" + ">NORTH"}
         );
         data.add(
-                new String[]{"/graphics/resized/ghosts/inky/4.png", Ghost.class.getCanonicalName() + ">BLUE" + ">EAST"}
+                new String[]{"/graphics/resized/ghosts/inky/4.png", Inky.class.getCanonicalName() + ">BLUE" + ">EAST"}
         );
         data.add(
-                new String[]{"/graphics/resized/ghosts/inky/6.png", Ghost.class.getCanonicalName() + ">BLUE" + ">SOUTH"}
+                new String[]{"/graphics/resized/ghosts/inky/6.png", Inky.class.getCanonicalName() + ">BLUE" + ">SOUTH"}
         );
 
         // PINKY
         data.add(
-                new String[]{"/graphics/resized/ghosts/pinky/0.png", Ghost.class.getCanonicalName() + ">PINK" + ">WEST"}
+                new String[]{"/graphics/resized/ghosts/pinky/0.png", Pinky.class.getCanonicalName() + ">PINK" + ">WEST"}
         );
         data.add(
-                new String[]{"/graphics/resized/ghosts/pinky/2.png", Ghost.class.getCanonicalName() + ">PINK" + ">NORTH"}
+                new String[]{"/graphics/resized/ghosts/pinky/2.png", Pinky.class.getCanonicalName() + ">PINK" + ">NORTH"}
         );
         data.add(
-                new String[]{"/graphics/resized/ghosts/pinky/4.png", Ghost.class.getCanonicalName() + ">PINK" + ">EAST"}
+                new String[]{"/graphics/resized/ghosts/pinky/4.png", Pinky.class.getCanonicalName() + ">PINK" + ">EAST"}
         );
         data.add(
-                new String[]{"/graphics/resized/ghosts/pinky/6.png", Ghost.class.getCanonicalName() + ">PINK" + ">SOUTH"}
+                new String[]{"/graphics/resized/ghosts/pinky/6.png", Pinky.class.getCanonicalName() + ">PINK" + ">SOUTH"}
         );
 
         // COIN

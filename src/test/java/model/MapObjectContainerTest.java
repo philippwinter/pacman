@@ -8,7 +8,8 @@
 
 package model;
 
-import model.Ghost.Colour;
+import model.Ghost.Ghost;
+import model.Ghost.Ghost.Colour;
 import model.Map.Direction;
 import org.junit.Before;
 import org.junit.Test;

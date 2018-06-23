@@ -8,6 +8,8 @@
 
 package model;
 
+import model.Ghost.Ghost;
+
 /**
  * A coin represents the object our Pacman has to eat in order to be able to hunt the ghosts.
  *

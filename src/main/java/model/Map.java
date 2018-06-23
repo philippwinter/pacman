@@ -8,6 +8,9 @@
 
 package model;
 
+import model.Ghost.Ghost;
+import model.Ghost.GhostFactory;
+
 /**
  * @author Philipp Winter
  * @author Jonas Heidecke
@@ -131,10 +134,11 @@ public class Map {
 
         // --------- GHOSTS ---------
         GhostContainer gC = g.getGhostContainer();
-        gC.add(new Ghost(positionContainer.get(8, 3), Ghost.Colour.BLUE));
-        gC.add(new Ghost(positionContainer.get(9, 3), Ghost.Colour.ORANGE));
-        gC.add(new Ghost(positionContainer.get(10, 3), Ghost.Colour.PINK));
-        gC.add(new Ghost(positionContainer.get(11, 3), Ghost.Colour.RED));
+        gC.add(GhostFactory.createGhost(Ghost.Colour.BLUE));
+        gC.add(GhostFactory.createGhost(Ghost.Colour.RED));
+        gC.add(GhostFactory.createGhost(Ghost.Colour.ORANGE));
+        gC.add(GhostFactory.createGhost(Ghost.Colour.PINK));
+
     }
 
     private void placeStaticObjects() {

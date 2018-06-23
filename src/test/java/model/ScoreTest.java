@@ -9,6 +9,7 @@
 package model;
 
 import controller.MainController;
+import model.Ghost.Ghost;
 import org.junit.Before;
 import org.junit.Test;
 
