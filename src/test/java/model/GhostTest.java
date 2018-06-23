@@ -10,6 +10,7 @@ package model;
 
 import controller.MainController;
 import model.Ghost.Ghost;
+import model.Ghost.GhostFactory;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,7 +34,7 @@ public class GhostTest {
     public void setUp() {
         MainController.reset();
         this.pos = Map.getInstance().getPositionContainer().get(0, 0);
-        this.instance = new Ghost(pos, Colour.RED);
+        this.instance = GhostFactory.createGhost(Colour.RED);
     }
 
     @After

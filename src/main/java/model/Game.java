@@ -10,6 +10,7 @@ package model;
 
 import controller.MainController;
 import model.Ghost.Ghost;
+import model.Ghost.GhostFactory;
 import model.event.Process;
 import model.event.RendererProcess;
 import model.event.Timer;
@@ -216,6 +217,14 @@ public class Game implements Process{
      */
     public void start() {
         if(pointContainer.size() == 0){
+
+            // --------- GHOSTS ---------
+            GhostContainer gC = getGhostContainer();
+            gC.add(GhostFactory.createGhost(Ghost.Colour.BLUE));
+            gC.add(GhostFactory.createGhost(Ghost.Colour.RED));
+            gC.add(GhostFactory.createGhost(Ghost.Colour.ORANGE));
+            gC.add(GhostFactory.createGhost(Ghost.Colour.PINK));
+
             this.map.placeObjects();
         }
         this.eventHandlerManager.startExecution();
@@ -398,7 +407,12 @@ public class Game implements Process{
         }
     }
 
-    public enum Mode {
+    public void onNextLevel() {
+        for (Ghost g: Game.getInstance().getGhostContainer())
+            g.replace();
+    }
+
+        public enum Mode {
         SINGLEPLAYER, MULTIPLAYER
     }
 }

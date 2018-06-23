@@ -8,9 +8,6 @@
 
 package model;
 
-import model.Ghost.Ghost;
-import model.Ghost.GhostFactory;
-
 /**
  * @author Philipp Winter
  * @author Jonas Heidecke
@@ -132,12 +129,7 @@ public class Map {
             pacC.add(new Pacman(startingPositions.PACMAN_FEMALE, Pacman.Sex.FEMALE));
         }
 
-        // --------- GHOSTS ---------
-        GhostContainer gC = g.getGhostContainer();
-        gC.add(GhostFactory.createGhost(Ghost.Colour.BLUE));
-        gC.add(GhostFactory.createGhost(Ghost.Colour.RED));
-        gC.add(GhostFactory.createGhost(Ghost.Colour.ORANGE));
-        gC.add(GhostFactory.createGhost(Ghost.Colour.PINK));
+        //Ghost have move in Game.
 
     }
 
@@ -346,7 +338,9 @@ public class Map {
     }
 
     public void onNextLevel() {
+
         this.replaceDynamicObjects();
+
 
         for(Coin c : Game.getInstance().getCoinContainer()){
             if(c.getState() == StaticTarget.State.EATEN) {
@@ -379,22 +373,6 @@ public class Map {
     }
 
     private void replaceDynamicObjects() {
-        GhostContainer gC = Game.getInstance().getGhostContainer();
-
-        for(Ghost g : gC) {
-            switch(g.getColour()) {
-                case RED: g.move(startingPositions.GHOST_RED);
-                    break;
-                case PINK: g.move(startingPositions.GHOST_PINK);
-                    break;
-                case BLUE: g.move(startingPositions.GHOST_BLUE);
-                    break;
-                case ORANGE: g.move(startingPositions.GHOST_ORANGE);
-                    break;
-                default:
-                    throw new RuntimeException("Bla");
-            }
-        }
 
         PacmanContainer pC = Game.getInstance().getPacmanContainer();
 

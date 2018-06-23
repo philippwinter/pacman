@@ -53,6 +53,7 @@ public class Level {
         }
 
         Map.getInstance().onNextLevel();
+        Game.getInstance().onNextLevel();
         Game.getInstance().getEventHandlerManager().restartExecution();
     }
 

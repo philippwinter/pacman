@@ -8,8 +8,10 @@
 
 package model;
 
+import model.Ghost.Blinky;
 import model.Ghost.Ghost;
 import model.Ghost.Ghost.Colour;
+import model.Ghost.Pinky;
 import model.Map.Direction;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,7 +38,7 @@ public class MapObjectContainerTest {
         this.pos = Map.getInstance().getPositionContainer().get(1, 1);
         this.otherPos = Map.getPositionByDirectionIfMovableTo(pos, Direction.EAST);
         this.pac = new Pacman(pos, Pacman.Sex.MALE);
-        this.ghost = new Ghost(pos, Colour.PINK);
+        this.ghost = new Pinky(pos);
         this.instance = pos.getOnPosition();
     }
 
@@ -71,6 +73,6 @@ public class MapObjectContainerTest {
     public void testContains() {
         assertTrue(instance.contains(pac));
         assertTrue(instance.contains(ghost));
-        assertFalse(instance.contains(new Ghost(otherPos, Colour.RED)));
+        assertFalse(instance.contains(new Blinky(otherPos)));
     }
 }

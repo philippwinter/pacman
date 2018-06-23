@@ -3,10 +3,8 @@ package model.Ghost;
 import model.Position;
 
 public class Inky extends Ghost {
-    public Inky(Position pos, Colour colour) {
-        super(pos, colour);
-
+    public Inky(Position pos) {
+        super(pos, Colour.BLUE);
         name = "Inky";
-
     }
 }

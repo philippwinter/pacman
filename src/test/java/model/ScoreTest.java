@@ -10,6 +10,7 @@ package model;
 
 import controller.MainController;
 import model.Ghost.Ghost;
+import model.Ghost.Inky;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -46,7 +47,7 @@ public class ScoreTest {
     @Test
     public void testAddToScore() {
         assertEquals(0, instance.getScore());
-        Ghost g = new Ghost(pos, Ghost.Colour.BLUE);
+        Ghost g = new Inky(pos);
         instance.addToScore(g);
         assertEquals(g.getScore(), instance.getScore());
     }

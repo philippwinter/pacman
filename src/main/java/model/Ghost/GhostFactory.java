@@ -13,16 +13,16 @@ public class GhostFactory {
         switch (colour){
             case RED:
                 position = map.getPositionContainer().get(11, 3);
-                return new Blinky(position,colour);
+                return new Blinky(position);
             case PINK:
                 position = map.getPositionContainer().get(10, 3);
-                return new Pinky(position,colour);
+                return new Pinky(position);
             case ORANGE:
                 position = map.getPositionContainer().get(9, 3);
-                return new Clyde(position,colour);
+                return new Clyde(position);
             case BLUE:
                 position = map.getPositionContainer().get(8, 3);
-                return  new Inky(position, colour);
+                return  new Inky(position);
             default: return null; // TODO: ADD exception;
         }
     }
