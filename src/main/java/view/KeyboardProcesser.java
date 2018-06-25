@@ -72,7 +72,7 @@ public class KeyboardProcesser implements KeyListener {
                     break;
             }
 
-            if (Settings.getInstance().getGameMode() == Game.Mode.MULTIPLAYER) {
+            if (Settings.getInstance().getGameMode() == Game.PlayerMode.MULTIPLAYER) {
                 if (mrsPacman == null) {
                     throw new RuntimeException("Couldn't find Mrs. Pacman");
                 }

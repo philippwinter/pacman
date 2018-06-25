@@ -67,13 +67,8 @@ public class Coin extends StaticTarget implements Scorable {
             } else {
                 Coin.activeSeconds += SECONDS_PER_COIN;
             }
-            for (Pacman p : Game.getInstance().getPacmanContainer()) {
-                p.changeState(DynamicObject.State.HUNTER);
-            }
             for (Ghost g : Game.getInstance().getGhostContainer()) {
-                if (g.getState() == DynamicObject.State.HUNTER) {
-                    g.changeState(DynamicObject.State.HUNTED);
-                }
+                g.frightened(activeSeconds);
             }
         } else if (state == State.AVAILABLE) {
             setVisible(true);
@@ -108,7 +103,8 @@ public class Coin extends StaticTarget implements Scorable {
     }
 
     public void gotEaten() {
-        this.changeState(State.EATEN);
+        if (this.state == State.AVAILABLE)
+            this.changeState(State.EATEN);
     }
 
     @Override

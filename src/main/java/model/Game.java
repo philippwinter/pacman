@@ -124,7 +124,6 @@ public class Game implements Process{
         this.eventHandlerManager = new Timer();
         this.eventHandlerManager.register(this);
         this.eventHandlerManager.register(new RendererProcess());
-
     }
 
     /**
@@ -228,7 +227,7 @@ public class Game implements Process{
 
             pacmanContainer.add(new Pacman(Pacman.Sex.MALE));
 
-            if (Settings.getInstance().getGameMode() == Mode.MULTIPLAYER)
+            if (Settings.getInstance().getGameMode() == PlayerMode.MULTIPLAYER)
                 pacmanContainer.add(new Pacman(Pacman.Sex.FEMALE));
 
             this.map.placeObjects();
@@ -288,6 +287,8 @@ public class Game implements Process{
 
     public void onPacmanGotEaten() {
 
+        System.out.println("okokok");
+
         reducePLayerLifes();
         if (getPlayerLifes() <= 0)
             gameOver();
@@ -334,22 +335,10 @@ public class Game implements Process{
         MapObjectContainer mapObjectsOnPos = pac.getPosition().getOnPosition();
 
         for (MapObject mO : mapObjectsOnPos.getAll()) {
-            if (mO instanceof StaticTarget) {
-                StaticTarget t = (StaticTarget) mO;
-                // An already eaten thing hasn't to be eaten again
-                if (t.getState() != StaticTarget.State.EATEN) {
-                    if (t instanceof Coin) {
-                        checkCoinSeconds = true;
-                    }
-                    pac.eat(t);
-                }
-            } else if (mO instanceof Ghost) {
-                Ghost g = (Ghost) mO;
-                if (g.getState() == DynamicObject.State.HUNTED) {
-                    pac.eat(g);
-                } else if (g.getState() == DynamicObject.State.HUNTER) {
-                    onPacmanGotEaten();
-                }
+            if (mO instanceof Target){
+                ((Target) mO).gotEaten();
+            } else if (mO instanceof Ghost){
+                ((Ghost) mO).gotEaten();
             }
         }
     }
@@ -364,13 +353,9 @@ public class Game implements Process{
 
         if (checkCoinSeconds && Coin.getActiveSeconds() == Coin.PACMAN_AINT_EATER) {
             for (Ghost g : Game.getInstance().getGhostContainer()) {
-                if (g.getState() == DynamicObject.State.HUNTED) {
-                    g.changeState(DynamicObject.State.HUNTER);
+                if (g.getState() == Ghost.State.HUNTED) {
+                    g.changeState(Ghost.State.HUNTER);
                 }
-            }
-
-            for (Pacman p : Game.getInstance().getPacmanContainer()) {
-                p.changeState(DynamicObject.State.HUNTED);
             }
 
             checkCoinSeconds = false;
@@ -426,7 +411,8 @@ public class Game implements Process{
             p.replace();
     }
 
-        public enum Mode {
+    public enum PlayerMode {
         SINGLEPLAYER, MULTIPLAYER
     }
+
 }

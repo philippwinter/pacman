@@ -44,7 +44,8 @@ public class Point extends StaticTarget implements Scorable {
 
     @Override
     public void gotEaten() {
-        this.changeState(State.EATEN);
+        if (this.state == State.AVAILABLE)
+            this.changeState(State.EATEN);
     }
 
     public String toString() {

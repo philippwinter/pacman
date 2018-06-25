@@ -15,7 +15,7 @@ package model;
  */
 public class Settings {
 
-    private Game.Mode gameMode = Game.Mode.SINGLEPLAYER;
+    private Game.PlayerMode gameMode = Game.PlayerMode.SINGLEPLAYER;
 
     private static Settings instance = new Settings();
 
@@ -31,11 +31,11 @@ public class Settings {
         Settings.instance = instance;
     }
 
-    public Game.Mode getGameMode() {
+    public Game.PlayerMode getGameMode() {
         return gameMode;
     }
 
-    public void setGameMode(Game.Mode gameMode) {
+    public void setGameMode(Game.PlayerMode gameMode) {
         this.gameMode = gameMode;
     }
 }

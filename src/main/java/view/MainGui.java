@@ -144,9 +144,9 @@ public class MainGui extends JFrame {
                     controller.pauseGame();
                 } else {
                     if(e.getSource() == btnPlaySingleplayer){
-                        Settings.getInstance().setGameMode(Game.Mode.SINGLEPLAYER);
+                        Settings.getInstance().setGameMode(Game.PlayerMode.SINGLEPLAYER);
                     } else if(e.getSource() == btnPlayMultiplayer){
-                        Settings.getInstance().setGameMode(Game.Mode.MULTIPLAYER);
+                        Settings.getInstance().setGameMode(Game.PlayerMode.MULTIPLAYER);
                     }
                     controller.startGame();
                 }
