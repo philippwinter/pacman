@@ -11,4 +11,6 @@ public interface Behavior {
 
     Position nextPosition();
 
+    double getSpeed();
+
 }

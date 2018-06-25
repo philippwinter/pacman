@@ -35,5 +35,10 @@ public class Chase implements Behavior {
         return newPosition;
     }
 
+    @Override
+    public double getSpeed() {
+        return ghost.getBasicSpeed();
+    }
+
 
 }

@@ -33,4 +33,9 @@ public class Waitting implements Behavior{
     public Position nextPosition() {
         return ghost.getPosition();
     }
+
+    @Override
+    public double getSpeed() {
+        return 0;
+    }
 }

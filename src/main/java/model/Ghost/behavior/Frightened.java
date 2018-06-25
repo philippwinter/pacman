@@ -40,4 +40,9 @@ public class Frightened implements Behavior {
 
         return newPosition;
     }
+
+    @Override
+    public double getSpeed() {
+        return ghost.getBasicSpeed() / 2;
+    }
 }
