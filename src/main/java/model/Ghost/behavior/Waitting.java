@@ -20,14 +20,8 @@ public class Waitting implements Behavior{
     @Override
     public void handle() {
 
-        ghost.changeState(Ghost.State.WAITING);
-
-        if (ghost.getState() == Ghost.State.WAITING) {
-            waitingSeconds -= 1 / Game.getInstance().getRefreshRate();
-            if (waitingSeconds <= 0) {
-                ghost.replace();
-            }
-        }
+        waitingSeconds -= 1 / Game.getInstance().getRefreshRate();
+        if (waitingSeconds <= 0) ghost.replace();
     }
 
     @Override

@@ -352,12 +352,6 @@ public class Game implements Process{
         }
 
         if (checkCoinSeconds && Coin.getActiveSeconds() == Coin.PACMAN_AINT_EATER) {
-            for (Ghost g : Game.getInstance().getGhostContainer()) {
-                if (g.getState() == Ghost.State.HUNTED) {
-                    g.changeState(Ghost.State.HUNTER);
-                }
-            }
-
             checkCoinSeconds = false;
         }
     }

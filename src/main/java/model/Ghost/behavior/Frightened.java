@@ -18,8 +18,6 @@ public class Frightened implements Behavior {
     }
 
     public void handle() {
-
-        ghost.changeState(Ghost.State.HUNTED);
         time -= 1 / Game.getInstance().getRefreshRate();
         if (time <= 0) ghost.behavior = new Chase(ghost);
     }

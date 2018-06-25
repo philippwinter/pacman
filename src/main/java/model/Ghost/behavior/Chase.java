@@ -14,9 +14,6 @@ public class Chase implements Behavior {
     }
 
     public void handle(){
-
-        ghost.changeState(Ghost.State.HUNTER);
-
     }
 
     @Override

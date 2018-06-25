@@ -10,6 +10,9 @@ package view;
 
 import model.*;
 import model.Ghost.*;
+import model.Ghost.behavior.Chase;
+import model.Ghost.behavior.Frightened;
+import model.Ghost.behavior.Waitting;
 import model.pacman.Pacman;
 
 import javax.imageio.ImageIO;
@@ -48,12 +51,12 @@ public class ImageOrganizer {
 
         if (mO instanceof Ghost) {
             Ghost g = (Ghost) mO;
-            if (g.getState() == Ghost.State.HUNTER) {
+            if (g.behavior.getClass() == Chase.class) {
                 key += ">" + g.getColour();
                 key += ">" + g.getHeadingTo();
-            } else if (g.getState() == Ghost.State.HUNTED) {
+            } else if (g.behavior.getClass() == Frightened.class) {
                 key = Ghost.class.getCanonicalName() + ">SCARE>" + (g.getMovedInLastTurn() ? "BLUE" : "WHITE");
-            } else if (g.getState() == Ghost.State.WAITING) {
+            } else if (g.behavior.getClass() == Waitting.class) {
                 key = Ghost.class.getCanonicalName() + ">SCARE>" + "BLUE";
             }
         }

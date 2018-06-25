@@ -9,6 +9,7 @@
 package model;
 
 import model.Ghost.Ghost;
+import model.Ghost.behavior.Chase;
 import model.pacman.Pacman;
 
 /**
@@ -46,7 +47,7 @@ public class Level {
         Game.getInstance().changeRefreshRate(this);
 
         for (Ghost g : Game.getInstance().getGhostContainer()) {
-            g.changeState(Ghost.State.HUNTER);
+            g.behavior = new Chase(g);
         }
 
         Map.getInstance().onNextLevel();
