@@ -156,9 +156,9 @@ public class GhostContainer implements Container<Ghost> {
         return this.ghosts.contains(g);
     }
 
-    public void handleGhosts() {
+    public void handleGhosts(double delta) {
         for (Ghost g : this.ghosts) {
-            g.handleGhost();
+            g.handleGhost(delta);
         }
     }
 

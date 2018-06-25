@@ -96,10 +96,10 @@ public class PacmanContainer implements Container<Pacman> {
         return this.pacmans.contains(p);
     }
 
-    public void handlePacmans() {
+    public void handlePacmans(double delta) {
 
         for (Pacman p : pacmans) {
-            p.handlePacman();
+            p.handlePacman(delta);
         }
     }
 

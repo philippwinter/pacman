@@ -29,7 +29,7 @@ public class Game implements Process{
         Game.reset();
     }
 
-    public static final double BASIC_REFRESH_RATE = 4.;
+    public static final double BASIC_REFRESH_RATE = 32.;
 
     public final static Settings settings = Settings.getInstance();
 
@@ -386,9 +386,9 @@ public class Game implements Process{
                 this.markDynamicObjectsForRendering();
                 this.handleCoins();
                 this.performCollisions();
-                this.getPacmanContainer().handlePacmans();
+                this.getPacmanContainer().handlePacmans(1/getRefreshRate());
                 this.performCollisions(); // Must be done two times to prevent two objects moving through each other
-                this.getGhostContainer().handleGhosts();
+                this.getGhostContainer().handleGhosts(1/getRefreshRate());
 
                 this.markDynamicObjectsForRendering();
             }

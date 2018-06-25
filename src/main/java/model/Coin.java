@@ -62,13 +62,8 @@ public class Coin extends StaticTarget implements Scorable {
 
         if (state == State.EATEN) {
             setVisible(false);
-            if (Coin.activeSeconds == Coin.PACMAN_AINT_EATER) {
-                Coin.activeSeconds = SECONDS_PER_COIN;
-            } else {
-                Coin.activeSeconds += SECONDS_PER_COIN;
-            }
             for (Ghost g : Game.getInstance().getGhostContainer()) {
-                g.frightened(activeSeconds);
+                g.frightened(SECONDS_PER_COIN);
             }
         } else if (state == State.AVAILABLE) {
             setVisible(true);
