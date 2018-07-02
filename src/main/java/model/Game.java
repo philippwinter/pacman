@@ -336,7 +336,7 @@ public class Game implements Process{
 
         for (MapObject mO : mapObjectsOnPos.getAll()) {
             if (mO instanceof Target){
-                ((Target) mO).gotEaten();
+                pac.eat((Target) mO);
             } else if (mO instanceof Ghost){
                 ((Ghost) mO).gotEaten();
             }
