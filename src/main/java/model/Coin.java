@@ -45,8 +45,8 @@ public class Coin extends StaticTarget implements Scorable {
     }
 
     public Coin(Position pos) {
+        super(pos);
         this.state = State.AVAILABLE;
-        this.setPosition(pos);
     }
 
     /**

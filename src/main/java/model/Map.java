@@ -8,6 +8,11 @@
 
 package model;
 
+import model.fruit.Apple;
+import model.fruit.Perry;
+import model.fruit.Plum;
+import model.fruit.Strawberry;
+
 /**
  * @author Philipp Winter
  * @author Jonas Heidecke
@@ -287,6 +292,8 @@ public class Map {
             new Placeholder(p);
         }
 
+
+
         Map.positionsToRender.add(wallPositions);
         Map.positionsToRender.add(placeholderPositions);
     }
@@ -308,6 +315,14 @@ public class Map {
         cC.add(new Coin(positionContainer.get(1, 8)));
         cC.add(new Coin(positionContainer.get(18, 1)));
         cC.add(new Coin(positionContainer.get(18, 8)));
+
+
+        new Perry(positionContainer.get(1,6));
+        new Plum(positionContainer.get(18,6));
+        new Strawberry(positionContainer.get(13,1));
+        new Apple(positionContainer.get(6,1));
+
+
 
         // --------- POINTS ---------
         for (Position p : positionContainer) {
