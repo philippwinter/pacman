@@ -4,6 +4,7 @@ import model.Game;
 import model.Ghost.Ghost;
 import model.Map;
 import model.Position;
+import model.pacman.Pacman;
 
 public class Chase implements Behavior {
 
@@ -17,7 +18,7 @@ public class Chase implements Behavior {
     }
 
     @Override
-    public void performCollisions() {
+    public void performCollisions(Pacman pacman) {
         Game.getInstance().onPacmanGotEaten();
     }
 

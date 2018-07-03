@@ -8,13 +8,16 @@
 
 package model;
 
+import model.pacman.Pacman;
+
 /**
  * @author Philipp Winter
  * @author Jonas Heidecke
  * @author Niklas Kaddatz
  */
-public interface Target {
+public interface Target extends Scorable {
 
     void gotEaten();
 
+    public void performCollision(Pacman pacman);
 }

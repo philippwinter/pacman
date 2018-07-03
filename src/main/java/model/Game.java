@@ -287,8 +287,6 @@ public class Game implements Process{
 
     public void onPacmanGotEaten() {
 
-        System.out.println("okokok");
-
         reducePLayerLifes();
         if (getPlayerLifes() <= 0)
             gameOver();
@@ -335,10 +333,9 @@ public class Game implements Process{
         MapObjectContainer mapObjectsOnPos = pac.getPosition().getOnPosition();
 
         for (MapObject mO : mapObjectsOnPos.getAll()) {
+
             if (mO instanceof Target){
-                pac.eat((Target) mO);
-            } else if (mO instanceof Ghost){
-                ((Ghost) mO).gotEaten();
+                ((Target) mO).performCollision(pac);
             }
         }
     }

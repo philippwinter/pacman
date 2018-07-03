@@ -8,6 +8,8 @@
 
 package model;
 
+import model.pacman.Pacman;
+
 /**
  * @author Philipp Winter
  * @author Jonas Heidecke
@@ -42,4 +44,9 @@ public abstract class StaticTarget extends MapObject implements Target {
         EATEN, AVAILABLE
     }
 
+
+    @Override
+    public void performCollision(Pacman pacman) {
+        pacman.eat(this);
+    }
 }

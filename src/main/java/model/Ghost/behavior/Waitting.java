@@ -3,6 +3,7 @@ package model.Ghost.behavior;
 import model.Game;
 import model.Ghost.Ghost;
 import model.Position;
+import model.pacman.Pacman;
 
 public class Waitting implements Behavior{
 
@@ -25,7 +26,7 @@ public class Waitting implements Behavior{
     }
 
     @Override
-    public void performCollisions() {
+    public void performCollisions(Pacman pacman) {
         return;
     }
 

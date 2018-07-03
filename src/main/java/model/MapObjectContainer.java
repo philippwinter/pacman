@@ -40,7 +40,9 @@ public class MapObjectContainer implements Container<MapObject> {
      */
     @Override
     public void remove(MapObject el) {
-        this.mapObjects.remove(el);
+
+        boolean b = this.mapObjects.remove(el);
+        System.out.println(b);
     }
 
     public void add(MapObject el) {

@@ -100,6 +100,7 @@ public class Coin extends StaticTarget implements Scorable {
     public void gotEaten() {
         if (this.state == State.AVAILABLE)
             this.changeState(State.EATEN);
+        getPosition().remove(this);
     }
 
     @Override

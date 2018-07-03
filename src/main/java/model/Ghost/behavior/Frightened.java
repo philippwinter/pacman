@@ -4,6 +4,7 @@ import model.Game;
 import model.Ghost.Ghost;
 import model.Map;
 import model.Position;
+import model.pacman.Pacman;
 
 public class Frightened implements Behavior {
 
@@ -23,8 +24,8 @@ public class Frightened implements Behavior {
     }
 
     @Override
-    public void performCollisions(){
-        ghost.behavior = new Waitting(ghost, 3);
+    public void performCollisions(Pacman pacman){
+        pacman.eat(ghost);
     }
 
     @Override
