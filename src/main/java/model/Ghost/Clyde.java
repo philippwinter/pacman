@@ -7,5 +7,6 @@ public class Clyde extends Ghost {
 
         super(pos, Colour.ORANGE);
         name = "Clyde";
+        tragetPosition = new Position(0,10);
     }
 }

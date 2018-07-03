@@ -1,7 +1,8 @@
 package model.Ghost.behavior;
 
-import javafx.geometry.Pos;
+import jdk.nashorn.internal.ir.IfNode;
 import model.Game;
+import model.Ghost.Clyde;
 import model.Ghost.Ghost;
 import model.Map;
 import model.Position;
@@ -9,13 +10,12 @@ import model.pacman.Pacman;
 
 import java.util.List;
 
-import static java.util.Collections.shuffle;
+public class Scatter implements Behavior {
 
-public class Chase implements Behavior {
 
     private Ghost ghost;
 
-    public Chase(Ghost ghost){
+    public Scatter(Ghost ghost){
         this.ghost = ghost;
     }
 
@@ -23,8 +23,7 @@ public class Chase implements Behavior {
     }
 
     @Override
-    public void performCollisions(Pacman pacman) {
-        Game.getInstance().onPacmanGotEaten();
+    public void performCollisions(Pacman pacman) { Game.getInstance().onPacmanGotEaten();
     }
 
     public Map.Direction nextDirection(){
@@ -32,19 +31,20 @@ public class Chase implements Behavior {
         List<Map.Direction> directions = ghost.movablesDirections();
 
         Position ghostPosition = ghost.getPosition();
-        Position pacmanPosition = Game.getInstance().getPacmanContainer().get(0).getPosition();
+        Position traget = ghost.getTragetPosition();
 
 
         double min = Double.MAX_VALUE;
         Map.Direction direction = directions.get(0);
 
-        if (directions.size() > 1) {
+
+        if (directions.size() > 0) {
 
 
             for (Map.Direction tmp : directions) {
 
                 Position pos = Map.getPositionByDirectionIfMovableTo(ghostPosition, tmp);
-                double dist = pacmanPosition.calcDistance(pos);
+                double dist = traget.calcDistance(pos);
 
 
                 if (dist <= min) {
@@ -58,6 +58,9 @@ public class Chase implements Behavior {
             }
         }
 
+        if (ghost instanceof Clyde)
+            System.out.println(direction);
+
         return direction;
 
     }
@@ -69,6 +72,8 @@ public class Chase implements Behavior {
         Position newPosition ;
 
         Map.Direction guessedDirection = nextDirection();
+        if (ghost.getPosition().isPlaceHolder()) guessedDirection = Map.Direction.NORTH;
+
         ghost.setHeadingTo(guessedDirection);
         newPosition = Map.getPositionByDirectionIfMovableTo(ghost.getPosition(), guessedDirection);
 
@@ -79,6 +84,5 @@ public class Chase implements Behavior {
     public double getSpeed() {
         return ghost.getBasicSpeed();
     }
-
 
 }

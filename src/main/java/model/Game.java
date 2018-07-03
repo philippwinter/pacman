@@ -315,7 +315,7 @@ public class Game implements Process{
 
         */
 
-        System.out.println(pointContainer.size());
+        //System.out.println(pointContainer.size());
 
         performFurtherActions = (pointContainer.size() != 0) && (!isGameOver());
 

@@ -13,6 +13,10 @@ import model.fruit.Perry;
 import model.fruit.Plum;
 import model.fruit.Strawberry;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 /**
  * @author Philipp Winter
  * @author Jonas Heidecke
@@ -234,10 +238,11 @@ public class Map {
                 )
         );
 
+
         placeholderPositions.add(
                 positionContainer.getRange(
-                        positionContainer.get(4, 3),
-                        positionContainer.get(4, 4)
+                        positionContainer.get(5, 3),
+                        positionContainer.get(5, 4)
                 )
         );
 
@@ -354,10 +359,10 @@ public class Map {
 
     public static class StartingPosition {
 
-        public final Position GHOST_RED = Map.getInstance().positionContainer.get(11, 3);
-        public final Position GHOST_PINK = Map.getInstance().positionContainer.get(10, 3);
-        public final Position GHOST_BLUE = Map.getInstance().positionContainer.get(8, 3);
-        public final Position GHOST_ORANGE = Map.getInstance().positionContainer.get(9, 3);
+        public final Position GHOST_BLUE = Map.getInstance().positionContainer.get(11, 3);
+        public final Position GHOST_ORANGE = Map.getInstance().positionContainer.get(10, 3);
+        public final Position GHOST_RED = Map.getInstance().positionContainer.get(8, 3);
+        public final Position GHOST_PINK = Map.getInstance().positionContainer.get(9, 3);
 
         public final Position PACMAN_MALE = Map.getInstance().positionContainer.get(13, 8);
         public final Position PACMAN_FEMALE = Map.getInstance().positionContainer.get(6, 8);
@@ -372,9 +377,37 @@ public class Map {
         positionsToRender.add(positionContainer);
     }
 
+    public List<Direction> movablesDirections(Position position){
+
+        ArrayList<Direction> directions = new ArrayList<>(4);
+
+        for (Direction direction: Direction.values()){
+            Position pos = getPositionByDirectionIfMovableTo(position,direction);
+            if (pos != null) directions.add(direction);
+        }
+
+        return directions;
+    }
+
     public enum Direction {
 
         NORTH, WEST, EAST, SOUTH;
+
+        public Direction reverse(){
+
+            switch (this){
+                case SOUTH:
+                    return NORTH;
+                case EAST:
+                    return WEST;
+                case  NORTH:
+                    return SOUTH;
+                case WEST:
+                    return EAST;
+            }
+
+            return null;
+        }
 
         public static Direction guessDirection(Position position) {
             Direction[] directions = Direction.values();

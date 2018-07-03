@@ -12,6 +12,7 @@ import model.*;
 import model.Ghost.*;
 import model.Ghost.behavior.Chase;
 import model.Ghost.behavior.Frightened;
+import model.Ghost.behavior.Scatter;
 import model.Ghost.behavior.Waitting;
 import model.fruit.Apple;
 import model.fruit.Perry;
@@ -55,7 +56,7 @@ public class ImageOrganizer {
 
         if (mO instanceof Ghost) {
             Ghost g = (Ghost) mO;
-            if (g.behavior.getClass() == Chase.class) {
+            if (g.behavior.getClass() == Scatter.class || g.behavior.getClass() == Chase.class) {
                 key += ">" + g.getColour();
                 key += ">" + g.getHeadingTo();
             } else if (g.behavior.getClass() == Frightened.class) {
