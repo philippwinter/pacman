@@ -6,6 +6,8 @@
  * Copyright (c) 2013 Philipp Winter, Jonas Heidecke & Niklas Kaddatz         *
  ******************************************************************************/
 
+//test
+
 package model;
 
 import model.Ghost.Ghost;
