@@ -16,8 +16,8 @@ package model;
 public class Point extends StaticTarget implements Scorable {
 
     public Point(Position pos) {
+        super(pos);
         this.state = State.AVAILABLE;
-        this.setPosition(pos);
     }
 
     @Override

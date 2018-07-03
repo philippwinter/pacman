@@ -13,6 +13,10 @@ import model.Ghost.*;
 import model.Ghost.behavior.Chase;
 import model.Ghost.behavior.Frightened;
 import model.Ghost.behavior.Waitting;
+import model.fruit.Apple;
+import model.fruit.Perry;
+import model.fruit.Plum;
+import model.fruit.Strawberry;
 import model.pacman.Pacman;
 
 import javax.imageio.ImageIO;
@@ -181,7 +185,19 @@ public class ImageOrganizer {
                 new String[]{"/graphics/primitive/white_big.png", Placeholder.class.getCanonicalName()}
         );
 
-            for (String[] d : data) {
+
+        // Fruits
+
+        data.add(new String[]{"/graphics/resized/fruits/apple.png", Apple.class.getCanonicalName()});
+        data.add(new String[]{"/graphics/resized/fruits/perry.png", Perry.class.getCanonicalName()});
+        data.add(new String[]{"/graphics/resized/fruits/plum.png", Plum.class.getCanonicalName()});
+        data.add(new String[]{"/graphics/resized/fruits/strawberry.png", Strawberry.class.getCanonicalName()});
+
+
+
+
+
+        for (String[] d : data) {
                 //Load image
                 try {
                     BufferedImage before = ImageIO.read(c.getResource(d[0]));
