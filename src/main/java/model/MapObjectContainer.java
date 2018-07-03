@@ -42,7 +42,7 @@ public class MapObjectContainer implements Container<MapObject> {
     public void remove(MapObject el) {
 
         boolean b = this.mapObjects.remove(el);
-        System.out.println(b);
+
     }
 
     public void add(MapObject el) {

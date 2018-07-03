@@ -21,23 +21,6 @@ public class Point extends StaticTarget implements Scorable {
     }
 
     @Override
-    public void changeState(State s) {
-        if (s == null) {
-            throw new IllegalArgumentException("A null state is not allowed.");
-        } else if (state == s) {
-            throw new IllegalArgumentException("The new state must differ from the old one.");
-        }
-
-        if (s == State.EATEN) {
-            setVisible(false);
-        } else if (s == State.AVAILABLE) {
-            setVisible(true);
-        }
-
-        this.state = s;
-    }
-
-    @Override
     public int getScore() {
         return 10;
     }
@@ -47,6 +30,7 @@ public class Point extends StaticTarget implements Scorable {
         if (this.state == State.AVAILABLE)
             this.changeState(State.EATEN);
         position.remove(this);
+
     }
 
     public String toString() {

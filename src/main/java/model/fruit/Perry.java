@@ -10,11 +10,6 @@ public class Perry extends StaticTarget {
     }
 
     @Override
-    public void changeState(State state) {
-
-    }
-
-    @Override
     public int getScore() {
         return 50;
     }

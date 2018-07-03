@@ -302,6 +302,7 @@ public class Game implements Process{
         boolean performFurtherActions;
 
         // Check whether level is completed
+        /*
         int pointsEaten = 0;
 
         for (Point p : pointContainer) {
@@ -312,9 +313,13 @@ public class Game implements Process{
 
         int size = getPointContainer().size();
 
-        performFurtherActions = (pointsEaten != size) && (!isGameOver());
+        */
 
-        if (pointsEaten == size) {
+        System.out.println(pointContainer.size());
+
+        performFurtherActions = (pointContainer.size() != 0) && (!isGameOver());
+
+        if (pointContainer.size() == 0) {
             Level.getInstance().nextLevel();
         }
 

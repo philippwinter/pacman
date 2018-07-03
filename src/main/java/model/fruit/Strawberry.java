@@ -10,12 +10,7 @@ public class Strawberry extends StaticTarget {
     }
 
     @Override
-    public void changeState(State state) {
-
-    }
-
-    @Override
     public int getScore() {
-        return 0;
+        return 50;
     }
 }
