@@ -25,7 +25,7 @@ public class Frightened implements Behavior {
 
     public void handle() {
         time -= 1 / Game.getInstance().getRefreshRate();
-        if (time <= 0) ghost.behavior = new Chase(ghost);
+        if (time <= 0) ghost.resetBehavior();
     }
 
     @Override
