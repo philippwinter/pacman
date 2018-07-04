@@ -11,6 +11,7 @@ package model;
 import controller.MainController;
 import model.Ghost.Ghost;
 import model.Ghost.GhostFactory;
+import model.Ghost.behavior.GhostManager;
 import model.event.Process;
 import model.event.RendererProcess;
 import model.event.Timer;
@@ -124,6 +125,7 @@ public class Game implements Process{
         this.eventHandlerManager = new Timer();
         this.eventHandlerManager.register(this);
         this.eventHandlerManager.register(new RendererProcess());
+
     }
 
     /**
@@ -190,6 +192,8 @@ public class Game implements Process{
         return map;
     }
 
+    public GhostManager ghostManager;
+
     /**
      * Changes the refresh rate depending on the level.
      * Can be expressed by the equation <code>RefreshRate(level) = (level^5)^(1/7)</code>.
@@ -216,6 +220,7 @@ public class Game implements Process{
      * @see model.event.Timer#startExecution()
      */
     public void start() {
+
         if(pointContainer.size() == 0){
 
             // --------- GHOSTS ---------
@@ -232,6 +237,8 @@ public class Game implements Process{
 
             this.map.placeObjects();
         }
+
+        this.ghostManager = new GhostManager(ghostContainer);
         this.eventHandlerManager.startExecution();
     }
 
@@ -346,6 +353,16 @@ public class Game implements Process{
     }
 
 
+    public void frightenedGhost(double time){
+
+        ghostManager.pause(time);
+
+        for (Ghost g : Game.getInstance().getGhostContainer()) {
+                g.frightened(time);
+        }
+
+    }
+
     private void handleCoins() {
         double activeSeconds = Coin.getActiveSeconds();
 
@@ -390,8 +407,8 @@ public class Game implements Process{
                 this.performCollisions();
                 this.getPacmanContainer().handlePacmans(1/getRefreshRate());
                 this.performCollisions(); // Must be done two times to prevent two objects moving through each other
+                this.ghostManager.handle(1/getRefreshRate());
                 this.getGhostContainer().handleGhosts(1/getRefreshRate());
-
                 this.markDynamicObjectsForRendering();
             }
         } catch (Throwable t) {

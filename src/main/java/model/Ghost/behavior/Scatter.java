@@ -58,9 +58,6 @@ public class Scatter implements Behavior {
             }
         }
 
-        if (ghost instanceof Clyde)
-            System.out.println(direction);
-
         return direction;
 
     }

@@ -64,14 +64,14 @@ public class Coin extends StaticTarget implements Scorable {
 
         if (state == State.EATEN) {
             setVisible(false);
-            for (Ghost g : Game.getInstance().getGhostContainer()) {
-                if (nbrCoin <= 2)
-                    g.frightened(5.);
-                else
-                    g.frightened(7.);
-            }
+            if (nbrCoin <= 2)
+                Game.getInstance().frightenedGhost(7.);
+            else
+                Game.getInstance().frightenedGhost(5.);
+
             nbrCoin --;
             this.getPosition().remove(this);
+
         } else if (state == State.AVAILABLE) {
             setVisible(true);
         }
