@@ -13,7 +13,7 @@ import model.Ghost.*;
 import model.Ghost.behavior.Chase;
 import model.Ghost.behavior.Frightened;
 import model.Ghost.behavior.Scatter;
-import model.Ghost.behavior.Waitting;
+import model.Ghost.behavior.Dead;
 import model.fruit.Apple;
 import model.fruit.Perry;
 import model.fruit.Plum;
@@ -61,7 +61,7 @@ public class ImageOrganizer {
                 key += ">" + g.getHeadingTo();
             } else if (g.behavior.getClass() == Frightened.class) {
                 key = Ghost.class.getCanonicalName() + ">SCARE>" + (g.getMovedInLastTurn() ? "BLUE" : "WHITE");
-            } else if (g.behavior.getClass() == Waitting.class) {
+            } else if (g.behavior.getClass() == Dead.class) {
                 key = Ghost.class.getCanonicalName() + ">SCARE>" + "BLUE";
             }
         }

@@ -212,7 +212,7 @@ public class Game implements Process{
      */
     public void changeRefreshRate(Level l) {
         // f(x) = (x^5)^(1/7) or "The refresh rate per second is the 7th root of the level raised to 5"
-        this.refreshRate = Math.pow(Math.pow(l.getLevel(), 5), 1 / 7) + BASIC_REFRESH_RATE;
+        //this.refreshRate = Math.pow(Math.pow(l.getLevel(), 5), 1 / 7) + BASIC_REFRESH_RATE;
     }
 
     /**
