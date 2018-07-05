@@ -26,7 +26,7 @@ import static org.junit.Assert.assertEquals;
 @SuppressWarnings("unused")
 public class ListFullExceptionTest {
 
-    @Test(expected = model.exception.ListFullException.class)
+    @Test(expected = model.exception.ObjectAlreadyInListException.class)
     public void testConstruct() {
         MainController.reset();
 

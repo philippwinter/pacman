@@ -6,7 +6,7 @@ import model.StaticTarget;
 public class Strawberry extends StaticTarget {
 
     public Strawberry(Position position) {
-        super(position);
+        super(position, State.AVAILABLE);
     }
 
     @Override

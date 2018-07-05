@@ -37,6 +37,8 @@ public class Level {
         this.secondsPerCoin *= 0.85;
 
         this.level++;
+        System.out.println("->" + getLevel());
+
 
         if(Math.random() >= 0.7) {
             Game.getInstance().increasePlayerLifes();
@@ -52,6 +54,7 @@ public class Level {
         Map.getInstance().onNextLevel();
         Game.getInstance().replaceDinamicObjects();
         Game.getInstance().getEventHandlerManager().restartExecution();
+        System.out.println("*>" + getLevel());
     }
 
     public int getLevel() {

@@ -6,7 +6,7 @@ import model.StaticTarget;
 public class Apple extends StaticTarget {
 
     public Apple(Position position) {
-        super(position);
+        super(position, State.AVAILABLE);
     }
 
     @Override

@@ -39,11 +39,14 @@ public class MapObjectContainerTest {
         this.pac = new Pacman(Pacman.Sex.MALE);
         this.ghost = new Pinky(pos);
         this.instance = pos.getOnPosition();
+        pac.move(otherPos);
+
     }
 
 
     @Test
     public void testGet() {
+        assertNotNull(instance);
         assertNotNull(instance.get(0));
     }
 
@@ -70,7 +73,7 @@ public class MapObjectContainerTest {
 
     @Test
     public void testContains() {
-        assertTrue(instance.contains(pac));
+        assertTrue(otherPos.getOnPosition().contains(pac));
         assertTrue(instance.contains(ghost));
         assertFalse(instance.contains(new Blinky(otherPos)));
     }

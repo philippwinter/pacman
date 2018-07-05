@@ -42,8 +42,7 @@ public class Coin extends StaticTarget implements Scorable {
     }
 
     public Coin(Position pos) {
-        super(pos);
-        this.state = State.AVAILABLE;
+        super(pos, State.AVAILABLE);
     }
 
     /**
@@ -60,6 +59,9 @@ public class Coin extends StaticTarget implements Scorable {
         }
 
         if (state == State.EATEN) {
+
+            this.state = state;
+
             setVisible(false);
             if (nbrCoin <= 2)
                 Game.getInstance().frightenedGhost(7.);

@@ -6,7 +6,7 @@ import model.StaticTarget;
 public class Perry extends StaticTarget {
 
     public Perry(Position position) {
-        super(position);
+        super(position, State.AVAILABLE);
     }
 
     @Override

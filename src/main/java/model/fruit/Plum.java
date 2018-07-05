@@ -6,7 +6,7 @@ import model.StaticTarget;
 public class Plum extends StaticTarget {
 
     public Plum(Position position) {
-        super(position);
+        super(position, State.AVAILABLE);
     }
 
     @Override

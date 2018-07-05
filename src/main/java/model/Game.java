@@ -11,7 +11,7 @@ package model;
 import controller.MainController;
 import model.Ghost.Ghost;
 import model.Ghost.GhostFactory;
-import model.Ghost.behavior.GhostManager;
+import model.Ghost.GhostManager;
 import model.event.Process;
 import model.event.RendererProcess;
 import model.event.Timer;
@@ -126,6 +126,8 @@ public class Game implements Process{
         this.eventHandlerManager.register(this);
         this.eventHandlerManager.register(new RendererProcess());
 
+        this.ghostManager = new GhostManager(ghostContainer);
+
     }
 
     /**
@@ -238,7 +240,6 @@ public class Game implements Process{
             this.map.placeObjects();
         }
 
-        this.ghostManager = new GhostManager(ghostContainer);
         this.eventHandlerManager.startExecution();
     }
 

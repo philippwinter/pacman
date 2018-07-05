@@ -24,7 +24,8 @@ public abstract class StaticTarget extends MapObject implements Target {
     }
 
 
-    protected StaticTarget(Position position){
+    protected StaticTarget(Position position, State state){
+        this.state = state;
         setPosition(position);
     }
 
