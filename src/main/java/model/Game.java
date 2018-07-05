@@ -17,6 +17,9 @@ import model.event.RendererProcess;
 import model.event.Timer;
 import model.pacman.Pacman;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * The Game class is kind of a <i>master</i>-class, organizing all other business logic objects.
  *
@@ -89,6 +92,8 @@ public class Game implements Process{
 
     private int playerLifes = 3;
 
+    private List<StaticTarget> fruitContainer;
+
     /**
      * Constructs a new Game object.
      */
@@ -120,6 +125,7 @@ public class Game implements Process{
         this.coinContainer = new CoinContainer();
         this.pointContainer = new PointContainer();
         this.pacmanContainer = new PacmanContainer();
+        this.fruitContainer = new ArrayList<>();
         this.level = Level.getInstance();
 
         this.eventHandlerManager = new Timer();
@@ -184,6 +190,8 @@ public class Game implements Process{
     public PacmanContainer getPacmanContainer() {
         return pacmanContainer;
     }
+
+    public List<StaticTarget> getFruitContainer() { return fruitContainer; }
 
     /**
      * Gets the map of the game.
@@ -310,7 +318,7 @@ public class Game implements Process{
         boolean performFurtherActions;
 
         // Check whether level is completed
-        /*
+
         int pointsEaten = 0;
 
         for (Point p : pointContainer) {
@@ -321,13 +329,11 @@ public class Game implements Process{
 
         int size = getPointContainer().size();
 
-        */
+        //System.out.println(size + " " + pointsEaten);
 
-        //System.out.println(pointContainer.size());
+        performFurtherActions = (pointsEaten != size) && (!isGameOver());
 
-        performFurtherActions = (pointContainer.size() != 0) && (!isGameOver());
-
-        if (pointContainer.size() == 0) {
+        if (size == pointsEaten) {
             Level.getInstance().nextLevel();
         }
 
