@@ -240,8 +240,8 @@ public class Map {
 
         placeholderPositions.add(
                 positionContainer.getRange(
-                        positionContainer.get(5, 3),
-                        positionContainer.get(5, 4)
+                        positionContainer.get(4, 3),
+                        positionContainer.get(4, 4)
                 )
         );
 
