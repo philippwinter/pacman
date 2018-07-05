@@ -1,6 +1,5 @@
 package model.Ghost.behavior;
 
-import model.Ghost.Ghost;
 import model.Position;
 import model.pacman.Pacman;
 

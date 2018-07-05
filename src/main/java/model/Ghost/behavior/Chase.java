@@ -1,6 +1,5 @@
 package model.Ghost.behavior;
 
-import javafx.geometry.Pos;
 import model.Game;
 import model.Ghost.Ghost;
 import model.Map;
@@ -9,11 +8,9 @@ import model.pacman.Pacman;
 
 import java.util.List;
 
-import static java.util.Collections.shuffle;
-
 public class Chase implements Behavior {
 
-    private Ghost ghost;
+    private final Ghost ghost;
 
     public Chase(Ghost ghost){
         this.ghost = ghost;
@@ -27,7 +24,7 @@ public class Chase implements Behavior {
         Game.getInstance().onPacmanGotEaten();
     }
 
-    public Map.Direction nextDirection(){
+    private Map.Direction nextDirection(){
 
         List<Map.Direction> directions = ghost.movablesDirections();
 

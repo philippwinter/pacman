@@ -14,7 +14,6 @@ import model.fruit.Plum;
 import model.fruit.Strawberry;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**

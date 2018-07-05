@@ -19,5 +19,5 @@ public interface Target extends Scorable {
 
     void gotEaten();
 
-    public void performCollision(Pacman pacman);
+    void performCollision(Pacman pacman);
 }

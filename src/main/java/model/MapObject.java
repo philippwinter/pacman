@@ -8,8 +8,6 @@
 
 package model;
 
-import model.pacman.Pacman;
-
 /**
  * @author Philipp Winter
  * @author Jonas Heidecke

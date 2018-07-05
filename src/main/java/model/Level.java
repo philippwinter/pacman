@@ -10,7 +10,6 @@ package model;
 
 import model.Ghost.Ghost;
 import model.Ghost.behavior.Chase;
-import model.pacman.Pacman;
 
 /**
  * @author Philipp Winter

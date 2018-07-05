@@ -7,9 +7,9 @@ import model.pacman.Pacman;
 
 public class Waitting implements Behavior{
 
-    private Ghost ghost;
+    private final Ghost ghost;
 
-    double waitingSeconds;
+    private double waitingSeconds;
 
     public Waitting(Ghost ghost, double time){
 
@@ -27,7 +27,6 @@ public class Waitting implements Behavior{
 
     @Override
     public void performCollisions(Pacman pacman) {
-        return;
     }
 
     @Override

@@ -192,7 +192,7 @@ public class Game implements Process{
         return map;
     }
 
-    public GhostManager ghostManager;
+    private GhostManager ghostManager;
 
     /**
      * Changes the refresh rate depending on the level.
@@ -268,7 +268,7 @@ public class Game implements Process{
         return false;
     }
 
-    public void gameOver() {
+    private void gameOver() {
         this.isOver = true;
         Game.getInstance().getEventHandlerManager().pauseExecution();
         MainController.getInstance().getGui().onGameOver();

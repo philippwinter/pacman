@@ -10,9 +10,6 @@
 
 package model;
 
-import model.Ghost.Ghost;
-import model.pacman.Pacman;
-
 /**
  * A coin represents the object our Pacman has to eat in order to be able to hunt the ghosts.
  *

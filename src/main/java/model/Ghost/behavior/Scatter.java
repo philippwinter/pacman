@@ -1,8 +1,6 @@
 package model.Ghost.behavior;
 
-import jdk.nashorn.internal.ir.IfNode;
 import model.Game;
-import model.Ghost.Clyde;
 import model.Ghost.Ghost;
 import model.Map;
 import model.Position;
@@ -13,7 +11,7 @@ import java.util.List;
 public class Scatter implements Behavior {
 
 
-    private Ghost ghost;
+    private final Ghost ghost;
 
     public Scatter(Ghost ghost){
         this.ghost = ghost;
@@ -26,7 +24,7 @@ public class Scatter implements Behavior {
     public void performCollisions(Pacman pacman) { Game.getInstance().onPacmanGotEaten();
     }
 
-    public Map.Direction nextDirection(){
+    private Map.Direction nextDirection(){
 
         List<Map.Direction> directions = ghost.movablesDirections();
 
