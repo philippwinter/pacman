@@ -11,16 +11,18 @@ import java.util.List;
 public class Dead implements Behavior{
 
     private final Ghost ghost;
+    private Position traget;
 
     public Dead(Ghost ghost, double time){
 
         this.ghost = ghost;
+        traget = new Position(ghost.getStartPosition().getX(),1);
 
     }
 
     @Override
     public void handle() {
-        if (ghost.getStartPosition() == ghost.getPosition())
+        if (ghost.getPosition().equals(traget))
         ghost.replace();
     }
 
@@ -31,10 +33,9 @@ public class Dead implements Behavior{
 
     private Map.Direction nextDirection(){
 
+
         List<Map.Direction> directions = ghost.movablesDirections();
 
-        Position ghostPosition = ghost.getPosition();
-        Position traget = ghost.getTragetPosition();
 
         double min = Double.MAX_VALUE;
         Map.Direction direction = directions.get(0);
@@ -45,8 +46,8 @@ public class Dead implements Behavior{
 
             for (Map.Direction tmp : directions) {
 
-                Position pos = Map.getPositionByDirectionIfMovableTo(ghostPosition, tmp);
-                double dist = ghost.getStartPosition().calcDistance(pos);
+                Position pos = Map.getPositionByDirectionIfMovableTo(ghost.getPosition(), tmp);
+                double dist = traget.calcDistance(pos);
 
 
                 if (dist < min) {
@@ -60,6 +61,7 @@ public class Dead implements Behavior{
             }
         }
 
+
         return direction;
 
     }
@@ -68,14 +70,14 @@ public class Dead implements Behavior{
     @Override
     public Position nextPosition() {
 
+        if (ghost.getPosition().equals(traget))
+            return traget;
+
         Position newPosition ;
 
         Map.Direction guessedDirection = nextDirection();
         ghost.setHeadingTo(guessedDirection);
         newPosition = Map.getPositionByDirectionIfMovableTo(ghost.getPosition(), guessedDirection);
-
-        if (newPosition.isPlaceHolder())
-            return ghost.getStartPosition();
 
         return newPosition;
 
@@ -83,6 +85,6 @@ public class Dead implements Behavior{
 
     @Override
     public double getSpeed() {
-        return (ghost.getBasicSpeed() * 20);
+        return (ghost.getBasicSpeed() * 4);
     }
 }
