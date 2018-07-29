@@ -21,8 +21,6 @@ public class Coin extends StaticTarget implements Scorable {
 
     public static final double PACMAN_AINT_EATER = -1;
 
-    private static int nbrCoin = 4;
-
     private static double activeSeconds = PACMAN_AINT_EATER;
 
     public static void resetActiveSeconds() {
@@ -62,17 +60,17 @@ public class Coin extends StaticTarget implements Scorable {
 
             this.state = state;
 
+            int nbrCoin = Game.getInstance().nbrOfActiveCoin();
+
             setVisible(false);
             if (nbrCoin <= 2)
                 Game.getInstance().frightenedGhost(7.);
             else
                 Game.getInstance().frightenedGhost(5.);
 
-            nbrCoin --;
 
         } else if (state == State.AVAILABLE) {
             this.state = state;
-            nbrCoin ++;
             setVisible(true);
         }
 

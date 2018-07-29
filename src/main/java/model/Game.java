@@ -362,6 +362,7 @@ public class Game implements Process{
 
     public void frightenedGhost(double time){
 
+        System.out.println(time);
         ghostManager.pause(time);
 
         for (Ghost g : Game.getInstance().getGhostContainer()) {
@@ -429,6 +430,19 @@ public class Game implements Process{
 
         for (Pacman p: Game.getInstance().getPacmanContainer())
             p.replace();
+    }
+
+
+    public int nbrOfActiveCoin(){
+
+        int n = 0;
+
+        for (Coin coin: coinContainer)
+            if (coin.state == StaticTarget.State.AVAILABLE)
+                n ++;
+
+        return n;
+
     }
 
     public enum PlayerMode {
