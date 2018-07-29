@@ -63,7 +63,7 @@ public class Coin extends StaticTarget implements Scorable {
             int nbrCoin = Game.getInstance().nbrOfActiveCoin();
 
             setVisible(false);
-            if (nbrCoin <= 2)
+            if (nbrCoin < 2)
                 Game.getInstance().frightenedGhost(7.);
             else
                 Game.getInstance().frightenedGhost(5.);
