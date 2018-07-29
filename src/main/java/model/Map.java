@@ -8,6 +8,14 @@
 
 package model;
 
+import model.fruit.Apple;
+import model.fruit.Perry;
+import model.fruit.Plum;
+import model.fruit.Strawberry;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Philipp Winter
  * @author Jonas Heidecke
@@ -110,31 +118,10 @@ public class Map {
     }
 
     public void placeObjects() {
-        placeDynamicObjects();
         placeStaticObjects();
         spawnStaticTargets();
 
         this.markAllForRendering();
-    }
-
-    private void placeDynamicObjects() {
-        Game g = Game.getInstance();
-
-        // --------- PACMANS ---------
-        PacmanContainer pacC = g.getPacmanContainer();
-
-        pacC.add(new Pacman(startingPositions.PACMAN_MALE, Pacman.Sex.MALE));
-
-        if (Settings.getInstance().getGameMode() == Game.Mode.MULTIPLAYER) {
-            pacC.add(new Pacman(startingPositions.PACMAN_FEMALE, Pacman.Sex.FEMALE));
-        }
-
-        // --------- GHOSTS ---------
-        GhostContainer gC = g.getGhostContainer();
-        gC.add(new Ghost(positionContainer.get(8, 3), Ghost.Colour.BLUE));
-        gC.add(new Ghost(positionContainer.get(9, 3), Ghost.Colour.ORANGE));
-        gC.add(new Ghost(positionContainer.get(10, 3), Ghost.Colour.PINK));
-        gC.add(new Ghost(positionContainer.get(11, 3), Ghost.Colour.RED));
     }
 
     private void placeStaticObjects() {
@@ -250,6 +237,7 @@ public class Map {
                 )
         );
 
+
         placeholderPositions.add(
                 positionContainer.getRange(
                         positionContainer.get(4, 3),
@@ -308,14 +296,17 @@ public class Map {
             new Placeholder(p);
         }
 
+
+
         Map.positionsToRender.add(wallPositions);
         Map.positionsToRender.add(placeholderPositions);
     }
 
-    public void spawnStaticTargets() {
+    private void spawnStaticTargets() {
         // --------- COINS ---------
         CoinContainer cC = Game.getInstance().getCoinContainer();
         PointContainer pC = Game.getInstance().getPointContainer();
+        List<StaticTarget> fC = Game.getInstance().getFruitContainer();
 
         cC.removeAll();
         pC.removeAll();
@@ -330,6 +321,14 @@ public class Map {
         cC.add(new Coin(positionContainer.get(18, 1)));
         cC.add(new Coin(positionContainer.get(18, 8)));
 
+
+        fC.add(new Perry(positionContainer.get(1,6)));
+        fC.add(new Plum(positionContainer.get(18,6)));
+        fC.add(new Strawberry(positionContainer.get(13,1)));
+        fC.add(new Apple(positionContainer.get(6,1)));
+
+
+
         // --------- POINTS ---------
         for (Position p : positionContainer) {
             if (p.getOnPosition().size() == 0) {
@@ -342,7 +341,8 @@ public class Map {
     }
 
     public void onNextLevel() {
-        this.replaceDynamicObjects();
+
+        System.out.println("onnext" + Game.getInstance().getCoinContainer().getAll().size());
 
         for(Coin c : Game.getInstance().getCoinContainer()){
             if(c.getState() == StaticTarget.State.EATEN) {
@@ -355,60 +355,28 @@ public class Map {
             }
         }
 
-        this.markAllForRendering();
-    }
+        for (StaticTarget f :Game.getInstance().getFruitContainer()){
+            if(f.getState() == StaticTarget.State.EATEN){
+                f.changeState(StaticTarget.State.AVAILABLE);
+            }
+        }
 
-    public void onPacmanGotEaten() {
-        this.replaceDynamicObjects();
+        this.markAllForRendering();
     }
 
     public static class StartingPosition {
 
-        public final Position GHOST_RED = Map.getInstance().positionContainer.get(11, 3);
-        public final Position GHOST_PINK = Map.getInstance().positionContainer.get(10, 3);
-        public final Position GHOST_BLUE = Map.getInstance().positionContainer.get(8, 3);
-        public final Position GHOST_ORANGE = Map.getInstance().positionContainer.get(9, 3);
+        public final Position GHOST_BLUE = Map.getInstance().positionContainer.get(11, 3);
+        public final Position GHOST_ORANGE = Map.getInstance().positionContainer.get(10, 3);
+        public final Position GHOST_RED = Map.getInstance().positionContainer.get(8, 3);
+        public final Position GHOST_PINK = Map.getInstance().positionContainer.get(9, 3);
 
         public final Position PACMAN_MALE = Map.getInstance().positionContainer.get(13, 8);
         public final Position PACMAN_FEMALE = Map.getInstance().positionContainer.get(6, 8);
 
     }
 
-    private void replaceDynamicObjects() {
-        GhostContainer gC = Game.getInstance().getGhostContainer();
-
-        for(Ghost g : gC) {
-            switch(g.getColour()) {
-                case RED: g.move(startingPositions.GHOST_RED);
-                    break;
-                case PINK: g.move(startingPositions.GHOST_PINK);
-                    break;
-                case BLUE: g.move(startingPositions.GHOST_BLUE);
-                    break;
-                case ORANGE: g.move(startingPositions.GHOST_ORANGE);
-                    break;
-                default:
-                    throw new RuntimeException("Bla");
-            }
-        }
-
-        PacmanContainer pC = Game.getInstance().getPacmanContainer();
-
-        for(Pacman p : pC) {
-            switch(p.getSex()) {
-                case MALE:
-                    p.move(startingPositions.PACMAN_MALE);
-                    break;
-                case FEMALE:
-                    p.move(startingPositions.PACMAN_FEMALE);
-                    break;
-            }
-            positionsToRender.add(p.getPosition());
-        }
-
-    }
-
-    public boolean isObjectsPlaced() {
+    private boolean isObjectsPlaced() {
         return objectsPlaced;
     }
 
@@ -416,11 +384,39 @@ public class Map {
         positionsToRender.add(positionContainer);
     }
 
+    public List<Direction> movablesDirections(Position position){
+
+        ArrayList<Direction> directions = new ArrayList<>(4);
+
+        for (Direction direction: Direction.values()){
+            Position pos = getPositionByDirectionIfMovableTo(position,direction);
+            if (pos != null) directions.add(direction);
+        }
+
+        return directions;
+    }
+
     public enum Direction {
 
         NORTH, WEST, EAST, SOUTH;
 
-        public static Direction guessDirection(MapObject mO) {
+        public Direction reverse(){
+
+            switch (this){
+                case SOUTH:
+                    return NORTH;
+                case EAST:
+                    return WEST;
+                case  NORTH:
+                    return SOUTH;
+                case WEST:
+                    return EAST;
+            }
+
+            return null;
+        }
+
+        public static Direction guessDirection(Position position) {
             Direction[] directions = Direction.values();
             Position guessedPosition = null;
             Direction guessedDirection = null;
@@ -428,7 +424,7 @@ public class Map {
             Helper.shuffle(directions);
 
             for (Direction direction : directions) {
-                guessedPosition = Map.getPositionByDirectionIfMovableTo(mO.getPosition(), direction);
+                guessedPosition = Map.getPositionByDirectionIfMovableTo(position, direction);
                 if (guessedPosition != null) {
                     guessedDirection = direction;
                     break;

@@ -10,6 +10,7 @@ package model;
 
 import model.exception.ListFullException;
 import model.exception.ObjectAlreadyInListException;
+import model.pacman.Pacman;
 
 import java.util.Vector;
 import java.util.Iterator;
@@ -93,6 +94,13 @@ public class PacmanContainer implements Container<Pacman> {
 
     public boolean contains(Pacman p) {
         return this.pacmans.contains(p);
+    }
+
+    public void handlePacmans(double delta) {
+
+        for (Pacman p : pacmans) {
+            p.handlePacman(delta);
+        }
     }
 
 }

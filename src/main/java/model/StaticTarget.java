@@ -8,20 +8,43 @@
 
 package model;
 
+import model.pacman.Pacman;
+
 /**
  * @author Philipp Winter
  * @author Jonas Heidecke
  * @author Niklas Kaddatz
  */
-public abstract class StaticTarget extends Target {
+public abstract class StaticTarget extends MapObject implements Target {
 
-    protected State state;
+    State state;
 
     public State getState() {
         return state;
     }
 
-    public abstract void changeState(State state);
+
+    protected StaticTarget(Position position, State state){
+        this.state = state;
+        setPosition(position);
+    }
+
+    public void changeState(State s) {
+        if (s == null) {
+            throw new IllegalArgumentException("A null state is not allowed.");
+        } else if (state == s) {
+            throw new IllegalArgumentException("The new state must differ from the old one.");
+        }
+
+        if (s == State.EATEN) {
+            setVisible(false);
+        } else if (s == State.AVAILABLE) {
+            setVisible(true);
+        }
+
+        this.state = s;
+    }
+
 
     @Override
     protected void setPosition(Position pos) {
@@ -42,4 +65,13 @@ public abstract class StaticTarget extends Target {
         EATEN, AVAILABLE
     }
 
+
+    public void gotEaten(){ changeState(State.EATEN);}
+
+    @Override
+    public void performCollision(Pacman pacman) {
+
+        if (this.state == State.AVAILABLE)
+            pacman.eat(this);
+    }
 }

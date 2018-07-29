@@ -9,6 +9,9 @@
 package model;
 
 import controller.MainController;
+import model.Ghost.Ghost;
+import model.Ghost.Inky;
+import model.pacman.Pacman;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -33,7 +36,7 @@ public class ScoreTest {
         MainController.reset();
 
         pos = Game.getInstance().getMap().getPositionContainer().get(0, 0);
-        pac = new Pacman(pos, Pacman.Sex.MALE);
+        pac = new Pacman(Pacman.Sex.MALE);
         instance = pac.getScore();
     }
 
@@ -45,7 +48,7 @@ public class ScoreTest {
     @Test
     public void testAddToScore() {
         assertEquals(0, instance.getScore());
-        Ghost g = new Ghost(pos, Ghost.Colour.BLUE);
+        Ghost g = new Inky(pos);
         instance.addToScore(g);
         assertEquals(g.getScore(), instance.getScore());
     }

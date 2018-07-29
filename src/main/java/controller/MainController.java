@@ -94,6 +94,9 @@ public class MainController extends Thread {
         this.gameActive = true;
         this.gui.showGame();
         this.game.start();
+
+
+
     }
 
     public void pauseGame() {

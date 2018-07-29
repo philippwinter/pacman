@@ -10,6 +10,7 @@ package view;
 
 import controller.MainController;
 import model.*;
+import model.pacman.Pacman;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -32,10 +33,6 @@ public class MainGui extends JFrame {
     private JPanel pnlPreGame;
 
     private GamePanel pnlGame;
-
-    private JPanel pnlButtons;
-
-    private JLabel lblBackground;
 
     private JButton btnPlaySingleplayer;
 
@@ -98,10 +95,10 @@ public class MainGui extends JFrame {
         pnlGame = new GamePanel();
         pnlGame.setLayout(new FlowLayout());
 
-        lblBackground = new JLabel(new ImageIcon(this.getClass().getResource("/graphics/background/main_background_middle.jpg")));
+        JLabel lblBackground = new JLabel(new ImageIcon(this.getClass().getResource("/graphics/background/main_background_middle.jpg")));
         lblBackground.setLayout(new FlowLayout());
 
-        pnlButtons = new JPanel();
+        JPanel pnlButtons = new JPanel();
         pnlButtons.setLayout(new FlowLayout());
         pnlButtons.setOpaque(false);
 
@@ -147,9 +144,9 @@ public class MainGui extends JFrame {
                     controller.pauseGame();
                 } else {
                     if(e.getSource() == btnPlaySingleplayer){
-                        Settings.getInstance().setGameMode(Game.Mode.SINGLEPLAYER);
+                        Settings.getInstance().setGameMode(Game.PlayerMode.SINGLEPLAYER);
                     } else if(e.getSource() == btnPlayMultiplayer){
-                        Settings.getInstance().setGameMode(Game.Mode.MULTIPLAYER);
+                        Settings.getInstance().setGameMode(Game.PlayerMode.MULTIPLAYER);
                     }
                     controller.startGame();
                 }

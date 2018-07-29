@@ -8,6 +8,9 @@
 
 package model;
 
+import model.Ghost.Ghost;
+import model.Ghost.behavior.Chase;
+
 /**
  * @author Philipp Winter
  * @author Jonas Heidecke
@@ -43,14 +46,11 @@ public class Level {
         Game.getInstance().changeRefreshRate(this);
 
         for (Ghost g : Game.getInstance().getGhostContainer()) {
-            g.changeState(DynamicTarget.State.HUNTER);
-        }
-
-        for (Pacman p : Game.getInstance().getPacmanContainer()) {
-            p.changeState(DynamicTarget.State.HUNTED);
+            g.behavior = new Chase(g);
         }
 
         Map.getInstance().onNextLevel();
+        Game.getInstance().replaceDinamicObjects();
         Game.getInstance().getEventHandlerManager().restartExecution();
     }
 

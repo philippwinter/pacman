@@ -85,6 +85,15 @@ public class Position {
         return false;
     }
 
+    public boolean isPlaceHolder(){
+        for (MapObject object: onPosition){
+            if (object instanceof Placeholder)
+                return true;
+        }
+
+        return false;
+    }
+
     public String toString() {
         return x + "|" + y;
     }

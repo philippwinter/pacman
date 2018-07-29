@@ -9,10 +9,16 @@
 package model;
 
 import controller.MainController;
+import model.Ghost.Ghost;
+import model.Ghost.GhostFactory;
+import model.Ghost.GhostManager;
+import model.event.Process;
 import model.event.RendererProcess;
 import model.event.Timer;
-import model.event.WorkerProcess;
-import view.MainGui;
+import model.pacman.Pacman;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The Game class is kind of a <i>master</i>-class, organizing all other business logic objects.
@@ -21,13 +27,13 @@ import view.MainGui;
  * @author Jonas Heidecke
  * @author Niklas Kaddatz
  */
-public class Game {
+public class Game implements Process{
 
     static {
         Game.reset();
     }
 
-    public static final double BASIC_REFRESH_RATE = 4.;
+    public static final double BASIC_REFRESH_RATE = 32.;
 
     public final static Settings settings = Settings.getInstance();
 
@@ -86,6 +92,8 @@ public class Game {
 
     private int playerLifes = 3;
 
+    private List<StaticTarget> fruitContainer;
+
     /**
      * Constructs a new Game object.
      */
@@ -117,11 +125,14 @@ public class Game {
         this.coinContainer = new CoinContainer();
         this.pointContainer = new PointContainer();
         this.pacmanContainer = new PacmanContainer();
+        this.fruitContainer = new ArrayList<>();
         this.level = Level.getInstance();
 
         this.eventHandlerManager = new Timer();
-        this.eventHandlerManager.register(new WorkerProcess());
+        this.eventHandlerManager.register(this);
         this.eventHandlerManager.register(new RendererProcess());
+
+        this.ghostManager = new GhostManager(ghostContainer);
 
     }
 
@@ -180,6 +191,8 @@ public class Game {
         return pacmanContainer;
     }
 
+    public List<StaticTarget> getFruitContainer() { return fruitContainer; }
+
     /**
      * Gets the map of the game.
      *
@@ -189,6 +202,8 @@ public class Game {
         return map;
     }
 
+    private GhostManager ghostManager;
+
     /**
      * Changes the refresh rate depending on the level.
      * Can be expressed by the equation <code>RefreshRate(level) = (level^5)^(1/7)</code>.
@@ -197,7 +212,7 @@ public class Game {
      */
     public void changeRefreshRate(Level l) {
         // f(x) = (x^5)^(1/7) or "The refresh rate per second is the 7th root of the level raised to 5"
-        this.refreshRate = Math.pow(Math.pow(l.getLevel(), 5), 1 / 7) + BASIC_REFRESH_RATE;
+        //this.refreshRate = Math.pow(Math.pow(l.getLevel(), 5), 1 / 7) + BASIC_REFRESH_RATE;
     }
 
     /**
@@ -215,9 +230,24 @@ public class Game {
      * @see model.event.Timer#startExecution()
      */
     public void start() {
+
         if(pointContainer.size() == 0){
+
+            // --------- GHOSTS ---------
+
+            ghostContainer.add(GhostFactory.createGhost(Ghost.Colour.BLUE));
+            ghostContainer.add(GhostFactory.createGhost(Ghost.Colour.RED));
+            ghostContainer.add(GhostFactory.createGhost(Ghost.Colour.ORANGE));
+            ghostContainer.add(GhostFactory.createGhost(Ghost.Colour.PINK));
+
+            pacmanContainer.add(new Pacman(Pacman.Sex.MALE));
+
+            if (Settings.getInstance().getGameMode() == PlayerMode.MULTIPLAYER)
+                pacmanContainer.add(new Pacman(Pacman.Sex.FEMALE));
+
             this.map.placeObjects();
         }
+
         this.eventHandlerManager.startExecution();
     }
 
@@ -247,7 +277,7 @@ public class Game {
         return false;
     }
 
-    public void gameOver() {
+    private void gameOver() {
         this.isOver = true;
         Game.getInstance().getEventHandlerManager().pauseExecution();
         MainController.getInstance().getGui().onGameOver();
@@ -267,19 +297,156 @@ public class Game {
         return Game.instance;
     }
 
-    public boolean isGameOver() {
+    private boolean isGameOver() {
         return this.isOver;
     }
 
     public void onPacmanGotEaten() {
-        Map.getInstance().onPacmanGotEaten();
+
+        reducePLayerLifes();
+        if (getPlayerLifes() <= 0)
+            gameOver();
+
+        this.replaceDinamicObjects();
     }
 
     public void increasePlayerLifes() {
         this.playerLifes++;
     }
 
-    public enum Mode {
+    private boolean check() {
+        boolean performFurtherActions;
+
+        // Check whether level is completed
+
+        int pointsEaten = 0;
+
+        for (Point p : pointContainer) {
+            if (p.getState() == StaticTarget.State.EATEN) {
+                pointsEaten++;
+            }
+        }
+
+        int size = getPointContainer().size();
+
+        //System.out.println(size + " " + pointsEaten);
+
+        performFurtherActions = (pointsEaten != size) && (!isGameOver());
+
+        if (size == pointsEaten) {
+            Level.getInstance().nextLevel();
+        }
+
+        return performFurtherActions;
+    }
+
+    private void performCollisions() {
+        for (Pacman p : getPacmanContainer()) {
+            performCollision(p);
+        }
+    }
+
+    private boolean checkCoinSeconds = false;
+
+    private void performCollision(Pacman pac) {
+        MapObjectContainer mapObjectsOnPos = pac.getPosition().getOnPosition();
+
+        for (MapObject mO : mapObjectsOnPos.getAll()) {
+
+            if (mO instanceof Target){
+                ((Target) mO).performCollision(pac);
+            }
+        }
+    }
+
+
+    public void frightenedGhost(double time){
+
+        System.out.println(time);
+        ghostManager.pause(time);
+
+        for (Ghost g : Game.getInstance().getGhostContainer()) {
+                g.frightened(time);
+        }
+
+    }
+
+    private void handleCoins() {
+        double activeSeconds = Coin.getActiveSeconds();
+
+        if (activeSeconds != Coin.PACMAN_AINT_EATER) {
+            Coin.reduceActiveSeconds(1 / Game.getInstance().getRefreshRate());
+        }
+
+        if (checkCoinSeconds && Coin.getActiveSeconds() == Coin.PACMAN_AINT_EATER) {
+            checkCoinSeconds = false;
+        }
+    }
+
+    private void markDynamicObjectsForRendering() {
+        for(Pacman p : getInstance().getPacmanContainer()){
+            Map.positionsToRender.add(p.getPosition());
+        }
+        for(Ghost g : getInstance().getGhostContainer()){
+            Map.positionsToRender.add(g.getPosition());
+        }
+    }
+
+    @Override
+    public void onLoad() {
+    }
+
+    @Override
+    public long getTiming() {
+        return (long) (1000 / refreshRate);
+    }
+
+    @Override
+    public long getStartupDelay() {
+        return 0;
+    }
+
+    @Override
+    public void run() {
+        try {
+            if (this.check()) {
+                this.markDynamicObjectsForRendering();
+                this.handleCoins();
+                this.performCollisions();
+                this.getPacmanContainer().handlePacmans(1/getRefreshRate());
+                this.performCollisions(); // Must be done two times to prevent two objects moving through each other
+                this.ghostManager.handle(1/getRefreshRate());
+                this.getGhostContainer().handleGhosts(1/getRefreshRate());
+                this.markDynamicObjectsForRendering();
+            }
+        } catch (Throwable t) {
+            MainController.uncaughtExceptionHandler.uncaught(t);
+        }
+    }
+
+    public void replaceDinamicObjects() {
+        for (Ghost g: Game.getInstance().getGhostContainer())
+            g.replace();
+
+        for (Pacman p: Game.getInstance().getPacmanContainer())
+            p.replace();
+    }
+
+
+    public int nbrOfActiveCoin(){
+
+        int n = 0;
+
+        for (Coin coin: coinContainer)
+            if (coin.state == StaticTarget.State.AVAILABLE)
+                n ++;
+
+        return n;
+
+    }
+
+    public enum PlayerMode {
         SINGLEPLAYER, MULTIPLAYER
     }
+
 }

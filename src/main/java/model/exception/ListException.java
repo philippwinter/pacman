@@ -24,7 +24,7 @@ public abstract class ListException extends RuntimeException {
      *
      * @param s The message.
      */
-    public ListException(String s) {
+    ListException(String s) {
         super(s);
     }
 

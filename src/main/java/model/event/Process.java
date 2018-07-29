@@ -15,8 +15,8 @@ package model.event;
  */
 public interface Process extends Runnable {
 
-    public long getTiming();
-    public long getStartupDelay();
+    long getTiming();
+    long getStartupDelay();
 
     void onLoad();
     void run();

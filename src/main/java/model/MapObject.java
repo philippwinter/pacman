@@ -58,6 +58,4 @@ public abstract class MapObject {
         }
         return false;
     }
-
-
 }

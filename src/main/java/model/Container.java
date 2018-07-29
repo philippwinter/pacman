@@ -27,7 +27,7 @@ public interface Container<E> extends Iterable<E> {
      *
      * @return Element on index i.
      */
-    public E get(int i);
+    E get(int i);
 
     /**
      * Adds an element to the container.
@@ -38,14 +38,14 @@ public interface Container<E> extends Iterable<E> {
      * @throws model.exception.ObjectAlreadyInListException When the object <i>el</i> is already in the list.
      * @throws model.exception.ListFullException            When the list is already filled with the maximum amount of elements.
      */
-    public void add(E el);
+    void add(E el);
 
     /**
      * Adds the elements of another container of the same type.
      *
      * @param container The other container.
      */
-    public void add(Container<E> container);
+    void add(Container<E> container);
 
     /**
      * Returns an ArrayList instance with all elements.
@@ -53,14 +53,14 @@ public interface Container<E> extends Iterable<E> {
      * @return A clone of the internal used ArrayList, so it can be mutated securely.
      * @see java.util.Vector#clone()
      */
-    public Vector<E> getAll();
+    Vector<E> getAll();
 
     /**
      * Removes an element from the container.
      *
      * @param el The element to remove.
      */
-    public void remove(E el);
+    void remove(E el);
 
     /**
      * Returns whether an object is in the container (compares by the .equals() method, so be sure to implement it!).
@@ -69,5 +69,5 @@ public interface Container<E> extends Iterable<E> {
      *
      * @return Whether <i>o</i> is contained in this container.
      */
-    public boolean contains(E o);
+    boolean contains(E o);
 }

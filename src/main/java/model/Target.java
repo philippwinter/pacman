@@ -8,13 +8,16 @@
 
 package model;
 
+import model.pacman.Pacman;
+
 /**
  * @author Philipp Winter
  * @author Jonas Heidecke
  * @author Niklas Kaddatz
  */
-public abstract class Target extends MapObject {
+public interface Target extends Scorable {
 
-    public abstract void gotEaten();
+    void gotEaten();
 
+    void performCollision(Pacman pacman);
 }

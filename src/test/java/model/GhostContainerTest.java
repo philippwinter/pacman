@@ -9,7 +9,10 @@
 package model;
 
 import controller.MainController;
-import model.Ghost.Colour;
+import model.Ghost.Clyde;
+import model.Ghost.Ghost;
+import model.Ghost.Ghost.Colour;
+import model.Ghost.Pinky;
 import model.exception.ObjectAlreadyInListException;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,19 +36,16 @@ public class GhostContainerTest {
     private Ghost g1;
     private Ghost g2;
 
-    private Position pos1;
-    private Position pos2;
-
     @Before
     public void setUp() {
         MainController.reset();
         instance = new GhostContainer();
 
-        pos1 = Game.getInstance().getMap().getPositionContainer().get(0, 0);
-        pos2 = Game.getInstance().getMap().getPositionContainer().get(0, 1);
+        Position pos1 = Game.getInstance().getMap().getPositionContainer().get(0, 0);
+        Position pos2 = Game.getInstance().getMap().getPositionContainer().get(0, 1);
 
-        g1 = new Ghost(pos1, Colour.ORANGE);
-        g2 = new Ghost(pos2, Colour.PINK);
+        g1 = new Clyde(pos1);
+        g2 = new Pinky(pos2);
     }
 
     @Test

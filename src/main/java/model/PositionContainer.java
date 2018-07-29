@@ -86,7 +86,7 @@ public class PositionContainer implements Container<Position> {
         return x + "#" + y;
     }
 
-    public String generateKey(Position pos) {
+    private String generateKey(Position pos) {
         return generateKey(pos.getX(), pos.getY());
     }
 

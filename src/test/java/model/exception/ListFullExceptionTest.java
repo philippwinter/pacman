@@ -10,7 +10,7 @@ package model.exception;
 
 import controller.MainController;
 import model.Game;
-import model.Pacman;
+import model.pacman.Pacman;
 import model.PacmanContainer;
 import org.junit.Test;
 
@@ -26,16 +26,16 @@ import static org.junit.Assert.assertEquals;
 @SuppressWarnings("unused")
 public class ListFullExceptionTest {
 
-    @Test(expected = model.exception.ListFullException.class)
+    @Test(expected = model.exception.ObjectAlreadyInListException.class)
     public void testConstruct() {
         MainController.reset();
 
         PacmanContainer container = new PacmanContainer();
 
         assertEquals(2, container.max);
-        container.add(new Pacman(Game.getInstance().getMap().getPositionContainer().get(0, 0), Pacman.Sex.MALE));
-        container.add(new Pacman(Game.getInstance().getMap().getPositionContainer().get(0, 1), Pacman.Sex.MALE));
-        container.add(new Pacman(Game.getInstance().getMap().getPositionContainer().get(0, 2), Pacman.Sex.MALE));
+        container.add(new Pacman(Pacman.Sex.MALE));
+        container.add(new Pacman(Pacman.Sex.MALE));
+        container.add(new Pacman(Pacman.Sex.MALE));
 
         MainController.reset();
     }

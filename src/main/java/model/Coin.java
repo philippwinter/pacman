@@ -6,6 +6,8 @@
  * Copyright (c) 2013 Philipp Winter, Jonas Heidecke & Niklas Kaddatz         *
  ******************************************************************************/
 
+//test
+
 package model;
 
 /**
@@ -18,8 +20,6 @@ package model;
 public class Coin extends StaticTarget implements Scorable {
 
     public static final double PACMAN_AINT_EATER = -1;
-
-    public static final double SECONDS_PER_COIN = 5.;
 
     private static double activeSeconds = PACMAN_AINT_EATER;
 
@@ -40,8 +40,7 @@ public class Coin extends StaticTarget implements Scorable {
     }
 
     public Coin(Position pos) {
-        this.state = State.AVAILABLE;
-        this.setPosition(pos);
+        super(pos, State.AVAILABLE);
     }
 
     /**
@@ -58,21 +57,20 @@ public class Coin extends StaticTarget implements Scorable {
         }
 
         if (state == State.EATEN) {
+
+            this.state = state;
+
+            int nbrCoin = Game.getInstance().nbrOfActiveCoin();
+
             setVisible(false);
-            if (Coin.activeSeconds == Coin.PACMAN_AINT_EATER) {
-                Coin.activeSeconds = SECONDS_PER_COIN;
-            } else {
-                Coin.activeSeconds += SECONDS_PER_COIN;
-            }
-            for (Pacman p : Game.getInstance().getPacmanContainer()) {
-                p.changeState(DynamicTarget.State.HUNTER);
-            }
-            for (Ghost g : Game.getInstance().getGhostContainer()) {
-                if (g.getState() == DynamicTarget.State.HUNTER) {
-                    g.changeState(DynamicTarget.State.HUNTED);
-                }
-            }
+            if (nbrCoin < 2)
+                Game.getInstance().frightenedGhost(7.);
+            else
+                Game.getInstance().frightenedGhost(5.);
+
+
         } else if (state == State.AVAILABLE) {
+            this.state = state;
             setVisible(true);
         }
 
@@ -105,7 +103,8 @@ public class Coin extends StaticTarget implements Scorable {
     }
 
     public void gotEaten() {
-        this.changeState(State.EATEN);
+        if (this.state == State.AVAILABLE)
+            this.changeState(State.EATEN);
     }
 
     @Override

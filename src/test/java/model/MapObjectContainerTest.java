@@ -8,8 +8,11 @@
 
 package model;
 
-import model.Ghost.Colour;
+import model.Ghost.Blinky;
+import model.Ghost.Ghost;
+import model.Ghost.Pinky;
 import model.Map.Direction;
+import model.pacman.Pacman;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,23 +28,25 @@ import static org.junit.Assert.*;
 public class MapObjectContainerTest {
 
     private MapObjectContainer instance;
-    private Position pos;
     private Position otherPos;
     private Pacman pac;
     private Ghost ghost;
 
     @Before
     public void setUp() {
-        this.pos = Map.getInstance().getPositionContainer().get(1, 1);
+        Position pos = Map.getInstance().getPositionContainer().get(1, 1);
         this.otherPos = Map.getPositionByDirectionIfMovableTo(pos, Direction.EAST);
-        this.pac = new Pacman(pos, Pacman.Sex.MALE);
-        this.ghost = new Ghost(pos, Colour.PINK);
+        this.pac = new Pacman(Pacman.Sex.MALE);
+        this.ghost = new Pinky(pos);
         this.instance = pos.getOnPosition();
+        pac.move(otherPos);
+
     }
 
 
     @Test
     public void testGet() {
+        assertNotNull(instance);
         assertNotNull(instance.get(0));
     }
 
@@ -58,7 +63,7 @@ public class MapObjectContainerTest {
 
     @Test
     public void testAdd() {
-        new Pacman(pos, Pacman.Sex.MALE);
+        new Pacman(Pacman.Sex.MALE);
     }
 
     @Test
@@ -68,8 +73,8 @@ public class MapObjectContainerTest {
 
     @Test
     public void testContains() {
-        assertTrue(instance.contains(pac));
+        assertTrue(otherPos.getOnPosition().contains(pac));
         assertTrue(instance.contains(ghost));
-        assertFalse(instance.contains(new Ghost(otherPos, Colour.RED)));
+        assertFalse(instance.contains(new Blinky(otherPos)));
     }
 }

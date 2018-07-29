@@ -8,6 +8,7 @@
 
 package model;
 
+import model.Ghost.Ghost;
 import model.exception.ListFullException;
 import model.exception.ObjectAlreadyInListException;
 
@@ -31,7 +32,7 @@ public class GhostContainer implements Container<Ghost> {
     /**
      * The maximal amount of ghosts.
      */
-    public final int max = 4;
+    private final int max = 4;
 
     /**
      * Constructs a new GhostContainer.
@@ -153,6 +154,12 @@ public class GhostContainer implements Container<Ghost> {
 
     public boolean contains(Ghost g) {
         return this.ghosts.contains(g);
+    }
+
+    public void handleGhosts(double delta) {
+        for (Ghost g : this.ghosts) {
+            g.handleGhost(delta);
+        }
     }
 
 }

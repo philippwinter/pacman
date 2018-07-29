@@ -8,7 +8,9 @@
 
 package model;
 
+import model.Ghost.Ghost;
 import model.Map.Direction;
+import model.pacman.Pacman;
 
 /**
  * The parent class of all MapObjects that can move by themselves.
@@ -20,9 +22,7 @@ import model.Map.Direction;
  * @see Pacman
  */
 @SuppressWarnings("unused")
-public abstract class DynamicTarget extends Target {
-
-    protected State state = State.WAITING;
+public abstract class DynamicObject extends MapObject {
 
     /**
      * The direction the object is heading to, e.g. moving to.
@@ -46,12 +46,6 @@ public abstract class DynamicTarget extends Target {
         }
     }
 
-    /**
-     * Let the object eat a subclass of Target.
-     *
-     * @param target The object to be eaten.
-     */
-    protected abstract void eat(Target target);
 
     /**
      * Return the direction this object is heading to.
@@ -83,49 +77,14 @@ public abstract class DynamicTarget extends Target {
         this.headingTo = direction;
     }
 
-    /**
-     * Change the state and perform necessary actions in order to do this.
-     *
-     * @param state The new state.
-     */
-    public abstract void changeState(State state);
-
-    public State getState() {
-        return this.state;
-    }
 
     public boolean equals(Object o) {
         if (o != null) {
-            if (o instanceof DynamicTarget) {
-                return this.getHeadingTo().equals(((DynamicTarget) o).getHeadingTo())
-                        && this.getState().equals(((DynamicTarget) o).getState())
-                        && this.getPosition().equals(((DynamicTarget) o).getPosition());
+            if (o instanceof DynamicObject) {
+                return this.getHeadingTo().equals(((DynamicObject) o).getHeadingTo())
+                        && this.getPosition().equals(((DynamicObject) o).getPosition());
             }
         }
         return false;
-    }
-
-    public enum State {
-
-        /**
-         * The object is on the hunt.
-         */
-        HUNTER,
-
-        /**
-         * The object is getting hunted.
-         */
-        HUNTED,
-
-        /**
-         * The object was munched / eaten.
-         */
-        MUNCHED,
-
-        /**
-         * The object is waiting, for example to respawn.
-         */
-        WAITING
-
     }
 }

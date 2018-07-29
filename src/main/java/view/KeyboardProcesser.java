@@ -10,6 +10,7 @@ package view;
 
 import controller.MainController;
 import model.*;
+import model.pacman.Pacman;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -71,7 +72,7 @@ public class KeyboardProcesser implements KeyListener {
                     break;
             }
 
-            if (Settings.getInstance().getGameMode() == Game.Mode.MULTIPLAYER) {
+            if (Settings.getInstance().getGameMode() == Game.PlayerMode.MULTIPLAYER) {
                 if (mrsPacman == null) {
                     throw new RuntimeException("Couldn't find Mrs. Pacman");
                 }

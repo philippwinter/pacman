@@ -8,8 +8,6 @@
 
 package model.event;
 
-import model.Game;
-
 import java.util.ArrayList;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -21,11 +19,11 @@ import java.util.concurrent.TimeUnit;
  */
 public class Timer {
 
-    private ArrayList<Process> eventObjects;
+    private final ArrayList<Process> eventObjects;
 
     private ScheduledThreadPoolExecutor executor;
 
-    private int startPoolSize = 3;
+    private final int startPoolSize = 3;
 
     public Timer() {
         this.eventObjects = new ArrayList<>(startPoolSize);
